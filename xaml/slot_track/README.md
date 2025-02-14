@@ -12,14 +12,14 @@ To find your <install_dir> simply go to the Race Day Setup screen and use the Fi
 # Screens
 ## Race Screen 1
 ![alt text](./SlotTrack.png)
-[SlotTrack_4 Lane](./xaml/SlotTrack_4L.xaml)
+[4 Lane SlotTrack](./xaml/SlotTrack_4L.xaml)
 
 ## Race Screen 2
 ![alt text](./SlotTrack2.png)
-[SlotTrack 4 Lane](./xaml/SlotTrack2_4L.xaml)
+[4 Lane SlotTrack](./xaml/SlotTrack2_4L.xaml)
 
 ##Practice Screen
 ![alt text](./SlotTrackPractice.png)
-[SlotTrack Practice_4 Lane](./xaml/SlotTrackPractie_4L.xaml)
+[4 Lane SlotTrack Practice](./xaml/SlotTrackPractie_4L.xaml)
 
 
