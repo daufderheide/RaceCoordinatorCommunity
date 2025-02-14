@@ -1,0 +1,584 @@
+<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    Title="Race Day" Background="Transparent" Height="1080" Width="1920" WindowState="Maximized" FontFamily="Tahoma" WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen">
+  <Viewbox Stretch="Fill">
+    <Grid>
+      <!-- Horizontal Top Menu Bar  -->
+      <Menu Height="22" Name="menu1" VerticalAlignment="Top">
+        <MenuItem Header="File">
+          <MenuItem Name="Save_1" Header="Save" DataContext="'key':'S','modifier':'Alt'" ToolTip="ALT-S to save the race" />
+          <MenuItem Name="SaveAs_1" Header="Save As..." DataContext="'key':'A','modifier':'Alt'" ToolTip="ALT-a to save the race with the spefied file name" />
+          <Separator/>
+          <MenuItem Name="Export_1" Header="Export Race"  DataContext="'key':'X','modifier':'Alt'" ToolTip="Alt-X to export current race progress" />
+        </MenuItem>
+        <MenuItem Header="Race Director">
+          <MenuItem Name="Start_1" Header="Start/Resume Heat" DataContext="'key':'S','modifier':'Control'" ToolTip="CTRL-S to start or restart the heat" />
+          <MenuItem Name="Pause_1" Header="Pause Heat" DataContext="'key':'P','modifier':'Control'" ToolTip="CTRL-P to pause the heat" />
+          <Separator/>
+          <MenuItem Name="AddLaps_1" Header="Add Laps/Sections"  DataContext="'key':'A','modifier':'Control'" ToolTip="CTRL-A to add laps/sections" />
+          <MenuItem Name="NextHeat_1" Header="Next Heat" DataContext="'key':'N','modifier':'Control'" ToolTip="CTRL-N to advance to the next heat" />
+          <Separator/>
+          <MenuItem Name="RestartHeat_1" Header="Restart Heat" DataContext="'key':'R','modifier':'Control'" ToolTip="CTRL-R to restart the current heat" />
+          <MenuItem Name="DeferHeat_1" Header="Defer Heat"  DataContext="'key':'D','modifier':'Control'" ToolTip="CTRL-D to defer this heat until the end of the race" />
+          <MenuItem Name="SkipHeat_1" Header="Skip Heat"  DataContext="'key':'F5','modifier':'Alt'" ToolTip="ALT-F5 to skip the remainder of this heat" />
+          <MenuItem Name="SkipRace_1" Header="Skip Race"  DataContext="'key':'F4','modifier':'Alt'" ToolTip="CTRL-F4 to end this race" />
+          <Separator/>
+          <MenuItem Name="ModifyHeats_1" Header="Modify Heats"  DataContext="'key':'H','modifier':'Control'" ToolTip="CTRL-H to modify heat rotations" />
+          <MenuItem Name="LapEditor_1" Header="Edit Laps" DataContext="'key':'E','modifier':'Control'" ToolTip="CTRL-E to modify lap records" />
+        </MenuItem>
+        <MenuItem Header="Track Power">
+          <MenuItem CommandParameter="0" Name="PowerOn_1" Header="Master Power On" DataContext="'key':'0','modifier':'Control'" ToolTip="CTRL-0 to force master power on" />
+          <MenuItem CommandParameter="0" Name="PowerOff_1" Header="Master Power Off" DataContext="'key':'0','modifier':'Alt'" ToolTip="ALT-0 to force master power off"/>
+          <MenuItem CommandParameter="1" Name="PowerOn_2" Header="Lane 1 Power On" DataContext="'key':'1','modifier':'Control'" ToolTip="CTRL-1 to force lane 1 power on" />
+          <MenuItem CommandParameter="1" Name="PowerOff_2" Header="Lane 1 Power Off" DataContext="'key':'1','modifier':'Alt'" ToolTip="ALT-1 to force lane 1 power off"/>
+          <MenuItem CommandParameter="2" Name="PowerOn_3" Header="Lane 2 Power On" DataContext="'key':'2','modifier':'Control'" ToolTip="CTRL-2 to force lane 2 power on" />
+          <MenuItem CommandParameter="2" Name="PowerOff_3" Header="Lane 2 Power Off" DataContext="'key':'2','modifier':'Alt'" ToolTip="ALT-2 to force lane 2 power off"/>
+          <MenuItem CommandParameter="3" Name="PowerOn_4" Header="Lane 3 Power On" DataContext="'key':'3','modifier':'Control'" ToolTip="CTRL-3 to force lane 3 power on" />
+          <MenuItem CommandParameter="3" Name="PowerOff_4" Header="Lane 3 Power Off" DataContext="'key':'3','modifier':'Alt'" ToolTip="ALT-3 to force lane 3 power off"/>
+        </MenuItem>
+        <Separator Width="5" />
+        <MenuItem Header="Windows">
+          <MenuItem Name="Window_1" Header="Leader Board" CommandParameter="data/xaml/LeaderBoard.xaml"  DataContext="'key':'F1'" ToolTip="F1 to display the Leader Board" />
+          <MenuItem Name="Window_2" Header="Top 5" CommandParameter="data/xaml/Top5.xaml"  DataContext="'key':'F1','modifier':'Control'" ToolTip="CTRL F1 to display the Top 5 Leader Board" />
+          <MenuItem Name="Window_3" Header="Group Leader Board" CommandParameter="data/xaml/GroupLeaderBoard.xaml"  DataContext="'key':'F3'" ToolTip="F3 to display the Group Leader Board" />
+          <MenuItem Name="Window_4" Header="Heat Results" CommandParameter="data/xaml/HeatResults.xaml" DataContext="'key':'F4'" ToolTip="F4 to display the Heat Results window" />
+          <MenuItem Name="Window_5" Header="Race Results" CommandParameter="data/xaml/RaceResults.xaml" DataContext="'key':'F5'" ToolTip="F5 to display the Race Results window" />
+          <Separator/>
+          <MenuItem Name="Window_6" Header="Season Race Leader Board" CommandParameter="data/xaml/SeasonRaceLeaderBoard.xaml"  DataContext="'key':'F1' ,'modifier':'Alt'" ToolTip="ALT F1 to display the Season Race Leader Board" />
+          <MenuItem Name="Window_7" Header="Season Leader Board" CommandParameter="data/xaml/SeasonLeaderBoard.xaml"  ToolTip="Display the Season Leader Board" />
+          <Separator/>
+          <MenuItem Name="Window_8" Header="On Deck" CommandParameter="data/xaml/OnDeck.xaml" DataContext="'key':'F6'" ToolTip="F6 to display the On Deck window" />
+          <MenuItem Name="ViewHeats_1" Header="Heat List" DataContext="'key':'F7'" ToolTip="F7 to display heat rotations" />
+          <MenuItem Name="Window_9" Header="Next Heat" CommandParameter="data/xaml/NextHeat_3L.xaml" DataContext="'key':'F8'" ToolTip="F8 to display all drivers in the next heat" />
+        </MenuItem>
+      </Menu>
+      <!-- End Horizontal Menu Bar -->
+
+      <!-- Race and Track Top Bar  -->
+      <Grid Height="35" Background="#b2ee6666" VerticalAlignment="Top" Margin="0,22,0,0" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="373" />
+          <ColumnDefinition Width="374" />
+          <ColumnDefinition Width="373" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Background="Transparent" HorizontalAlignment="Center">
+          <Label BorderBrush="Black" BorderThickness="0,1,0,1"  HorizontalAlignment="Center" HorizontalContentAlignment="Center" Width="374" Height="35">
+            <DockPanel VerticalAlignment="Center">
+              <TextBlock Margin="6,-3,0.569,0" VerticalAlignment="Center" Foreground="Linen" FontSize="12" HorizontalAlignment="left" Padding="0" FontWeight="Bold" FontStyle="Italic" OverridesDefaultStyle="False">Race:</TextBlock>
+              <TextBlock Margin="6,-3,0.569,0" Background="Transparent" FontSize="18" Name="RaceName_1" Foreground="Yellow" FontWeight="Bold" FontFamily="Comic Sans MS" />
+            </DockPanel>
+          </Label>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Background="Transparent" HorizontalAlignment="Center">
+          <Label BorderBrush="Black" BorderThickness="0,1,0,1"  HorizontalAlignment="Center" HorizontalContentAlignment="Center" Width="374" Height="35">
+            <DockPanel>
+              <TextBlock FontSize="18" Foreground="Yellow" FontWeight="Bold" Text="Heat " />
+              <TextBlock FontSize="18" Foreground="Yellow" FontWeight="Bold" Name="HeatNumber_1" />
+              <TextBlock FontSize="18" Foreground="Yellow" FontWeight="Bold" Text=" of " />
+              <TextBlock FontSize="18" Foreground="Yellow" FontWeight="Bold" Name="NumHeats_1" />
+            </DockPanel>
+          </Label>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Background="Transparent" HorizontalAlignment="Center">
+          <Label BorderBrush="Black" BorderThickness="0,1,0,1"  HorizontalAlignment="Center" HorizontalContentAlignment="Center" Width="373" Height="35">
+            <DockPanel Margin="25, 0, 25, 0">
+              <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Linen" FontSize="12" Padding="0" FontWeight="Bold" FontStyle="Italic">Track:</TextBlock>
+              <TextBlock Margin="10,0,0,0" Name="TrackName_1" VerticalAlignment="Top" Foreground="White" FontSize="16" HorizontalAlignment="Left" Padding="2" FontWeight="Bold" FontStyle="Italic" />
+            </DockPanel>
+          </Label>
+        </StackPanel>
+      </Grid>
+      <!-- End Race and Track Top Bar  -->
+
+      <!-- Flag Race, Timer, Record, Leaderboard Panel  -->
+
+      <DockPanel Height="200" Margin="0,75,0,0" Name="dockPanel1" VerticalAlignment="Top">
+        <Grid Name="grid1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+
+          <!-- Flag Race Panel -->
+
+          <Border Height="200" Grid.Column="0" VerticalAlignment="Center" Margin="10,-33,0,0" Padding="0" BorderThickness="1" BorderBrush="White" Background="#b2000019" CornerRadius="6">
+            <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="0" Background="Transparent">
+              <Viewbox Grid.Column="0" Margin="0" Stretch="Uniform">
+                <StackPanel Orientation="Horizontal">
+                  <Image Grid.Column="0" Name="RaceStateImage_1" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" Height="175" Width="210" />
+                </StackPanel>
+              </Viewbox>
+            </StackPanel>
+          </Border>
+
+          <!-- Flag Race Panel -->
+
+          <!-- Timer Race Panel -->
+
+          <StackPanel Grid.Column="1" Name="stackPanel1" Height="200" VerticalAlignment="Top" Margin="0">
+
+            <!-- Change Background in this line to change LCD/LED background color. Best background color LCD ="#ffCCffe5" Best background color 8digit Led ="#ff000022"-->
+            <Border Background="#ff000022" BorderBrush="#ffdddddd" BorderThickness="2,2,0,0" CornerRadius="8" Width="360" Height="200" Margin="10,-17,0,0">
+              <Border Background="Transparent" BorderBrush="#ff777777" BorderThickness="0,0,2,2" CornerRadius="8" Width="360" Height="200" Margin="-2,-2,0,0">
+
+                <!-- Change FontFamily and FontSize in this line to change timer font. Best Foreground color LCD ="#ff004C99" Best Foreground color 8digit Led ="Red", "Limegreen", "Yellow", "orange1"-->
+                <!-- For LCD panel change also FontFamily to "Digit" for 8digit LED change FontFamily to "Digit Black" -->
+                <Viewbox VerticalAlignment="Center" Stretch="Uniform">
+                  <Label Padding="5" Margin="0, 0, 0, 0" Background="Transparent" BorderBrush="Transparent" BorderThickness="2" FontSize="120"  FontFamily="Digit Black " HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" Name="RaceTime_1" Foreground="LimeGreen" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+                </Viewbox>
+              </Border>
+            </Border>
+          </StackPanel>
+
+          <!-- End Timer Race Panel -->
+
+          <!-- Record Race Panel -->
+
+          <Border Height="200" Width="200" Grid.Column="2" VerticalAlignment="Center" Margin="10,-33,0,0" Padding="0" BorderThickness="1" BorderBrush="White" Background="#b2000019" CornerRadius="6">
+            <StackPanel Orientation="vertical" Grid.Column="2" VerticalAlignment="Top" Background="Transparent" Margin="0,4,0,0">
+              <TextBlock FontSize="16" Foreground="#ffeeeeee" Background="#ff222222" Text="Race Record Lap" FontWeight="Normal" Padding="15,0,0,0"/>
+              <DockPanel  LastChildFill="False" Background="#ff222222">
+                <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="130">
+                  <TextBlock Padding="15,0,0,0" VerticalAlignment="Center" FontSize="16" Name="RecordNickname_1" Foreground="yellow"/>
+                </Viewbox>
+                <TextBlock VerticalAlignment="Center" FontSize="16" Foreground="yellow" Text=" : "/>
+                <TextBlock VerticalAlignment="Center" FontSize="16" Name="RecordTime_1" Foreground="yellow" DockPanel.Dock="Right" DataContext="'decimals':3" Padding="0,0,5,0"/>
+              </DockPanel>
+              <Label></Label>
+              <TextBlock FontSize="16" Foreground="#ffeeeeee" Text="Race Record Score" FontWeight="Normal" Padding="15,0,0,0"/>
+              <DockPanel LastChildFill="False">
+                <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="130">
+                  <TextBlock Padding="15,0,0,0" VerticalAlignment="Center" FontSize="16" Name="RecordScoreNickname_1" Foreground="Yellow"/>
+                </Viewbox>
+                <TextBlock VerticalAlignment="Center" FontSize="16" Foreground="yellow" Text=" : "/>
+                <TextBlock VerticalAlignment="Center" FontSize="16" Name="RecordScore_1" Foreground="Yellow" DockPanel.Dock="Right" DataContext="'decimals':3" Padding="0,0,5,0"/>
+              </DockPanel>
+              <Label></Label>
+              <TextBlock Padding="15,0,0,0" FontSize="16" Foreground="#ffeeeeee" Background="#ff222222" Text="Current Race Best Lap" FontWeight="Normal"/>
+              <DockPanel VerticalAlignment="Center" LastChildFill="False" Background="#ff222222">
+                <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="130">
+                  <TextBlock Padding="15,0,0,0" VerticalAlignment="Center" FontSize="16" Name="BestNickname_1" Foreground="Yellow"/>
+                </Viewbox>
+                <TextBlock VerticalAlignment="Center" FontSize="16" Foreground="Yellow" Text=" : "/>
+                <TextBlock VerticalAlignment="Center" FontSize="16" Name="BestTime_1" Foreground="Yellow" DockPanel.Dock="Right" DataContext="'decimals':3" Padding="0,0,5,0"/>
+              </DockPanel>
+              <Label></Label>
+              <TextBlock FontSize="16" Foreground="#ffeeeeee" Text="Heat Best Lap" FontWeight="Normal" Padding="15,0,0,0" Margin="0,-8,0,0"/>
+              <DockPanel LastChildFill="False">
+                <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="130">
+                  <TextBlock Padding="15,0,0,0" VerticalAlignment="Center" FontSize="16" Name="BestHeatNickname_1" Foreground="Yellow"/>
+                </Viewbox>
+                <TextBlock VerticalAlignment="Center" FontSize="16" Foreground="Yellow" Text=" : "/>
+                <TextBlock VerticalAlignment="Center" FontSize="16" Name="BestHeatTime_1" Foreground="Yellow" DockPanel.Dock="Right" DataContext="'decimals':3" Padding="0,0,5,0"/>
+              </DockPanel>
+            </StackPanel>
+          </Border>
+
+          <!-- End Record Race Panel -->
+
+          <!-- Leaderboard Race Panel -->
+          <Border Height="200" Width="300" Grid.Column="3" VerticalAlignment="Center" Margin="10,-33,0,0" Padding="0" BorderThickness="1" BorderBrush="White" Background="#b2000019" CornerRadius="6">
+            <Grid Margin="3">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+
+              <DockPanel Grid.Row="0" LastChildFill="False" Margin="5, 0, 5, 10" HorizontalAlignment="Center">
+                <TextBlock FontWeight="Bold" FontSize="20" Foreground="Red" DockPanel.Dock="Left">Leader Board</TextBlock>
+              </DockPanel>
+
+              <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" Margin="0,0,0,0" Padding="0" VerticalAlignment="Center">
+                <ScrollViewer.Resources>
+                  <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">8</sys:Double>
+                </ScrollViewer.Resources>
+                <ItemsControl>
+                  <DockPanel LastChildFill="False" Margin="0,0,0,5" Background="#ff222222">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader1_1" Foreground="Gold" FontWeight="Normal" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="Gold" FontWeight="Normal" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="60" MaxWidth="150">
+                      <TextBlock FontSize="20" Name="Nickname_RaceLeader1_1" Foreground="Gold" FontWeight="Normal" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader1_1" Foreground="Gold" FontWeight="Normal" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader2_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader2_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader2_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False" Background="#ff222222">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader3_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader3_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader3_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader4_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader4_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader4_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False" Background="#ff222222">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader5_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader5_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader5_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader6_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader6_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader6_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False" Background="#ff222222">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader7_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader7_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader7_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader8_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader8_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader8_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False" Background="#ff222222">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader9_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader9_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader9_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader10_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader10_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader10_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False" Background="#ff222222">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader11_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader11_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader11_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader12_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader12_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader12_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False" Background="#ff222222">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader13_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader13_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader13_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader14_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader14_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader14_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False" Background="#ff222222">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader15_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader15_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader15_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader16_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader16_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader16_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False" Background="#ff222222">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader17_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader17_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader17_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader18_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader18_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader18_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False" Background="#ff222222">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader19_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader19_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader19_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                  <DockPanel LastChildFill="False">
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Seed_RaceLeader20_1" Foreground="White" DockPanel.Dock="Left"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Foreground="White" Text=" "/>
+                    <Viewbox VerticalAlignment="Center" Stretch="Uniform" MaxHeight="20" MaxWidth="150">
+                      <TextBlock VerticalAlignment="Center" FontSize="20" Name="Nickname_RaceLeader20_1" Foreground="White" />
+                    </Viewbox>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" Name="Standing_RaceLeader20_1" Foreground="White" DockPanel.Dock="Right" />
+                  </DockPanel>
+                </ItemsControl>
+              </ScrollViewer>
+            </Grid>
+          </Border>
+        </Grid>
+      </DockPanel>
+
+      <!-- End Leaderboard Race Panel -->
+
+      <!-- End Flag Race, Timer, Record, Leaderboard Panel  -->
+
+
+
+      <!-- - - - - - - Lower DockPanel - - - - -->
+      <DockPanel Margin="0,262,0,0" Name="dockPanel2" Background="Transparent">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0" />
+            <ColumnDefinition Width="180" />
+            <ColumnDefinition Width="95" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="130" />
+            <ColumnDefinition Width="180" />
+            <ColumnDefinition Width="125" />
+            <ColumnDefinition Width="125" />
+            <ColumnDefinition Width="85" />
+          </Grid.ColumnDefinitions>
+
+          <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="120" />
+            <RowDefinition Height="120" />
+            <RowDefinition Height="120" />
+            <RowDefinition Height="120" />            
+          </Grid.RowDefinitions>
+
+          <Button Grid.Column="0" Focusable="False" DataContext="'key':'Space'" Name="Toggle_1" />
+
+          <!--Labels for Column Headers-->
+          <Border Grid.Column="1" Grid.Row="0" BorderBrush="#ffffffff" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0" Background="#b2444444" Margin="1,0,1,0">
+            <Label Grid.Column="1" Grid.Row="0" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontStyle="Normal" FontWeight="Bold" Content="Name" Padding="0,-2,0,0" />
+          </Border>
+          <Border Grid.Column="2" Grid.Row="0" BorderBrush="#ffffffff" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0" Background="#b2444444" Margin="1,0,1,0">
+            <Label Grid.Column="2" Grid.Row="0" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontStyle="Normal" FontWeight="Bold" Content="Lap" Padding="0,-2,0,0" />
+          </Border>
+          <Border Grid.Column="3" Grid.Row="0" BorderBrush="#ffffffff" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0" Background="#b2444444" Margin="1,0,1,0">
+            <Label Grid.Column="3" Grid.Row="0" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontStyle="Normal" FontWeight="Bold" Content="Lap Time" Padding="0,-2,0,0" />
+          </Border>
+          <Border Grid.Column="4" Grid.Row="0" BorderBrush="#ffffffff" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0" Background="#b2444444" Margin="1,0,1,0">
+            <Label Grid.Column="4" Grid.Row="0" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontStyle="Normal" FontWeight="Bold" Content="Median Lap" Padding="0,-2,0,0" />
+          </Border>
+          <Border Grid.Column="5" Grid.Row="0" BorderBrush="#ffffffff" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0" Background="#b2444444" Margin="1,0,1,0">
+            <Label Grid.Column="5" Grid.Row="0" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontStyle="Normal" FontWeight="Bold" Content="Best Lap" Padding="0,-2,0,0" />
+          </Border>
+          <Border Grid.Column="6" Grid.Row="0" BorderBrush="#ffffffff" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0" Background="#b2444444" Margin="1,0,1,0">
+            <Label Grid.Column="6" Grid.Row="0" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontStyle="Normal" FontWeight="Bold" Content="Gap to 1st" Padding="0,-2,0,0" />
+          </Border>
+          <Border Grid.Column="7" Grid.Row="0" BorderBrush="#ffffffff" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0" Background="#b2444444" Margin="1,0,1,0">
+            <Label Grid.Column="7" Grid.Row="0" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontStyle="Normal" FontWeight="Bold" Content="Gap" Padding="0,-2,0,0" />
+          </Border>
+          <Border Grid.Column="8" Grid.Row="0" BorderBrush="#ffffffff" BorderThickness="1,1,1,0" CornerRadius="5,5,0,0" Background="#b2444444" Margin="1,0,1,0">
+            <Label Grid.Column="8" Grid.Row="0" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontStyle="Normal" FontWeight="Bold" Content="Led" Padding="0,-2,0,0" />
+          </Border>
+          <!--End of labels for Column Headers-->
+
+          <!--Row for first position racer ////////////////////////////////////////////////////////// -->
+
+          <Label Grid.Row="1" Grid.Column="1" Background="Black" BorderBrush="Black" BorderThickness="1" Foreground="Transparent" Name="Nickname_Position1_1" FontSize="50" FontWeight="Bold"/>
+          <Viewbox MaxWidth="176"  MaxHeight="118" MinHeight="50" Grid.Row="1" Grid.Column="1">
+              <Label FontSize="200" Name="Nickname_Position1_2" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" />
+          </Viewbox>
+          <DockPanel Grid.Row="1" Grid.Column="1" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4, 4, 4, 4" Background="Transparent">
+            <TextBlock FontSize="10" Name="Seed_Position1_1" Foreground="Black"/>
+            <TextBlock FontSize="10" Foreground="Black" Text=" "/>
+            <TextBlock FontSize="10" Name="Name_Position1_1" DockPanel.Dock="Left" Foreground="Black" />
+          </DockPanel>
+
+          <Label Grid.Row="1" Grid.Column="2" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Lap_Position1_1" FontWeight="Bold" />
+          <Button Grid.Row ="1" Grid.Column="2" Name="AddLapSections_Position1_1" Opacity="0" IsTabStop="False" Focusable="False" />
+
+          <Label Grid.Row="1" Grid.Column="3" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="LapTime_Position1_1" DataContext="'decimals':3" FontWeight="Bold" />
+          <StackPanel Margin="4, 4, 4, 4" Orientation="Horizontal" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Label FontSize="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Transparent" Name="SegmentTime_Position1_1" DataContext="'decimals':3, 'row':0, 'index':0, 'reverse':true"/>
+          </StackPanel>
+          <StackPanel Margin="4, 4, 4, 4" Orientation="Horizontal" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Label FontSize="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Transparent" Name="SegmentTime_Position1_2" DataContext="'decimals':3, 'row':0, 'index':1, 'reverse':true"/>
+          </StackPanel>
+
+          <Label Grid.Row="1" Grid.Column="4" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="MedianTime_Position1_1" DataContext="'decimals':3" FontWeight="Normal" />
+          <StackPanel Margin="4, 4, 4, 4" Orientation="Horizontal" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Label FontSize="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Transparent" Name="AverageTime_Position1_1"/>
+          </StackPanel>
+
+          <Label Grid.Row="1" Grid.Column="5" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="BestLapTime_Position1_1" DataContext="'decimals':3" FontWeight="Bold" />
+
+          <Label Grid.Row="1" Grid.Column="6" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="GapLeader_Position1_1" DataContext="'decimals':3" />
+
+          <Label Grid.Row="1" Grid.Column="7" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="GapPosition_Position1_1" DataContext="'decimals':3"/>
+
+          <Label Grid.Row="1" Grid.Column="8" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Led_Position1_1" />
+
+          <!--End of row for first position racer ///////////////////////////////////////////////////// -->
+
+          <!--Row for second position racer  ////////////////////////////////////////////////////////// -->
+
+          <Label Grid.Row="2" Grid.Column="1" Background="Black" BorderBrush="Black" BorderThickness="1" Foreground="Transparent" Name="Nickname_Position2_1" FontSize="50" FontWeight="Bold"/>
+          <Viewbox MaxWidth="176"  MaxHeight="118" MinHeight="50" Grid.Row="2" Grid.Column="1">
+              <Label FontSize="200" Name="Nickname_Position2_2" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" />
+          </Viewbox>
+          <DockPanel Grid.Row="2" Grid.Column="1" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4, 4, 4, 4" Background="Transparent">
+            <TextBlock FontSize="10" Name="Seed_Position2_1" Foreground="Black"/>
+            <TextBlock FontSize="10" Foreground="Black" Text=" "/>
+            <TextBlock FontSize="10" Name="Name_Position2_1" DockPanel.Dock="Left" Foreground="Black" />
+          </DockPanel>
+
+          <Label Grid.Row="2" Grid.Column="2" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="45" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Lap_Position2_1" />
+          <Button Grid.Row ="2" Grid.Column="2" Name="AddLapSections_Position2_1" Opacity="0" IsTabStop="False" Focusable="False" />
+
+          <Label Grid.Row="2" Grid.Column="3" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="45" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="LapTime_Position2_1" DataContext="'decimals':3"/>
+          <StackPanel Margin="4, 4, 4, 4" Orientation="Horizontal" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Label FontSize="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Transparent" Name="SegmentTime_Position2_1" DataContext="'decimals':3, 'row':0, 'index':0, 'reverse':true"/>
+          </StackPanel>
+          <StackPanel Margin="4, 4, 4, 4" Orientation="Horizontal" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Label FontSize="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Transparent" Name="SegmentTime_Position2_2" DataContext="'decimals':3, 'row':0, 'index':1, 'reverse':true"/>
+          </StackPanel>
+          
+          <Label Grid.Row="2" Grid.Column="4" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="MedianTime_Position2_1" DataContext="'decimals':3" FontWeight="Normal" />
+          <StackPanel Margin="4, 4, 4, 4" Orientation="Horizontal" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Label FontSize="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Transparent" Name="AverageTime_Position2_1"/>
+          </StackPanel>
+
+          <Label Grid.Row="2" Grid.Column="5" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="45" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="BestLapTime_Position2_1" DataContext="'decimals':3" />
+
+          <Label Grid.Row="2" Grid.Column="6" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="GapLeader_Position2_1" DataContext="'decimals':3" />
+
+          <Label Grid.Row="2" Grid.Column="7" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="GapPosition_Position2_1" DataContext="'decimals':3" Foreground="Transparent" />
+          <Label Grid.Row="2" Grid.Column="7" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="--"/>
+
+          <Label Grid.Row="2" Grid.Column="8" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Led_Position2_1" />
+
+          <!--End of row for second position racer //////////////////////////////////////////////////// -->
+
+          <!--Row for third position racer  /////////////////////////////////////////////////////////// -->
+
+          <Label Grid.Row="3" Grid.Column="1" Background="Black" BorderBrush="Black" BorderThickness="1" Foreground="Transparent" Name="Nickname_Position3_1"/>
+          <Viewbox MaxWidth="176"  MaxHeight="118" MinHeight="50" Grid.Row="3" Grid.Column="1">
+            <Label FontSize="200" Name="Nickname_Position3_2" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" />
+          </Viewbox>
+          <DockPanel Grid.Row="3" Grid.Column="1" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4, 4, 4, 4" Background="Transparent">
+            <TextBlock FontSize="10" Name="Seed_Position3_1" Foreground="Black"/>
+            <TextBlock FontSize="10" Foreground="Black" Text=" "/>
+            <TextBlock FontSize="10" Name="Name_Position3_1" DockPanel.Dock="Left" Foreground="Black" />
+          </DockPanel>
+
+          <Label Grid.Row="3" Grid.Column="2" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="45" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Lap_Position3_1" />
+          <Button Grid.Row ="3" Grid.Column="2" Name="AddLapSections_Position3_1" Opacity="0" IsTabStop="False" Focusable="False" />
+
+          <Label Grid.Row="3" Grid.Column="3" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="45" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="LapTime_Position3_1" DataContext="'decimals':3"/>
+          <StackPanel Margin="4, 4, 4, 4" Orientation="Horizontal" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Label FontSize="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Transparent" Name="SegmentTime_Position3_1" DataContext="'decimals':3, 'row':0, 'index':0, 'reverse':true"/>
+          </StackPanel>
+          <StackPanel Margin="4, 4, 4, 4" Orientation="Horizontal" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Label FontSize="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Transparent" Name="SegmentTime_Position3_2" DataContext="'decimals':3, 'row':0, 'index':1, 'reverse':true"/>
+          </StackPanel>
+          
+          <Label Grid.Row="3" Grid.Column="4" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="MedianTime_Position3_1" DataContext="'decimals':3" FontWeight="Normal" />
+          <StackPanel Margin="4, 4, 4, 4" Orientation="Horizontal" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Label FontSize="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Transparent" Name="AverageTime_Position3_1"/>
+          </StackPanel>
+
+          <Label Grid.Row="3" Grid.Column="5" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="45" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="BestLapTime_Position3_1" DataContext="'decimals':3" />
+
+          <Label Grid.Row="3" Grid.Column="6" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="GapLeader_Position3_1" DataContext="'decimals':3" />
+
+          <Label Grid.Row="3" Grid.Column="7" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="GapPosition_Position3_1" DataContext="'decimals':3" />
+
+          <Label Grid.Row="3" Grid.Column="8" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Led_Position3_1" />
+
+          <!--End of row for third position racer ///////////////////////////////////////////////////// -->
+
+          <!--Row for fourth position racer  /////////////////////////////////////////////////////////// -->
+
+          <Label Grid.Row="4" Grid.Column="1" Background="Black" BorderBrush="Black" BorderThickness="1" Foreground="Transparent" Name="Nickname_Position4_1"/>
+          <Viewbox MaxWidth="176"  MaxHeight="118" MinHeight="50" Grid.Row="4" Grid.Column="1">
+            <Label FontSize="200" Name="Nickname_Position4_2" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" />
+          </Viewbox>
+          <DockPanel Grid.Row="4" Grid.Column="1" LastChildFill="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4, 4, 4, 4" Background="Transparent">
+            <TextBlock FontSize="10" Name="Seed_Position4_1" Foreground="Black"/>
+            <TextBlock FontSize="10" Foreground="Black" Text=" "/>
+            <TextBlock FontSize="10" Name="Name_Position4_1" DockPanel.Dock="Left" Foreground="Black" />
+          </DockPanel>
+
+          <Label Grid.Row="4" Grid.Column="2" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="45" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Lap_Position4_1" />
+          <Button Grid.Row ="3" Grid.Column="2" Name="AddLapSections_Position4_1" Opacity="0" IsTabStop="False" Focusable="False" />
+
+          <Label Grid.Row="4" Grid.Column="3" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="45" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="LapTime_Position4_1" DataContext="'decimals':3"/>
+          <StackPanel Margin="4, 4, 4, 4" Orientation="Horizontal" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Label FontSize="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Transparent" Name="SegmentTime_Position4_1" DataContext="'decimals':3, 'row':0, 'index':0, 'reverse':true"/>
+          </StackPanel>
+          <StackPanel Margin="4, 4, 4, 4" Orientation="Horizontal" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Label FontSize="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Transparent" Name="SegmentTime_Position4_2" DataContext="'decimals':3, 'row':0, 'index':1, 'reverse':true"/>
+          </StackPanel>
+          
+          <Label Grid.Row="4" Grid.Column="4" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="MedianTime_Position4_1" DataContext="'decimals':3" FontWeight="Normal" />
+          <StackPanel Margin="4, 4, 4, 4" Orientation="Horizontal" Grid.Column="4" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Label FontSize="10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Transparent" Name="AverageTime_Position4_1"/>
+          </StackPanel>
+
+          <Label Grid.Row="4" Grid.Column="5" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="45" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="BestLapTime_Position4_1" DataContext="'decimals':3" />
+
+          <Label Grid.Row="4" Grid.Column="6" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="GapLeader_Position4_1" DataContext="'decimals':3" />
+
+          <Label Grid.Row="4" Grid.Column="7" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="GapPosition_Position4_1" DataContext="'decimals':3" />
+
+          <Label Grid.Row="4" Grid.Column="8" Background="Black" BorderBrush="Black" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Led_Position4_1" />
+
+          <!--End of row for fourth position racer ///////////////////////////////////////////////////// -->
+        </Grid>
+        <!--Lower DockPanel closing tag-->
+      </DockPanel>
+      <!--Main grid closing tag-->
+    </Grid>
+  </Viewbox>
+  <!--Window closing tag-->
+</Window>
