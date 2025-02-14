@@ -7,15 +7,18 @@ Using community files is easy.  If you only want a single file, click on the fil
 # Contributing
 Contributing to this community repository is as easy as using git hub.  There are plenty of resources or ask how to do it on one of the many slot car forums.  Ultimately you'll need to fork this repository, make your changes, then do a pull request to me to update the main public repository.  You can even do a pull request to add better instructions in this readme for users.
 
-## xaml
-Custom screens that can be used within race coordinator
-
-## releases
-Get the latest beta and official RaceCoordinator installers
-
 ## audio
 Custom sounds that can be used in your race and driver configurations.  THese include new content and RaceCoordinator images that have been localized.
 
+## custom rotations
+Custom rotation files various users/groups use to keep heat rotations interesting.
+
 ## images
 Custom images that can be used in your race and driver configuration.  THese include new content and RaceCoordinator images that have been localized.
+
+## releases
+Get the latest beta and official RaceCoordinator installers.
+
+## xaml
+Custom screens that can be used within race coordinator.
 
