@@ -5,5 +5,8 @@ Each of these 3 xaml files require custom text to display properly.  Simply copy
 
 To find your <install_dir> simply go to the Race Day Setup screen and use the File->Open Install Folder menu option.  
 
+![alt text](./Slottrack.png)
+![alt text](./SlotTrack2.png)
+![alt text](./SlotTrackPractice.png)
 
 
