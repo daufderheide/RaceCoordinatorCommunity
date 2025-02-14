@@ -1,4 +1,4 @@
-# Creator (Jan 2015)
+# Creator (June 2015)
 clubs: MBR, CHORC, FLBT
 
 # Info
