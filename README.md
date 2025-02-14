@@ -1,4 +1,4 @@
-d# RaceCoordinator Community
+# RaceCoordinator Community
 This github repo is a collection of community created works used to customize [Race Coordinator](https://racecoordinator.net/).  Using github has a lot of advantages.  At its core it is searchable, provides a single place where all RaceCoordinator users can share content, and it's version controlled.  This all means easier distrubtion of content and an easy way to update/fix that content over time.
 
 # Using community files
