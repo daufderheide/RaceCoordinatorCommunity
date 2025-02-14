@@ -8,5 +8,8 @@ Custom screens that can be used within race coordinator
 Get the latest beta and official RaceCoordinator installers
 
 ## audio
-Custom sounds that can be used in your race and driver configurations
+Custom sounds that can be used in your race and driver configurations.  THese include new content and RaceCoordinator images that have been localized.
+
+## images
+Custom images that can be used in your race and driver configuration.  THese include new content and RaceCoordinator images that have been localized.
 
