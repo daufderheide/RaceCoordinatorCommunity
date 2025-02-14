@@ -1,0 +1,625 @@
+<!-- NO FUEL. ADDED AVG LAP INSTEAD -->
+
+<!-- This sample xaml file will help you to understand some of the ways you can modify the User Interface (UI) screens 
+    that are used in Race Coordinator (RD). XAML is a markup language much like html so if you've ever designed a web page
+    you should be able to understand xaml rather easily. If you're reading this file in a plain text editor like notepad, take
+    note of the opening and closing tags surrounding this paragraph...these are "Comment Tags" and prevent the text inside
+    from being parsed when the file is loaded. If you learn this stuff please remember to share your creations with the
+    RC community! -->
+
+<!--The first tag we are using will define the application window. You can read about some of the "Window" properties
+    at http://msdn.microsoft.com/en-us/library/system.windows.window.aspx -->
+<Window 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Stewart Raceway Race Day" Background="Transparent" Height="768" Width="1024" WindowState="Maximized" FontFamily="Tahoma" WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen">
+	<Viewbox Stretch="Fill">
+		<!--Main Grid. Fills the application workspace and can contain background image and/or color information. This particular grid provides a good example of how you can make a simple
+        change to this UI as there are two separate choices given. The default background is a gradient that is written in code between the grid.background tags. If you look below the
+        closing grid.background tag, you will see there is an image reference that has been "commented out" with appropriate comment tags. To see how RC looks after a code change, you
+        can simply "uncomment" the image (remove the opening and closing comment tags) and put comment tags around the grid.background tags then save this file to the RC xaml folder.
+        It's a good idea to save it with a different name so you will retain an unmodified version of this original file. You also need to make sure you have an image file named "img1.jpg"
+        in the RC/images folder. You can store and use images from anywhere on you hard drive, but to keep this sample simple it's best to do it as described. After you've done these steps,
+        go into RC's race manager, select a race, and set it's UI file to the new one you just saved. Update the race, exit to the main UI then start the race you just modified.
+        If you did everything correctly, your image will now be the background of the race screen! -->
+		<Grid>
+			<Grid.Background>
+				<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" SpreadMethod="Pad" ColorInterpolationMode="SRgbLinearInterpolation" >
+					<GradientStop Color="black" Offset="0" />
+					<GradientStop Color="black" Offset="1" />
+					<GradientStop Color="black" Offset="0.5" />
+				</LinearGradientBrush>
+			</Grid.Background>
+			<!--<Image Source="C:\Program Files\Race Coordinator\data\images\img1.jpg" Stretch="Fill"></Image>-->
+
+			<!--Menu Bar at top of main window. Contains race managing controls and contols for other windows such as the leaderboard.-->
+			<Menu Height="13" FontSize="8" Name="menu1" VerticalAlignment="Top">
+				<MenuItem Header="File">
+					<MenuItem Name="Save_1" Header="Save" DataContext="'key':'S','modifier':'Alt'" ToolTip="ALT-S to save the race" />
+					<MenuItem Name="SaveAs_1" Header="Save As..." DataContext="'key':'A','modifier':'Alt'" ToolTip="ALT-a to save the race with the spefied file name" />
+					<Separator/>
+					<MenuItem Name="Export_1" Header="Export Race"  DataContext="'key':'X','modifier':'Alt'" ToolTip="Alt-X to export current race progress" />
+				</MenuItem>
+				<MenuItem Header="Race Director">
+					<MenuItem Name="Start_1" Header="Start/Resume Heat" DataContext="'key':'S','modifier':'Control'" ToolTip="CTRL-S to start or restart the heat" />
+					<MenuItem Name="Pause_1" Header="Pause Heat" DataContext="'key':'P','modifier':'Control'" ToolTip="CTRL-P to pause the heat" />
+					<Separator/>
+					<MenuItem Name="AddLaps_1" Header="Add Laps/Sections"  DataContext="'key':'A','modifier':'Control'" ToolTip="CTRL-A to add laps/sections" />
+					<MenuItem Name="NextHeat_1" Header="Next Heat" DataContext="'key':'N','modifier':'Control'" ToolTip="CTRL-N to advance to the next heat" />
+					<Separator/>
+					<MenuItem Name="RestartHeat_1" Header="Restart Heat" DataContext="'key':'R','modifier':'Control'" ToolTip="CTRL-R to restart the current heat" />
+					<MenuItem Name="DeferHeat_1" Header="Defer Heat"  DataContext="'key':'D','modifier':'Control'" ToolTip="CTRL-D to defer this heat until the end of the race" />
+					<MenuItem Name="SkipHeat_1" Header="Skip Heat"  DataContext="'key':'F5','modifier':'Alt'" ToolTip="ALT-F5 to skip the remainder of this heat" />
+					<MenuItem Name="SkipRace_1" Header="Skip Race"  DataContext="'key':'F4','modifier':'Alt'" ToolTip="CTRL-F4 to end this race" />
+					<Separator/>
+					<MenuItem Name="ModifyHeats_1" Header="Modify Heats"  DataContext="'key':'H','modifier':'Control'" ToolTip="CTRL-H to modify heat rotations" />
+					<MenuItem Name="LapEditor_1" Header="Edit Laps" DataContext="'key':'E','modifier':'Control'" ToolTip="CTRL-E to modify lap records" />
+				</MenuItem>
+				<MenuItem Header="Track Power">
+					<MenuItem CommandParameter="0" Name="PowerOn_1" Header="Master Power On" DataContext="'key':'0','modifier':'Control'" ToolTip="CTRL-0 to force master power on" />
+					<MenuItem CommandParameter="0" Name="PowerOff_1" Header="Master Power Off" DataContext="'key':'0','modifier':'Alt'" ToolTip="ALT-0 to force master power off"/>
+					<MenuItem CommandParameter="1" Name="PowerOn_2" Header="Lane 1 Power On" DataContext="'key':'1','modifier':'Control'" ToolTip="CTRL-1 to force lane 1 power on" />
+					<MenuItem CommandParameter="1" Name="PowerOff_2" Header="Lane 1 Power Off" DataContext="'key':'1','modifier':'Alt'" ToolTip="ALT-1 to force lane 1 power off"/>
+					<MenuItem CommandParameter="2" Name="PowerOn_3" Header="Lane 2 Power On" DataContext="'key':'2','modifier':'Control'" ToolTip="CTRL-2 to force lane 2 power on" />
+					<MenuItem CommandParameter="2" Name="PowerOff_3" Header="Lane 2 Power Off" DataContext="'key':'2','modifier':'Alt'" ToolTip="ALT-2 to force lane 2 power off"/>
+					<MenuItem CommandParameter="3" Name="PowerOn_4" Header="Lane 3 Power On" DataContext="'key':'3','modifier':'Control'" ToolTip="CTRL-3 to force lane 3 power on" />
+					<MenuItem CommandParameter="3" Name="PowerOff_4" Header="Lane 3 Power Off" DataContext="'key':'3','modifier':'Alt'" ToolTip="ALT-3 to force lane 3 power off"/>
+					<MenuItem CommandParameter="4" Name="PowerOn_5" Header="Lane 4 Power On" DataContext="'key':'4','modifier':'Control'" ToolTip="CTRL-4 to force lane 4 power on" />
+					<MenuItem CommandParameter="4" Name="PowerOff_5" Header="Lane 4 Power Off" DataContext="'key':'4','modifier':'Alt'" ToolTip="ALT-4 to force lane 4 power off"/>
+				</MenuItem>
+				<Separator Width="5" />
+				<MenuItem Header="Windows">
+					<MenuItem Name="Window_1" Header="Leader Board" CommandParameter="data/xaml/LeaderBoard.xaml"  DataContext="'key':'F1'" ToolTip="F1 to display the Leader Board" />
+					<MenuItem Name="Window_2" Header="Top 5" CommandParameter="data/xaml/Top5.xaml"  DataContext="'key':'F1','modifier':'Control'" ToolTip="CTRL F1 to display the Top 5 Leader Board" />
+					<MenuItem Name="Window_3" Header="Group Leader Board" CommandParameter="data/xaml/GroupLeaderBoard.xaml"  DataContext="'key':'F3'" ToolTip="F3 to display the Group Leader Board" />
+					<MenuItem Name="Window_4" Header="Heat Results" CommandParameter="data/xaml/HeatResults.xaml" DataContext="'key':'F4'" ToolTip="F4 to display the Heat Results window" />
+					<MenuItem Name="Window_5" Header="Race Results" CommandParameter="data/xaml/RaceResultsV1.xaml" DataContext="'key':'F5'" ToolTip="F5 to display the Race Results window" />
+					<Separator/>
+					<MenuItem Name="Window_6" Header="Season Race Leader Board" CommandParameter="data/xaml/SeasonRaceLeaderBoard.xaml"  DataContext="'key':'F1' ,'modifier':'Alt'" ToolTip="ALT F1 to display the Season Race Leader Board" />
+					<MenuItem Name="Window_7" Header="Season Leader Board" CommandParameter="data/xaml/SeasonLeaderBoard.xaml"  ToolTip="Display the Season Leader Board" />
+					<Separator/>
+					<MenuItem Name="Window_8" Header="On Deck" CommandParameter="data/xaml/OnDeck.xaml" DataContext="'key':'F6'" ToolTip="F6 to display the On Deck window" />
+					<MenuItem Name="ViewHeats_1" Header="Heat List" DataContext="'key':'F7'" ToolTip="F7 to display heat rotations" />
+					<MenuItem Name="Window_9" Header="Next Heat" CommandParameter="data/xaml/NextHeat_4L.xaml" DataContext="'key':'F8'" ToolTip="F8 to display all drivers in the next heat" />
+				</MenuItem>
+			</Menu>
+			<!--Upper DockPanel. This panel contains everything on the screen that is above and not part of the race data panel. 
+            It's background, as well as the background of all elements inside of it, are transparent so that the background
+            of the main grid will show through.-->
+			<DockPanel MaxHeight="210" Margin="0,10,0,0" Name="dockPanel1" VerticalAlignment="Top">
+				<!--Opening tag for the second grid which is nested in the upper DockPanel and separates the DockPanel into three separate and
+            evenly spaced columns by using three columndefinition tags withing the grid.columndefinitions tag. By not
+            defining the width of the columns, they default to being evenly spaced across the grid. The columns are named for tag reference
+            starting with "0", so the first column is grid.column0, second is grid.column1, etc. -->
+				<Grid Name="grid1">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto" MaxWidth="355"/>
+					</Grid.ColumnDefinitions>
+					<!--StackPanel. This panel is nested in the first grid column (note "grid.column=0") and separated into three sections. We could just divide the grid column into
+                    three rows, but then all of the elements in any adjacent column or row will have to use "rowspan" or "columnspan" tags to account for
+                    the number of rows which makes precise layout rather tricky. By using a StackPanel, the content in this column will have no effect
+                    on the flow of the content in the middle column.-->
+					<StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="0" Height="Auto">
+
+						<!--Image tag, This one operates a little differently than the first image we used in the main grid background. If you read 
+                        the properties of this tag, you'll see it contains a Name property set to "TrackName_1". This causes the image defined
+                        in RC's "Track Manager" to display here.-->
+						<!--Viewbox Margin="5" Stretch="None">
+                            <Image Name="TrackImage_1" VerticalAlignment="Center" Margin="5,0,0,0" Height="115" ToolTip="You can change this image to a track picture, club logo, or anything you desire by using a different file for the track image. See the track manager to change it :)" StretchDirection="Both" MaxWidth="300" />
+                        </Viewbox-->
+
+						<!-- Label containing the word "Track:". Acts as a header for this column which is displaying an image of the track in use.
+                        <Label Margin="6,5.716,0.569,0" 
+                        VerticalAlignment="Bottom" 
+                        Foreground="Linen" 
+                        FontSize="12" 
+                        HorizontalContentAlignment="Center" 
+                        HorizontalAlignment="left" 
+                        VerticalContentAlignment="bottom" 
+                        Padding="0" 
+                        FontWeight="Bold" 
+                        FontStyle="Italic" 
+                        OverridesDefaultStyle="False">
+                        Track:</Label -->
+
+						<!--Label tag. Like the image tag above, this tag is using a named value to pull the Track Name from the RC database. 
+                        Can you see how it is doing this? This is the last element in the first StackPanel.-->
+						<!--Viewbox  MaxWidth="200"  MaxHeight="150" MinHeight="50">
+                            <Label  Margin="0">                                     
+                               <TextBlock Name="TrackName_1" TextWrapping="Wrap" FontFamily="Impact" FontSize="144" Foreground="White" FontStretch="UltraExpanded" FontStyle="Italic" FontWeight="UltraBold" />
+                            </Label>  
+                        </Viewbox-->
+
+
+						<!-- Sets up the Race Name, Time/Laps, OnDeck, etc... -->
+						<Label HorizontalAlignment="Left">
+							<DockPanel  LastChildFill="True" HorizontalAlignment="Center">
+								<TextBlock FontSize="16" Foreground="#ffef0d" Text="RACE: " FontWeight="Bold" />
+								<TextBlock Name="RaceName_1" FontSize="30
+								" FontStyle="Italic" Foreground="White" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center" />
+							</DockPanel>
+						</Label>
+
+						<!-- This block of code displays the Laps/Time, Etc.  -->
+						<Grid>
+
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+								<!--ColumnDefinition Width="Auto" /-->
+							</Grid.ColumnDefinitions>
+
+							<Label Grid.Row="0" Grid.Column="0" Foreground="#ffef0d" FontWeight="Bold" FontSize="30" Content="Laps/Time: "/>
+							<!--Label Grid.Row="1" Grid.Column="0" Foreground="#ffef0d" FontWeight="Bold" FontSize="22" Content="Laps/Time Left: "/ -->
+							<TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="0,0,0,0" Name="EndHeatValue_1" HorizontalAlignment="Right" FontSize="30" Foreground="#00FF05" FontWeight="Bold" />
+							<!--TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="0,0,0,0" Name="RaceLaps_1" HorizontalAlignment="Left" MaxWidth="55" FontSize="24" Foreground="#00FF05" FontWeight="Bold" DataContext="'decimals':2" /-->
+
+							<Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="30" Foreground="#ffef0d" Content="Race Best Lap:" Margin="2,4,0,0" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+							<DockPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+								<Viewbox Margin="4,-4,10,0" VerticalAlignment="Center" Stretch="Fill" MaxWidth="210" MaxHeight="34">
+									<TextBlock FontSize="32" FontFamily="Courier" FontWeight="Bold" Margin="4,4,8,0" Name="BestNickname_1" Foreground="DarkOrange" HorizontalAlignment="Left" VerticalAlignment="Top" />
+								</Viewbox>
+								<Viewbox Margin="2,0,2,0" VerticalAlignment="Center" Stretch="Fill"   MaxHeight="28">
+									<TextBlock Name="BestTime_1" Margin="4,-4,0,0" FontSize="28" FontWeight="Bold" Foreground="#00FF05" HorizontalAlignment="Right" VerticalAlignment="Top" DataContext="'decimals':3" />
+								</Viewbox>
+							</DockPanel>
+
+						</Grid>
+						<!--First StackPanel's closing tag.-->
+					</StackPanel>
+
+					<!--Second StackPanel, used in the middle column of the second grid. Contains labels and a dockpanel, laying out the Race Name and dynamically updated Heat Information.-->
+					<StackPanel Grid.Column="1" Name="stackpanel1" Height="195" Width="175" VerticalAlignment="Top" Margin="16,0,11,0">
+
+						<Grid VerticalAlignment="Center" HorizontalAlignment="Center" >
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+							<!-- RACE STATUS IMAGE Image tag containing a reference to the flag images that are displayed according to the state of the heat/race. -->
+							<Image Grid.Column="0" Name="RaceStateImage_1" Margin="5,25,5,8" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" Height="160" Width="160" />
+							<!-- RACE TIME -->
+							<Label Grid.Column="0" Margin="0,-8,0,8" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" FontSize="50" HorizontalContentAlignment="Stretch" 
+                        VerticalContentAlignment="Top" Name="RaceTime_1" Foreground="#00FF05" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+							<!-- HEAT STATUS -->
+							<Label Grid.Column="0" Margin="0,12,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+								<DockPanel  LastChildFill="True" HorizontalAlignment="Center">
+									<TextBlock FontSize="28" Foreground="White" Text="Heat " FontWeight="Bold" />
+									<TextBlock FontSize="28" Name="HeatNumber_1" Foreground="White" FontWeight="Bold" />
+									<TextBlock FontSize="28" Foreground="White" Text=" of " FontWeight="Bold" />
+									<TextBlock FontSize="28" Name="NumHeats_1" Foreground="White" FontWeight="Bold" />
+								</DockPanel>
+							</Label>
+						</Grid>
+						<!--Closing tag for second StackPanel.-->
+					</StackPanel>
+
+					<!-- ON DECK OR NEXT UP DISPLAY -->
+					<DockPanel Grid.Column="2" Height="195" Width="280">
+						<Grid Grid.Column="2" VerticalAlignment="Top" Margin="10,0,15,0" >
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="50" />
+							</Grid.RowDefinitions>
+							<TextBlock Grid.Row="0" FontSize="20" Foreground="#ffef0d" Text="ON DECK:" Margin="0,6,0,0" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+							<Viewbox Margin="0,-10,0,4" VerticalAlignment="Center" HorizontalAlignment="Left" Stretch="Fill"   MinWidth="120" MaxHeight="30" MinHeight="28" Grid.Row="1" Grid.Column="2">
+								<Border BorderThickness="1" BorderBrush="Gray">
+									<TextBlock Grid.Row="1" Name="OnDeckNickname1_1" Margin="0,0,0,0" Padding="1" FontSize="32" Foreground="#00FF05" Background="Purple" FontWeight="Bold" VerticalAlignment="Top" 
+                      HorizontalAlignment="Left" />
+								</Border>
+							</Viewbox>
+							<!-- RACE STATUS FLAG WAS HERE -->
+						</Grid>
+
+					</DockPanel>
+					<!--Second grid's closing tag.-->
+
+
+					<!--LEADER BOARD CODE-->
+					<StackPanel Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,4,0" Height="195"  Width="Auto">
+
+						<Label HorizontalAlignment="Center">
+							<DockPanel  LastChildFill="True" HorizontalAlignment="Center">
+								<TextBlock FontSize="22" Foreground="#ffef0d" Text="Race Top 5" Margin="0,0,0,-8" FontWeight="Bold" />
+							</DockPanel>
+						</Label>
+
+						<DockPanel LastChildFill="False">
+							<TextBlock  FontSize="12" Name="Seed_RaceLeader1_1" Foreground="DarkOrange" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+							<TextBlock  FontSize="24" Foreground="DarkOrange" Text=" "/>
+							<Viewbox Margin="0" VerticalAlignment="Center" Stretch="Uniform"  MaxHeight="30" MaxWidth="220">
+								<TextBlock  FontSize="24" Name="Nickname_RaceLeader1_1" DockPanel.Dock="Left" Foreground="DarkOrange" VerticalAlignment="Center"/>
+							</Viewbox>
+							<TextBlock  Margin="30,0,0,0" FontSize="24" Name="Standing_RaceLeader1_1" DataContext="'decimals':2" Foreground="DarkOrange" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" />
+						</DockPanel>
+						<DockPanel LastChildFill="False">
+							<TextBlock FontSize="12" Name="Seed_RaceLeader2_1" Foreground="Bisque" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+							<TextBlock FontSize="24" Text=" "/>
+							<Viewbox Margin="0" VerticalAlignment="Center" Stretch="Uniform"  MaxHeight="30" MaxWidth="220">
+								<TextBlock FontSize="24" Name="Nickname_RaceLeader2_1" Foreground="Bisque" />
+							</Viewbox>
+							<TextBlock FontSize="24" Margin="30,0,0,0" Name="Standing_RaceLeader2_1" DataContext="'decimals':2" Foreground="Bisque" DockPanel.Dock="Right" />
+						</DockPanel>
+						<DockPanel LastChildFill="False">
+							<TextBlock FontSize="12" Name="Seed_RaceLeader3_1" Foreground="Bisque" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+							<TextBlock FontSize="24" Foreground="White" Text=" "/>
+							<Viewbox Margin="0" VerticalAlignment="Center" Stretch="Uniform"  MaxHeight="30" MaxWidth="200">
+								<TextBlock FontSize="24" Name="Nickname_RaceLeader3_1" Foreground="Bisque" />
+							</Viewbox>
+							<TextBlock FontSize="24" Margin="30,0,0,0" Name="Standing_RaceLeader3_1" DataContext="'decimals':2" Foreground="Bisque" DockPanel.Dock="Right" />
+						</DockPanel>
+						<DockPanel LastChildFill="False">
+							<TextBlock FontSize="12" Name="Seed_RaceLeader4_1" Foreground="Bisque" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+							<TextBlock FontSize="24" Foreground="White" Text=" "/>
+							<Viewbox Margin="0" VerticalAlignment="Center" Stretch="Uniform"  MaxHeight="30" MaxWidth="200">
+								<TextBlock FontSize="24" Name="Nickname_RaceLeader4_1" Foreground="Bisque" />
+							</Viewbox>
+							<TextBlock FontSize="24" Margin="30,0,0,0" Name="Standing_RaceLeader4_1" DataContext="'decimals':2" Foreground="Bisque" DockPanel.Dock="Right" />
+						</DockPanel>
+						<DockPanel LastChildFill="False">
+							<TextBlock FontSize="12" Name="Seed_RaceLeader5_1" Foreground="Bisque" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+							<TextBlock FontSize="24" Foreground="White" Text=" "/>
+							<Viewbox Margin="0" VerticalAlignment="Center" Stretch="Uniform"  MaxHeight="30" MaxWidth="200">
+								<TextBlock FontSize="24" Name="Nickname_RaceLeader5_1" Foreground="Bisque" />
+							</Viewbox>
+							<TextBlock FontSize="24" Margin="30,0,0,0" Name="Standing_RaceLeader5_1" DataContext="'decimals':2" Foreground="Bisque" DockPanel.Dock="Right" />
+						</DockPanel>
+
+					</StackPanel>
+					<!--END OF LEADER BOARD CODE-->
+				</Grid>
+				<!--Upper DockPanel's closing tag.-->
+			</DockPanel>
+
+			<!--Lower DockPanel opening tag. This dockpanel is sort of the nuts and bolts of the Race UI, it's where all of the data pertaining to the currently
+            running race is displayed. It contains a grid (the third grid in the document, named grid2) that much like an html table is divided into rows
+            and columns.-->
+			<DockPanel Margin="0,200,0,0" Name="dockPanel2" Background="Transparent" Width="Auto">
+				<!--Third grid opening tag-->
+				<Grid  Name="grid2">
+					<!--Third grid column and row definitions. If you compare these to the 2nd grid's column definitions, you can see that these columns (and rows)
+                    have their dimensions specifically defined.-->
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="0" />
+						<ColumnDefinition Width="355" />
+						<ColumnDefinition Width="130" />
+						<ColumnDefinition Width="195" />
+						<ColumnDefinition Width="195" />
+						<ColumnDefinition Width="145" />
+						<ColumnDefinition Width="145" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="35*" />
+						<RowDefinition Height="85" />
+						<RowDefinition Height="85" />
+						<RowDefinition Height="85" />
+						<RowDefinition Height="85" />
+						<RowDefinition Height="22" />
+					</Grid.RowDefinitions>
+
+					<Button Grid.Column="0" Focusable="False" DataContext="'key':'Space'" Name="Toggle_1" />
+
+					<!--Here is where the race data is inserted into the grid. This example is all done with labels exept for the racer's name which is a textbox control. An easy way to visualize what's going
+                    on here is to remember that the rows represent the individual drivers and the columns represent the data for those drivers. An exception is the top row which is simply displaying headers
+                    for the data. To see how things change here, try changing the "Foreground" property of the first line to "Black", then save the file and load it as the Race UI in RC. Did you see the change?-->
+
+					<!--Labels for Column Headers-->
+					<Label Grid.Column="1" Grid.Row="0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Driver" Foreground="White" FontStyle="Normal" FontWeight="Bold" />
+					<Label Grid.Column="2" Grid.Row="0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Lap" Foreground="White" FontStyle="Normal" FontWeight="Bold" />
+					<Label Grid.Column="3" Grid.Row="0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Content="Lap Time" FontStyle="Normal" FontWeight="Bold" />
+					<Label Grid.Column="4" Grid.Row="0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Content="Best Lap" FontWeight="Bold" FontStyle="Normal" />
+					<Label Grid.Column="5" Grid.Row="0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Content="Gap" FontWeight="Bold" FontStyle="Normal" />
+					<Label Grid.Column="6" Grid.Row="0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Content="Total Laps" FontStyle="Normal" FontWeight="Bold" />
+					<!--End of labels for Column Headers-->
+
+
+					<!--Row for first position racer-->
+					<!-- Surround the nickname with a Viewbox so that really long names will size down and fit in the box
+                             Also use text item outside the ViewBox to ensure that the entire lanes background becomes the lane
+                             color. -->
+					<!-- I don't like how the TextBox here looks...
+                        <TextBox IsReadOnly="True" Grid.Row="1" Grid.Column="1" Background="Black" BorderBrush="Black" Foreground="Transparent" Name="Nickname_Position1_2"/>
+                        -->
+					<!-- DRIVER NAME -->
+					<Label Grid.Row="1" Grid.Column="1" Background="Black" BorderBrush="Black" BorderThickness="1.5" Foreground="Transparent" Name="Nickname_Position1_2"/>
+					<Viewbox Margin="10,10,10,10" VerticalAlignment="Center" Stretch="Fill" MaxWidth="348"  MaxHeight="98" MinHeight="50" Grid.Row="1" Grid.Column="1">
+						<Label Background="Transparent" BorderBrush="purple" FontFamily="Tahoma" FontSize="50" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Nickname_Position1_1" />
+					</Viewbox>
+					<!-- Display the fuel image surrounded by a viewbox to make sure it fits in the space we have 
+                    <Label Grid.Row="1" Grid.Column="2" Background="Black" BorderBrush="Black" BorderThickness="1.5" Foreground="Transparent" Name="Nickname_Position1_3"/>
+                    <Viewbox MaxWidth="97"  MaxHeight="98" MinHeight="50" Grid.Row="1" Grid.Column="2">
+                        <Image Stretch="Fill" Name="FuelImage_Position1_1" />
+                    </Viewbox -->
+					<!-- LAP COUNT -->
+					<Label Grid.Row ="1" Grid.Column="2" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="Lap_Position1_1" />
+					<Viewbox Margin="0,0,0,0" VerticalAlignment="Center" Stretch="Uniform" Grid.Row ="1" Grid.Column="2" MaxWidth="98" MaxHeight="98">
+						<Label Background="Black" BorderBrush="Transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Lap_Position1_2" />
+					</Viewbox>
+					<Button Grid.Row ="1" Grid.Column="2" Name="AddLapSections_Position1_1" Opacity="0" IsTabStop="False" Focusable="False" />
+					<StackPanel Grid.Row ="1" Grid.Column="2" Margin="4, 4, 4, 4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+						<Image Width="15" Height="15" Name="DriftLap_Position1_1" Stretch="Fill" />
+					</StackPanel>
+					<!-- End of LAP COUNT Row  -->
+					<!-- LAP TIME -->
+					<Label Grid.Row="1" Grid.Column="3" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="LapTime_Position1_2" DataContext="'decimals':3"/>
+					<Viewbox Grid.Row ="1" Grid.Column="3" MaxWidth="193" MaxHeight="98" Stretch="Fill">
+						<Label Background="Black" BorderBrush="Transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="LapTime_Position1_1" DataContext="'decimals':3"/>
+					</Viewbox>
+					<!-- BEST LAP -->
+					<Label Grid.Row ="1" Grid.Column="4" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="BestLapTime_Position1_1" DataContext="'decimals':3" />
+					<Viewbox Grid.Row ="1" Grid.Column="4" MaxWidth="193" MaxHeight="98" Stretch="Fill">
+						<Label Background="Black" BorderBrush="transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="BestLapTime_Position1_2" DataContext="'decimals':3" />
+					</Viewbox>
+					<!-- GAP  -->
+					<Label Grid.Row="1" Grid.Column="5" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="GapLeader_Position1_2" DataContext="'decimals':3" />
+					<Viewbox Grid.Row ="1" Grid.Column="5" MaxWidth="193" MaxHeight="98" Stretch="Fill">
+						<Label Background="Black" BorderBrush="Transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="GapLeader_Position1_1" DataContext="'decimals':3" />
+					</Viewbox>
+					<!-- TOTAL LAP COUNT -->
+					<Label Grid.Row ="1" Grid.Column="6" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="TotalLaps_Position1_1"  />
+					<Viewbox Grid.Row ="1" Grid.Column="6" MaxWidth="193" MaxHeight="98" Stretch="Fill" >
+						<Label Background="Black" BorderBrush="transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="TotalLaps_Position1_2" DataContext="'decimals':2" />
+					</Viewbox>
+					<!-- DRIFT LAPS ADJUSTMENT -->
+					<Button Grid.Row ="1" Grid.Column="6" Name="AddLapSections_Position1_2" Opacity="0" IsTabStop="False" Focusable="False" />
+					<StackPanel Grid.Row ="1" Grid.Column="6" Margin="4, 4, 4, 4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+						<Image Width="15" Height="15" Name="DriftLap_Position1_2" Stretch="Fill" />
+					</StackPanel>
+					<!--End of row for first position racer-->
+
+
+					<!--Row for SECOND position racer-->
+					<!-- Surround the nickname with a Viewbox so that really long names will size down and fit in the box
+                             Also use text item outside the ViewBox to ensure that the entire lanes background becomes the lane
+                             color. -->
+					<!-- DRIVER NAME -->
+					<Label Grid.Row="2" Grid.Column="1" Background="Black" BorderBrush="Black" BorderThickness="1.5" Foreground="Transparent" Name="Nickname_Position2_2"/>
+					<Viewbox Margin="10,10,10,10" VerticalAlignment="Center" Stretch="Fill" MaxWidth="348"  MaxHeight="98" MinHeight="50" Grid.Row="2" Grid.Column="1">
+						<Label Background="Transparent" BorderBrush="purple" FontFamily="Tahoma" FontSize="50" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Nickname_Position2_1" />
+					</Viewbox>
+					<!-- Display the fuel image surrounded by a viewbox to make sure it fits in the space we have 
+                    <Label Grid.Row="2" Grid.Column="2" Background="Black" BorderBrush="Black" BorderThickness="1.5" Foreground="Transparent" Name="Nickname_Position2_3"/>
+                    <Viewbox MaxWidth="97"  MaxHeight="98" MinHeight="50" Grid.Row="2" Grid.Column="2">
+                        <Image Stretch="Fill" Name="FuelImage_Position2_1" />
+                    </Viewbox -->
+					<!-- LAP COUNT -->
+					<Label Grid.Row ="2" Grid.Column="2" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="Lap_Position2_1" />
+					<Viewbox Margin="0,0,0,0" VerticalAlignment="Center" Stretch="Uniform" Grid.Row ="2" Grid.Column="2" MaxWidth="98" MaxHeight="98">
+						<Label Background="Black" BorderBrush="Transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Lap_Position2_2" />
+					</Viewbox>
+					<Button Grid.Row ="2" Grid.Column="2" Name="AddLapSections_Position2_1" Opacity="0" IsTabStop="False" Focusable="False" />
+					<StackPanel Grid.Row ="2" Grid.Column="2" Margin="4, 4, 4, 4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+						<Image Width="15" Height="15" Name="DriftLap_Position2_1" Stretch="Fill" />
+					</StackPanel>
+					<!-- End of LAP COUNT Row  -->
+					<!-- LAP TIME -->
+					<Label Grid.Row="2" Grid.Column="3" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="LapTime_Position2_2" DataContext="'decimals':3"/>
+					<Viewbox Grid.Row ="2" Grid.Column="3" MaxWidth="193" MaxHeight="98" Stretch="Fill">
+						<Label Background="Black" BorderBrush="Transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="LapTime_Position2_1" DataContext="'decimals':3"/>
+					</Viewbox>
+					<!-- BEST LAP -->
+					<Label Grid.Row ="2" Grid.Column="4" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="BestLapTime_Position2_1" DataContext="'decimals':3" />
+					<Viewbox Grid.Row ="2" Grid.Column="4" MaxWidth="193" MaxHeight="98" Stretch="Fill">
+						<Label Background="Black" BorderBrush="transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="BestLapTime_Position2_2" DataContext="'decimals':3" />
+					</Viewbox>
+					<!-- GAP  -->
+					<Label Grid.Row="2" Grid.Column="5" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="GapLeader_Position2_2" DataContext="'decimals':3" />
+					<Viewbox Grid.Row ="2" Grid.Column="5" MaxWidth="193" MaxHeight="98" Stretch="Fill">
+						<Label Background="Black" BorderBrush="Transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="GapLeader_Position2_1" DataContext="'decimals':3" />
+					</Viewbox>
+					<!-- TOTAL LAP COUNT -->
+					<Label Grid.Row ="2" Grid.Column="6" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="TotalLaps_Position2_1"  />
+					<Viewbox Grid.Row ="2" Grid.Column="6" MaxWidth="193" MaxHeight="98" Stretch="Fill" >
+						<Label Background="Black" BorderBrush="transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="TotalLaps_Position2_2" DataContext="'decimals':2" />
+					</Viewbox>
+					<!-- DRIFT LAPS ADJUSTMENT -->
+					<Button Grid.Row ="2" Grid.Column="6" Name="AddLapSections_Position2_2" Opacity="0" IsTabStop="False" Focusable="False" />
+					<StackPanel Grid.Row ="2" Grid.Column="6" Margin="4, 4, 4, 4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+						<Image Width="15" Height="15" Name="DriftLap_Position2_2" Stretch="Fill" />
+					</StackPanel>
+					<!--End of row for second position racer-->
+
+
+					<!--Row for third position racer-->
+					<!-- Surround the nickname with a Viewbox so that really long names will size down and fit in the box
+                             Also use text item outside the ViewBox to ensure that the entire lanes background becomes the lane
+                             color. -->
+					<!-- DRIVER NAME -->
+					<Label Grid.Row="3" Grid.Column="1" Background="Black" BorderBrush="Black" BorderThickness="1.5" Foreground="Transparent" Name="Nickname_Position3_2"/>
+					<Viewbox Margin="10,10,10,10" VerticalAlignment="Center" Stretch="Fill" MaxWidth="348"  MaxHeight="98" MinHeight="50" Grid.Row="3" Grid.Column="1">
+						<Label Background="Transparent" BorderBrush="purple" FontFamily="Tahoma" FontSize="50" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Nickname_Position3_1" />
+					</Viewbox>
+					<!-- Display the fuel image surrounded by a viewbox to make sure it fits in the space we have 
+                    <Label Grid.Row="3" Grid.Column="2" Background="Black" BorderBrush="Black" BorderThickness="1.5" Foreground="Transparent" Name="Nickname_Position3_3"/>
+                    <Viewbox MaxWidth="97"  MaxHeight="98" MinHeight="50" Grid.Row="3" Grid.Column="2">
+                        <Image Stretch="Fill" Name="FuelImage_Position3_1" />
+                    </Viewbox -->
+					<!-- LAP COUNT -->
+					<Label Grid.Row ="3" Grid.Column="2" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="Lap_Position3_1" />
+					<Viewbox Margin="0,0,0,0" VerticalAlignment="Center" Stretch="Uniform" Grid.Row ="3" Grid.Column="2" MaxWidth="98" MaxHeight="98">
+						<Label Background="Black" BorderBrush="Transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Lap_Position3_2" />
+					</Viewbox>
+					<Button Grid.Row ="3" Grid.Column="2" Name="AddLapSections_Position3_1" Opacity="0" IsTabStop="False" Focusable="False" />
+					<StackPanel Grid.Row ="3" Grid.Column="2" Margin="4, 4, 4, 4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+						<Image Width="15" Height="15" Name="DriftLap_Position3_1" Stretch="Fill" />
+					</StackPanel>
+					<!-- End of LAP COUNT Row  -->
+					<!-- LAP TIME -->
+					<Label Grid.Row="3" Grid.Column="3" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="LapTime_Position3_2" DataContext="'decimals':3"/>
+					<Viewbox Grid.Row ="3" Grid.Column="3" MaxWidth="193" MaxHeight="98" Stretch="Fill">
+						<Label Background="Black" BorderBrush="Transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="LapTime_Position3_1" DataContext="'decimals':3"/>
+					</Viewbox>
+					<!-- BEST LAP -->
+					<Label Grid.Row ="3" Grid.Column="4" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="BestLapTime_Position3_1" DataContext="'decimals':3" />
+					<Viewbox Grid.Row ="3" Grid.Column="4" MaxWidth="193" MaxHeight="98" Stretch="Fill">
+						<Label Background="Black" BorderBrush="transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="BestLapTime_Position3_2" DataContext="'decimals':3" />
+					</Viewbox>
+					<!-- GAP  -->
+					<Label Grid.Row="3" Grid.Column="5" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="GapLeader_Position3_2" DataContext="'decimals':3" />
+					<Viewbox Grid.Row ="3" Grid.Column="5" MaxWidth="193" MaxHeight="98" Stretch="Fill">
+						<Label Background="Black" BorderBrush="Transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="GapLeader_Position3_1" DataContext="'decimals':3" />
+					</Viewbox>
+					<!-- TOTAL LAP COUNT -->
+					<Label Grid.Row ="3" Grid.Column="6" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="TotalLaps_Position3_1"  />
+					<Viewbox Grid.Row ="3" Grid.Column="6" MaxWidth="193" MaxHeight="98" Stretch="Fill" >
+						<Label Background="Black" BorderBrush="transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="TotalLaps_Position3_2" DataContext="'decimals':2" />
+					</Viewbox>
+					<!-- DRIFT LAPS ADJUSTMENT -->
+					<Button Grid.Row ="3" Grid.Column="6" Name="AddLapSections_Position3_2" Opacity="0" IsTabStop="False" Focusable="False" />
+					<StackPanel Grid.Row ="3" Grid.Column="6" Margin="4, 4, 4, 4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+						<Image Width="15" Height="15" Name="DriftLap_Position3_2" Stretch="Fill" />
+					</StackPanel>
+					<!--End of row for third position racer-->
+
+
+					<!--Row for fourth position racer-->
+					<!-- Surround the nickname with a Viewbox so that really long names will size down and fit in the box
+                             Also use text item outside the ViewBox to ensure that the entire lanes background becomes the lane
+                             color. -->
+					<!-- DRIVER NAME -->
+					<Label Grid.Row="4" Grid.Column="1" Background="Black" BorderBrush="Black" BorderThickness="1.5" Foreground="Transparent" Name="Nickname_Position4_2"/>
+					<Viewbox Margin="10,10,10,10" VerticalAlignment="Center" Stretch="Fill" MaxWidth="348"  MaxHeight="98" MinHeight="50" Grid.Row="4" Grid.Column="1">
+						<Label Background="Transparent" BorderBrush="purple" FontFamily="Tahoma" FontSize="50" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Nickname_Position4_1" />
+					</Viewbox>
+					<!-- Display the fuel image surrounded by a viewbox to make sure it fits in the space we have 
+                    <Label Grid.Row="4" Grid.Column="2" Background="Black" BorderBrush="Black" BorderThickness="1.5" Foreground="Transparent" Name="Nickname_Position4_3"/>
+                    <Viewbox MaxWidth="97"  MaxHeight="98" MinHeight="50" Grid.Row="3" Grid.Column="2">
+                        <Image Stretch="Fill" Name="FuelImage_Position4_1" />
+                    </Viewbox -->
+					<!-- LAP COUNT -->
+					<Label Grid.Row ="4" Grid.Column="2" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="Lap_Position4_1" />
+					<Viewbox Margin="0,0,0,0" VerticalAlignment="Center" Stretch="Uniform" Grid.Row ="4" Grid.Column="2" MaxWidth="98" MaxHeight="98">
+						<Label Background="Black" BorderBrush="Transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="Lap_Position4_2" />
+					</Viewbox>
+					<Button Grid.Row ="4" Grid.Column="2" Name="AddLapSections_Position4_1" Opacity="0" IsTabStop="False" Focusable="False" />
+					<StackPanel Grid.Row ="3" Grid.Column="2" Margin="4, 4, 4, 4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+						<Image Width="15" Height="15" Name="DriftLap_Position4_1" Stretch="Fill" />
+					</StackPanel>
+					<!-- End of LAP COUNT Row  -->
+					<!-- LAP TIME -->
+					<Label Grid.Row="4" Grid.Column="3" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="LapTime_Position4_2" DataContext="'decimals':3"/>
+					<Viewbox Grid.Row ="4" Grid.Column="3" MaxWidth="193" MaxHeight="98" Stretch="Fill">
+						<Label Background="Black" BorderBrush="Transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="LapTime_Position4_1" DataContext="'decimals':3"/>
+					</Viewbox>
+					<!-- BEST LAP -->
+					<Label Grid.Row ="4" Grid.Column="4" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="BestLapTime_Position4_1" DataContext="'decimals':3" />
+					<Viewbox Grid.Row ="4" Grid.Column="4" MaxWidth="193" MaxHeight="98" Stretch="Fill">
+						<Label Background="Black" BorderBrush="transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="BestLapTime_Position4_2" DataContext="'decimals':3" />
+					</Viewbox>
+					<!-- GAP  -->
+					<Label Grid.Row="4" Grid.Column="5" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="GapLeader_Position4_2" DataContext="'decimals':3" />
+					<Viewbox Grid.Row ="4" Grid.Column="5" MaxWidth="193" MaxHeight="98" Stretch="Fill">
+						<Label Background="Black" BorderBrush="Transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="GapLeader_Position4_1" DataContext="'decimals':3" />
+					</Viewbox>
+					<!-- TOTAL LAP COUNT -->
+					<Label Grid.Row ="4" Grid.Column="6" Foreground="Transparent" Background="Black" BorderBrush="Black" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" Name="TotalLaps_Position4_1"  />
+					<Viewbox Grid.Row ="4" Grid.Column="6" MaxWidth="193" MaxHeight="98" Stretch="Fill" >
+						<Label Background="Black" BorderBrush="transparent" BorderThickness="1.5" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Name="TotalLaps_Position4_2" DataContext="'decimals':2" />
+					</Viewbox>
+					<!-- DRIFT LAPS ADJUSTMENT -->
+					<Button Grid.Row ="4" Grid.Column="6" Name="AddLapSections_Position4_2" Opacity="0" IsTabStop="False" Focusable="False" />
+					<StackPanel Grid.Row ="4" Grid.Column="6" Margin="4, 4, 4, 4" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+						<Image Width="15" Height="15" Name="DriftLap_Position4_2" Stretch="Fill" />
+					</StackPanel>
+					<!--End of row for fourth position racer-->
+
+					<!-- RACE STATS -->
+					<StackPanel Grid.Row ="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="5, 0, 1, 0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+						<TextBlock FontSize="13" Foreground="Gray" Text="Race Record Lap:" FontWeight="Bold"/>
+						<TextBlock FontSize="13" Name="RecordName_1" Margin="5,0,5,0" Foreground="Bisque" />
+						<!--TextBlock FontSize="13" Foreground="Bisque" Text="("/-->
+						<!--TextBlock FontSize="13" Name="RecordNickname_1" Foreground="Bisque" /-->
+						<!--TextBlock FontSize="13" Foreground="Bisque" Text="): "/-->
+						<TextBlock FontSize="13" Name="RecordTime_1" Foreground="DarkOrange" DataContext="'decimals':3"/>
+					</StackPanel>
+					<StackPanel Grid.Row ="5" Grid.Column="2" Grid.ColumnSpan="5" Margin="30 , 0, 1, 0" Orientation="Horizontal" VerticalAlignment="Center" >
+						<TextBlock FontSize="13" Foreground="Gray" Text="Race Record Score:" FontWeight="Bold"/>
+						<TextBlock FontSize="13" Name="RecordScoreName_1" Margin="5,0,5,0" Foreground="Bisque" />
+						<!--TextBlock FontSize="11" Foreground="Bisque" Text="("/-->
+						<!--TextBlock FontSize="11" Name="RecordScoreNickname_1" Foreground="Bisque" /-->
+						<!--TextBlock FontSize="11" Foreground="Bisque" Text="): "/-->
+						<TextBlock FontSize="13" Name="RecordScore_1" Foreground="DarkOrange" DataContext="'decimals':2"/>
+					</StackPanel>
+					<StackPanel Grid.Row ="5" Grid.Column="4" Grid.ColumnSpan="3" Margin="20, 0, 5, 0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+						<TextBlock FontSize="13" Foreground="Gray" Text="Season Race Leader:" FontWeight="Bold"/>
+						<TextBlock FontSize="13" Name="Nickname_SeasonRaceLeader1_1" Margin="5,0,5,0" Foreground="Bisque" />
+						<TextBlock FontWeight="Bold" FontSize="13" Name="Standing_SeasonRaceLeader1_1" Foreground="DarkOrange" HorizontalAlignment="Center" DataContext="'decimals':2" />
+					</StackPanel>
+
+					<!--One of the cool things with xaml code is that you do not need to stack elements in the order you want them to appear. I wanted to display a transparent label showing "Gap" data in the lower right corner of each driver's "name" column.
+                    By referencing the grid's rows and columns, the following four lines display correctly even though the code is not contained in the same "block" as the rest of the driver's data.-->
+					<!--Beginning of "Gap" label code
+                <Label Grid.Column="1" Grid.Row="1"  Name="GapLeader_Position1_1" FontSize="24" Height="40.012" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="94.314" Margin="0,0,2.858,2.858" HorizontalContentAlignment="Right" />
+                <Label Grid.Column="1" Grid.Row="2"  Name="GapLeader_Position2_1" FontSize="24" Height="40.012" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="94.314" Margin="0,0,2.858,2.858" HorizontalContentAlignment="Right" />
+                <Label Grid.Column="1" Grid.Row="3"  Name="GapLeader_Position3_1" FontSize="24" Height="40.012" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="94.314" Margin="0,0,2.858,2.858" HorizontalContentAlignment="Right" />
+                <Label Grid.Column="1" Grid.Row="4"  Name="GapLeader_Position4_1" FontSize="24" Height="40.012" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="94.314" Margin="0,0,2.858,2.858" HorizontalContentAlignment="Right" />
+                End of "Gap" label code-->
+					<!--Third grid closing tag-->
+				</Grid>
+				<!--Lower DockPanel closing tag-->
+			</DockPanel>
+			<!--Main grid closing tag-->
+		</Grid>
+	</Viewbox>
+	<!--Window closing tag-->
+</Window>
+
+<!--
+    
+        Hopefully this fully commented file helped you to get at least a start on designing your own screen for Race Coordinator. The best way to begin is just like we demonstrated here, take an existing file and make a few small modifications.
+        There are so many ways you an modify RC's User Interface, the lessons shown here are minor compared to the radical changes you could make with a little understanding of the xaml language. If you wish to get really creative, be sure to
+        visit http://msdn.microsoft.com/en-us/library where you can search specific topics regarding xaml and interacting with WPF applications like RC. There are many other websites that can help spawn crazy yet completely "do-able" ideas, as 
+        always remember that google is your friend...just be sure to share your ideas with other RC users so everyone can enjoy them! Good luck and happy racing!
+    
+         -Gene Stalnecker aka "SwamperGene"
+    
+    -->
