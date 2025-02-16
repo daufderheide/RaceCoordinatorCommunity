@@ -7,4 +7,4 @@ http://novislot.ueuo.com/download.html
 Alternate image that can be used used as a drift lap indicator
 
 ## Screens
-![alt text](./drift.png)
+![alt text](./Drift.png)
