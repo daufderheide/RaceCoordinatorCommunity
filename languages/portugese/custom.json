@@ -1,0 +1,1405 @@
+﻿{
+	"GID_RBasicIntro": "Bem-vindo ao assistente básico para criar uma corrida.  Este assistente irá orientá-lo a criar uma corrida usando apenas as opções básicas necessárias.  Este assistente é útil para usuários que só querem correr e não estão satisfeitos com as configurações padrões de corridas, disponíveis no RMS (Race Coordinator).
+	
+Algumas perguntas terão um botão 'Mais' visível na parte inferior. Use este botão para obter mais informações sobre a opção que está sendo configurada.",
+	"GID_RIntermediateIntro": "Bem-vindo ao assistente intermediário para criar uma corrida.  Este assistente irá orienta-lo a criar uma corrida com os principais recursos disponíveis pelo RMS (Race Coordinator). No entanto, muitas opções mais complexas, que a maioria dos usuários não precisam configurar serão ignoradas. Este assistente é recomendado para usuários criarem corridas com formatos mais complexos.
+	
+Algumas perguntas terão um botão 'Mais' visível na parte inferior. Use este botão para obter mais informações sobre a opção que está sendo configurada.",
+	"GID_RExpertIntro": "Bem-vindo ao assistente avançado para criar uma corrida.  Esta assistente irá orientá-lo a criar uma corrida com o máximo de recursos disponíveis. Este assistente é útil para usuários que precisam de controle absoluto sobre sua configuração.
+	
+Algumas perguntas terão um botão 'Mais' visível na parte inferior. Use este botão para obter mais informações sobre a opção que está sendo configurada.",
+
+	"GID_BasicMoreWinTitle": "Detalhes RMS (Race Coordinator)",
+	"GID_BasicMoreHeader": "Definições",
+	"GID_BasicMore":  "Etapa (Heat): É formado por um grupo de pilotos que correm na pista por um determinado período de tempo ou pelo número de voltas. Uma etapa (Heat) é independente das anteriores e existem várias configurações que controlam quanto tempo dura uma etapa e como é finalizada.
+
+Corrida (Race):  É formado por uma série de etapas (Heats). As pontuações de cada etapa, para cada piloto são combinadas e asssim são calculadas para a classificação final. Existem muitas configurações que controlam como os pontos de cada etapa são combinados.
+
+Evento (Event):  É formado por uma série de corridas (Races). A primeira corrida é ordenada pela ordem em que os pilotos são adicionados na tela de configuração do 'Dia da Corrida'. A cada etapa (Heat) subseqüente, a ordem depende da pontuação de cada piloto, de acordo com a sua classificação final. Qualquer número de corridas pode ser adicionado a um evento (Event), que permite qualquer combinação de corridas (Races) como prática (treino), qualificação, semifinal e finais. Alguns ou todos os pilotos podem avançar para uma próxima corrida, conforme configuração.",
+
+	"GID_MinLapTimeMoreWinTitle": "Detalhes do Tempo Mínimo de uma volta ",
+	"GID_MinLapTimeMoreHeader": "Tempo Mínimo de uma Volta",
+	"GID_MinLapTimeMore": "A opção 'Tempo mínimo de uma volta' é uma medida de segurança para impedir voltas falsas.  Esta opção protege contra os carros que saem da pista e são recolocados mais próximos dos sensores de voltas, quando um carro 'pula' para outra fenda (2 carros na mesma fenda), além de sombras ou outras leituras falsas dos sensores.  Os valores recomendados para esta opção são cerca de 90% do tempo esperado de uma volta.
+
+Por exemplo, se o tempo de volta mais rápido possível for de 10 segundos, você pode definir esse valor em 9 segundos, o que impedirá a maioria das voltas falsas e permitirá que um piloto tenha o tempo de volta mais rápido esperado, a partir de 9 segundos.
+
+O importante é que este tempo seja definido abaixo do tempo de volta mais rápido, caso contrário, algumas voltas válidas serão perdidas.",
+
+	"GID_BreakoutTimeMoreWinTitle": "Breakout Time Details",
+	"GID_BreakoutTimeMoreHeader": "Breakout Time",
+	"GID_BreakoutTimeMore": "This time is the minimum lap time a driver can achieve and have the lap be counted.  If the driver undershoots the breakout time, the driver is penalized as the lap will not be counted.  
+	
+This differs from the 'Minimum Lap Time' in that the 'Minimum Lap Time' protects against false laps being triggered for some reason.  The break out time evens the playing field by forcing faster cars to run slower laps allowing you to race any class car against any other class car.
+
+For example, if one cars fastest lap time is 10 seconds, but another car used in this same race is 15 seconds, you could set the breakout time to 15 seconds forcing the faster of the two cars to slow down.  In this example you'd still set the Minium Lap Time to about 9 seconds.",
+
+	"GID_DriftTimeMoreWinTitle": "Drift Time Details",
+	"GID_DriftTimeMoreHeader": "Drift Time",
+	"GID_DriftTimeMore": "Depending on what type of cars you race, a car may continue to travel even after the power to the track is turned off.  This is untimed movement around the track.  Just because it's untimed does not mean a car may not drift through the start finish line and trigger a lap.
+
+Drift time is how long the RMS will keep counting laps after the heat has ended or been paused.  If you use high magnet cars, they will come to a stop fairly quickly and thus you can leave this time fairly low.   Low magnet cars can drift a considerable amount and thus you may need a higher time set here.  After the heat ends or is paused, if a lap is triggered after the drift time has expired, the lap will not be counted.
+
+If you do not use track relays to control lane power, it may be best to set the drift time to 0 because cars will be able to drive as far as they want after the heat ends or during a yellow flag because there will still be power to the track.
+
+The Race Day screen can be configured to display if a car received a drift lap or not.",
+
+	"GID_AdjustDriftLapsMoreWinTitle": "Adjust Drift Laps Details",
+	"GID_AdjustDriftLapsMoreHeader": "Adjust Drift Laps",
+	"GID_AdjustDriftLapsMore": "Imagine a track that does not have relays turning off power when a heat is paused.  Before you restart the heat you move cars back to about where they were when the heat was paused, but this is a very inaccurate process.  What if you put a car one second ahead of where it really was?  The cars next lap will be about one second faster than it otherwise should have been.
+
+Saying no is the fairest way to track heat or race best lap times, because saying no will tell the RMS to ignore any lap that includes drift time in it.  In practice drift laps can only affect the outcome of a heat or a race if you are using the race point system or season scoring and those points systems are configured to allocate bonus points based on fastest laps.  However, anybody interested in accurate best lap times will also want to say no here.",
+
+	"GID_CallbuttonDelayMoreWinTitle": "Detalhes para Atraso para uma parada",
+	"GID_CallbuttonDelayMoreHeader": "Atraso para uma parada",
+	"GID_CallbuttonDelayMore": "O botão de parada ou Call Button é um comando físico, que quando pressionado, altera o estado de uma corrida. No RMS (Race Coordinator), o objetivo principal é acionar a bandeira amarela, interrompendo a corrida.
+
+NOTA: No RMS (Race Coordinator), o botão de parada (Call Button) tem diferentes finalidades, dependendo do estado da corrida. Ele pode iniciar ou reiniciar uma corrida em pausa. Cancelar a contagem regressiva inicial, se estiver em andamento. Também poderá avançar uma etapa de uma próxima corrida. O botão de parada (Call Button) permite que não seja utilizado o teclado do computador, para alguns procedimentos."
+
+	"GID_RAudioInvalidCharError": "File not found or invalid Character.  The audio resource can not contain any 'special' characters such as [< (less than), > (greater than), : (colon), \" (double quote), / (forward slash), \\ (backslash), | (vertical bar or pipe), ? (question mark), * (asterisk)]",
+
+	"GID_RHeatUseCustomFilesMoreWinTitle": "Custom Rotation Files Details",
+	"GID_RHeatUseCustomFilesMoreHeader": "Custom Rotation Files",
+	"GID_RHeatUseCustomFilesMore": "Custom Rotation Files allow you to do virtually any rotation you can imagine.  However, you must create the custom rotation files yourself.  If you choose to use custom rotation files you can use the rotation editor to create the files.",
+
+	"RD_Segments": "Parciais",
+	"RD_Segment Times": "Tempos Parciais",
+	"RD_Current Lap":"Volta Atual",
+	"RD_Last Lap":"Última Volta",
+
+	"GID_RDefaultDynamicThrottleControlHeader": "Dynamic Throttle Controls",
+	"GID_RDefaultDynamicThrottleControlLess": "Do you want to setup dynamic throttle controls such as tire wear, KERS, etc.",
+	
+	"GID_RTireWearUseHeader": "Enable Tire Wear",
+	"GID_RTireWearUseLess": "Do you want to enable tire wear?",
+
+	"GID_RTireWearResetHeader": "Reset Tire Wear",
+	"GID_RTireWearResetLess": "Do you want to reset tire wear between heats?",
+
+	"GID_RTireWearPctImageHeader": "Tire Wear Indicator Images",
+	"GID_RTireWearPctImageLess": "Please select the set of images to use to indicate car tire wear.  The set of images should have at least three images in the series.",
+	"GID_RTireWearPctImageLabel": "Image Set",
+
+	"GID_RTireWearRateHeader": "Tire Wear Rate",
+	"GID_RTireWearRateLess": "Please select how fast tires should wear down.  This value is a percentage per second based on the driver going full throttle.",
+	"GID_RTireWearRateLabel": "% Per Second",
+
+	"GID_RTireWearHeader": "Tire Wear Brake Curve",
+	"GID_RTireWearLess": "For added realism, a cars braking can be adjusted by the amount of tire wear on the car.  The two values below control at what tire wear level the car will be allowed to have full braking and how much to reduce the cars braking based on tire wear.  The graph shows how various tire wear levels affect the braking based on these parameters.",
+	"GID_RTireWearMaxLossLabel": "Max Brake Loss Pct",
+	"GID_RTireWearMaxPctLabel": "Tire Wear % for Max Brakes",
+	"GID_RTireWearPlotHeader": "Tire Wear vs. Brakes",
+	"GID_RTireWearPlotXAxis": "Tire Wear (0 - 100%)",
+	"GID_RTireWearPlotYAxis": "Adjusted Brakes",
+
+	"GID_RTireWearRecoveryTimeHeader": "Tire Recovery Time",
+	"GID_RTireWearRecoveryTimeLess": "Please select the amount of time (in seconds) it takes to change the tires and reset tire wear to 0%.  If a driver makes a pit stop for this amount of time, tire wear will be reset.",
+	"GID_RTireWearRecoveryTimeLabel": "Recovery Time (in seconds)",
+
+    "GID_RCallbuttonDelayHeader": "Atraso para uma parada",
+	"GID_RCallbuttonDelayLess": "Defina o tempo de atraso para acionar a bandeira amarela, após pressionar o botão de parada (Call Button).",
+	"GID_RCallbuttonDelayLabel": "Tempo (em segundos)",
+
+	"GID_FileNotFound": "The selected file could not be found",
+
+	"GID_AudioTest":"Teste",
+	"GID_AudioMoreWinTitle": "Textos Falados",
+	"GID_AudioMoreHeader": "Opções de Textos Falados",
+	"GID_AudioMoreNote1": "Para qualquer opção de áudio no RMS (Race Coordinator), se local especificado não conter um arquivo válido, o texto será falado usando a tecnologia 'Text to Speech'",
+	"GID_AudioMoreNote2": "Um recurso disponível é tocar uma sequencia de arquivos como o 'Aviso de Combustivel Baixo' ou o de 'Largaga'.",
+	"GID_AudioMoreNote3": "If you do not want a sound to play for a particular resource simply put an empty string (\"\") as the configuration value.",
+	"GID_AudioMoreNote4": "'Text to Speech' pode reproduzir tempos de uma corrida ou outras informações relevantes.  Se um arquivo existir na configuração, eles serão substituídos por dados da Corrida:
+%n  : Nome do Piloto
+%nn : Apelido do Piloto
+%l  : Numero da Pista do Piloto
+%c  : Cor da Pista, onde io Piloto está
+%t  : Tempo restante para o fim da corrida",
+	"GID_AudioMoreNote5": "***NOTE: For the 'Practice Best Lap Audio Prefix', if you want Text to Speech you MUST specify it as a json array with a single value in it.  For example [\"Lane %l best lap %t\"] will callout 'Lane 2 best lap 3.134' when the driver in lane 2 gets their best lap",
+
+	"GID_RAutoAdvanceWarmupHeader": "Auto Advance Warmup Time",
+	"GID_RAutoAdvanceWarmupLess": "Please select how long you would like track power on for before the RMS automaticaly advances to the next heat.",		
+	"GID_RAutoAdvanceWarmupLabel": "Tempo (em segundos)",
+
+	"GID_RAutoAdvanceWarmupMoreWinTitle": "Auto Advance Warmup Time Details",
+	"GID_RAutoAdvanceWarmupMoreHeader": "Auto Advance Warmup Time",
+	"GID_RAutoAdvanceWarmupMore": "Track power will remain off until the auto advance timer reaches this value at which time power will come on as the heat auto advances.  Warmup time only affects track power, no laps or lap times will be reported.
+	
+As an example, if the auto advance timer is set to 30 seconds, and the auto advance warmup time is set to 20 seconds, track power will come on 10 seconds after the heat ends.
+
+The auto advance warmup time plus the auto start warmup time will equal the total continuous time track power is turned on allowing for drivers to warmup between heats.",
+
+	"GID_RAutoStartWarmupHeader": "Auto Start Warmup Time",
+	"GID_RAutoStartWarmupLess": "Please select how long you would like track power on for before the heat starts.",
+	"GID_RAutoStartWarmupLabel": "Tempo (em segundos)",
+
+	"GID_RAutoStartWarmupMoreWinTitle": "Auto Start Warmup Time Details",
+	"GID_RAutoStartWarmupMoreHeader": "Auto Start Warmup Time",
+	"GID_RAutoStartWarmupMore": "Track power will turn on as soon as the RMS advances to the next heat and power stays on while the auto start time is counting down.  Warmup time only affects track power, no laps or lap times will be reported.
+
+As an example, if the auto start timer is set to 30 seconds, and the auto start warmup time is set to 20 seconds, track power will be on until 10 seconds before the heat start.
+
+The auto advance warmup time plus the auto start warmup time will equal the total continuous time track power is turned on allowing for drivers to warmup between heats.",	
+
+	"RDS_Title":"Configuração do Dia da Corrida",
+	"RDS_CarsAvailable":"Carros Disponiveis",
+	"RDS_DriversAvailable":"Pilotos Disponiveis",
+	"RDS_Options":"Opções",
+	"RDS_DriversRacing":"Pilotos da Corrida",
+	"RDS_RaceSelection":"Corrida ou Evento",
+	"RDS_SeasonSelection":"Temporada
+",
+	"RDS_RaceTypeGroup":"Tipo da Corrida",
+	"RDS_DemoModeGroup":"Opções",
+	"RDS_SingleRaceType":"Única",
+	"RDS_EventType":"Evento",
+	"RDS_AddAllButton":"Inclui Todos >>",
+	"RDS_RandomizeButton":"Ordem Aleatória >>",
+	"RDS_ResetButton":"<< Remove Todos",
+	"RDS_CarRemoveButton":"<< Remove Carro",
+	"RDS_CarRemoveAllButton":"<< Remove os Carros",
+	"RDS_AddAllButtonTT":"Adiciona todos pilotos disponiveis na corrida",
+	"RDS_RandomizeButtonTT":"Sorteia aleatóriamente a ordem dos pilotos incluidos na corrida",
+	"RDS_ResetButtonTT":"Remove todos os pilotos da corrida",
+	"RDS_CarRemoveButtonTT":"Remove o carro selecionado para o piloto",
+	"RDS_CarRemoveAllButtonTT":"Remove todos os carros dos pilotos",
+	"RDS_Configure":"Opções Avançadas",
+	"RDS_RaceDemoMode":"Simular Corrida ou Evento",
+		"RDS_RaceDemoModeFont":"12",
+	"RDS_EnableDebug":"Ativa Debug",
+	"RDS_StartButton":"Iniciar",
+		"RDS_StartButtonFont":"18",
+	"RDS_ConfigureTT":"Configura os parametros para o modo demo (Demonstração)",
+	"RDS_RaceDemoModeTT":"Substitui a Interface da pista gerando voltas aleatórias. Permite testar as configurações da corrida sem estar conectado na pista",
+	"RDS_EnableDebugTT":"Ativa o log de debug (Só deve ser utilizado se instruido a faze-lo)",
+	"RDS_StartButtonTT":"Inicia a Corrida/Evento configurada. Use o atalho Ctr-R or Alt-R.",
+	"RDS_File":"Arquivos",
+	"RDS_FileTT":"Carrega corridas, abre a pasta Data/install",
+	"RDS_Load":"Carrega Corrida/Evento",
+	"RDS_ProgramData": "Mostra a pasta database",
+	"RDS_InstallDir": "Mostra a pasta de instalação",
+	"RDS_LoadTT":"Carrega uma corrida salva anteriormente no disco",
+	"RDS_ProgramDataTT": "Abre a pasta que contém a base de dados do programa, arquivos do debug e estatisticas",
+	"RDS_InstallDirTT": "Abre a Pasta onde o programa está instalado",
+	"RDS_DebugZip": "Compacta Debug",
+    	"RDS_DebugZipTT": "Cria um arquivo ZIP com tudo necessário para um debug",
+	"RDS_CarSetup":"Carros",
+	"RDS_CarWizard":"Assistente",
+	"RDS_ExpertCarSetup":"Configuração Avançada do Carro",
+	"RDS_CarSetupTT":"Cria, modifica, e remove Carros",
+	"RDS_CarWizardTT":"Cria um novo carro utilizando um assistente",
+	"RDS_ExpertCarSetupTT":"Cria, atualiza, ou remove carros usando o gerenciador de carros",
+	"RDS_DriverSetup":"Pilotos",
+	"RDS_DriverGuide":"Configura Piloto passo-a-passo",
+	"RDS_DriverWizard":"Assistente",
+	"RDS_ExpertDriverSetup":"Configuração Avançada do Piloto",
+	"RDS_DriverSetupTT":"Cria, modifica, e remove Pilotos",
+	"RDS_DriverGuideTT":"Cria um novo piloto utilizado telas Passo-a-Passo",
+	"RDS_DriverWizardTT":"Cria um novo piloto utilizando um assistente",
+	"RDS_ExpertDriverSetupTT":"Cria, atualiza, ou remove pilotos usando o gerenciador de pilotos",
+	"RDS_TrackSetup":"Pista",
+	"RDS_TrackWizard":"Assistente",
+	"RDS_ExpertTrackSetup":"Configuração Avançada da Pista",
+	"RDS_TrackSetupTT":"Modifica a Pista",
+	"RDS_TrackWizardTT":"Cria uma nova pista utilizando o assistente",
+	"RDS_ExpertTrackSetupTT":"Modifica a pista usando o gerenciador de pista",
+	"RDS_RaceSetup":"Corrida",
+	"RDS_BasicRaceWizard":"Assistente Básico",
+	"RDS_IntermediateRaceWizard":"Assistente Intermediário",
+	"RDS_AdvancedRaceWizard":"Assistente Avançado",
+	"RDS_BasicRaceGuide":"Configuração Passo-a-Passo Básica",
+	"RDS_IntermediateRaceGuide":"Configuração Passo-a-Passo Intermediária",
+	"RDS_AdvancedRaceGuide":"Configuração Passo-a-Passo Avançada",
+	"RDS_ExpertRaceSetup":"Configuração Avançada da Corrida",
+	"RDS_RaceSetupTT":"Cria, modifica, e remove Corridas",
+	"RDS_BasicRaceGuideTT":"Cria uma nova corrida utilizado telas passo-a-passo apenas com os dados básicos",
+	"RDS_IntermediateRaceGuideTT":"Cria uma nova corrida utilizado telas passo-a-passo com os dados intermediários",
+	"RDS_AdvancedRaceGuideTT":"Cria uma nova corrida utilizado telas passo-a-passo com todos os dados",
+	"RDS_BasicRaceWizardTT":"Cria uma nova corrida utilizando um assistente com opções simples para sua criação",
+	"RDS_IntermediateRaceWizardTT":"Cria uma nova corrida utilizando um assistente com opções avançadas para sua criação",
+	"RDS_AdvancedRaceWizardTT":"Cria uma nova corrida utilizando um assistente completo, com todas as opções para sua criação",
+	"RDS_ExpertRaceSetupTT":"Cria, atualiza, ou remove corridas usando o gerenciador de corridas",
+	"RDS_EventSetup":"Evento",
+	"RDS_EventWizard":"Assistente",
+	"RDS_ExpertEventSetup":"Configuração Avançada do Evento",
+	"RDS_EventSetupTT":"Cria, modifica, e remove Eventos",
+	"RDS_EventWizardTT":"Cria um novo evento utilizando um assistente",
+	"RDS_ExpertEventSetupTT":"Cria, atualiza, ou remove eventos usando o gerenciador de eventos",
+	"RDS_SeasonSetup":"Temporada",
+	"RDS_SeasonWizard":"Assistente",
+	"RDS_ExpertSeasonSetup":"Configuração Avançada da Temporada",
+	"RDS_SeasonSetupTT":"Cria, modifica, e remove uma Temporada",
+	"RDS_SeasonWizardTT":"Cria uma nova Temporada utilizando um assistente",
+	"RDS_ExpertSeasonSetupTT":"Cria, atualiza, ou remove uma Temporada usando o gerenciador de Temporada",
+
+	"RDS_MenuOptions":"Opções",
+	"RDS_OptionsStats":"Estatisticas",
+	"RDS_OptionsReset":"Reset Windows",
+	"RDS_OptionsTips":"Mostra Dicas",
+	"RDS_OptionsDeactivate":"Desativa Licença",
+	"RDS_Preferences": "Prefêrencias",
+	"RDS_MenuOptionsTT":"Mais Opções",
+	"RDS_OptionsStatsTT":"Exporta estatisticas das corridas e outras informações",
+	"RDS_OptionsResetTT":"Coloca todas as janelas (Windows) na posição padrão",
+	"RDS_OptionsTipsTT":"Mostra a janela de Dica do dia",
+	"RDS_OptionsDeactivateTT":"Desativa sua licença para poder utilizar o programa em um outro computador depois de passar algumas informações para: contact@racecoordinator.net",
+	"RDS_PreferencesTT":"Define algumas configurações gerais",
+
+	"RDS_About":"Sobre",
+	"RDS_None":"None",
+	"RDS_LogoImage":"/RaceCoordinator;component/Resources/RC_bg_800x600.jpg",
+
+	"RDS_QuickStartButton": "Corrida Rápida",
+	"RDS_QuickStartButtonTT": "Run a quick race with the currently selected race.  Drivers will come from the controller names and no stats will be saved",
+
+	"RD_Race Day": "Dia da Corrida",
+	"RD_Start Your Engines": "Atenção Pilotos, Liguem seus Motores",
+	"RD_File":"Arquivo",
+	"RD_Save":"Salvar",
+	"RD_Save As...":"Salvar Como...",
+	"RD_Export Race":"Exportar Corrida",
+
+	"RD_Race Director":"Diretor da Corrida",
+	"RD_Start/Resume Heat":"Iniciar/Continuar",
+	"RD_Pause Heat":"Parar",
+	"RD_Add Laps/Sections":"Adiciona Voltas/Sessões",
+	"RD_Next Heat": "Próxima Etapa",
+	"RD_Restart Heat": "Reiniciar Etapa",
+	"RD_Defer Heat": "Adiar Etapa",
+	"RD_Skip Heat":"Pular Etapa",
+	"RD_Skip Race":"Pular Corrida",
+	"RD_Modify Heats":"Modificar Etapa",
+	"RD_Edit Laps":"Editar Voltas",
+	"RD_ID Car(s)":"ID Carro(s)",
+	"RD_Track Power":"Energia",
+
+	"RD_Master Power On":"Liga Todas as Fendas",
+	"RD_Master Power Off":"Desliga Todas as Fendas",
+	"RD_Lane 1 Power On":"Liga Fenda 1",
+ 	"RD_Lane 1 Power Off":"Desliga Fenda 1",
+	"RD_Lane 2 Power On":"Liga Fenda 2",
+ 	"RD_Lane 2 Power Off":"Desliga Fenda 2",
+	"RD_Lane 3 Power On":"Liga Fenda 3",
+ 	"RD_Lane 3 Power Off":"Desliga Fenda 3",
+	"RD_Lane 4 Power On":"Liga Fenda 4",
+ 	"RD_Lane 4 Power Off":"Desliga Fenda 4",
+	"RD_Lane 5 Power On":"Liga Fenda 5",
+ 	"RD_Lane 5 Power Off":"Desliga Fenda 5",
+	"RD_Lane 6 Power On":"Liga Fenda 6",
+ 	"RD_Lane 6 Power Off":"Desliga Fenda 6",
+	"RD_Lane 7 Power On":"Liga Fenda 7",
+ 	"RD_Lane 7 Power Off":"Desliga Fenda 7",
+	"RD_Lane 8 Power On":"Liga Fenda 8",
+ 	"RD_Lane 8 Power Off":"Desliga Fenda 8",
+
+	"RD_Windows", "Informações",
+	"RD_Leader Board":"Lider",
+	"RD_Top 5":"Top 5",
+	"RD_Group Leader Board":"Lider do Grupo",
+	"RD_Heat Results":"Resultado da Etapa",
+	"RD_Race Results":"Resultado da Corrida",
+	"RD_Season Race Leader Board": "Lider da Corrida no Evento",
+	"RD_Season Leader Board": "Lider do Evento",
+	"RD_On Deck": "Em Espera",
+	"RD_Heat List": "Listagem da Etapa",
+
+	"RD_"  :"",
+	"RD_ " :" ",
+	"RD_(" :"(",
+	"RD_): ":"): ",
+	"RD_)" :")",
+
+	"RD_Track:":"Pista:",
+	"RD_Heat ":"Etapa ",
+	"RD_ of ":" de ",
+	"RD_Race Record Lap": "Recorde da Volta na Corrida",
+	"RD_Race Record Score": "Placar com Recordes",
+	"RD_Current Race Best Lap": "Melhor Volta da Corrida",
+	"RD_Heat Best Lap": "Melhor volta da Etapa",
+	"RD_Name":"Piloto",
+	"RD_ID:": "ID:",
+	"RD_Penalty": "Penalidade",
+	"RD_Crashes": "Acidentes",
+	"RD_Fuel":"Comb.",
+		"RDFont_Fuel":"24",
+	"RD_Lap":"Volta",
+	"RD_Lap Time":"Tempo",
+	"RD_Best Lap":"Melhor",
+	"RD_Reaction": "Reação",
+	"RD_MPH":"MPH",
+	"RD_KPH":"Km/h",
+	"RD_Avg Lap": "Méd. Voltas",
+	"RD_Avg Time": "Média",
+	"RD_Median Lap": "Mediana",
+	"RD_Gap": "Diferença",
+	"RD_Led": "Led",
+	"RD_Empty": "Vazio",
+	"RD_Car": "Carro",
+
+	"RD_Group ": "Grupo ",
+
+	"RD_Race Lane Record Lap:": "Race Lane Record Lap:",
+	"RD_Current Race Lane Best Lap:": "Current Race Lane Best Lap:",
+	"RD_Reaction Time:":"Tempo de Reação:",
+	"RD_Total Laps:": "Total de Voltas:",
+	"RD_Best Lap:":"Melhor Volta:",
+	"RD_Median Lap Time:":"Mediana do Tempo:",
+	"RD_Gap:":"Dif.:",
+	"RD_Laps:":"Voltas:",
+	
+	"RD_Race Results Summary":"Resultado da Corrida",
+	"RD_Pos":"Pos",
+	"RD_Driver":"Piloto",
+	"RD_Score":"Pontos",
+		"RDFont_Score":"14",
+	"RD_Laps":"Voltas",
+		"RDFont_Laps":"14",
+	"RD_Gap 1st":"Dif. 1°",
+	"RD_ 1":" 1",
+	"RD_ 2":" 2",
+	"RD_ 3":" 3",
+	"RD_ 4":" 4",
+	"RD_ 5":" 5",
+	"RD_ 6":" 6",
+	"RD_ 7":" 7",
+	"RD_ 8":" 8",
+	"RD_ 9":" 9",
+	"RD_10":"10",
+	"RD_11":"11",
+	"RD_12":"12",
+	"RD_13":"13",
+	"RD_14":"14",
+	"RD_15":"15",
+	"RD_16":"16",
+	"RD_17":"17",
+	"RD_18":"18",
+	"RD_19":"19",
+	"RD_20":"20",
+	"RD_21":"21",
+	"RD_22":"22",
+	"RD_23":"23",
+	"RD_24":"24",
+	"RD_25":"25",
+
+	"RD_Season Race Leaders":"Líderes da Corrida",
+	
+	"RD_Season Leaders":"Líderes do Evento",
+	"RD_Total Races: ":"Total de Corridas: ",
+
+	"RD_Practice":"Treino",
+	"RD_Start Race": "Iniciar/Continuar",
+	"RD_Pause Race": "Parar",
+	"RD_Restart Practice" : "Reiniciar Treino",
+	"RD_Drivers":"Pilotos",
+	"RD_Best Time": "Melhor Tempo",
+		"RDFont_Best Time": "18",
+	"RD_Lap Times": "Últimas Voltas",
+		"RDFont_Lap Times": "18",
+	"RD_Driver 1": "Piloto 1",
+	"RD_Driver 2": "Piloto 2",
+	"RD_Driver 3": "Piloto 3",
+	"RD_Driver 4": "Piloto 4",
+	"RD_Driver 5": "Piloto 5",
+	"RD_Driver 6": "Piloto 6",
+	"RD_Driver 7": "Piloto 7",
+	"RD_Driver 8": "Piloto 8",
+	"RD_Driver 9": "Piloto 9",
+	"RD_Driver 10": "Piloto 10",
+	"RD_Driver 11": "Piloto 11",
+	"RD_Driver 12": "Piloto 12",
+	"RD_Clear All": "Reiniciar Todos",
+		"RDFont_Clear All": "14",
+	"RD_Clear Lane": "Reiniciar",
+		"RDFont_Clear Lane": "14",
+	"RD_Clear 1": "Reiniciar 1",
+		"RDFont_Clear 1": "14",
+	"RD_Clear 2": "Reiniciar 2",
+		"RDFont_Clear 2": "14",
+	"RD_Clear 3": "Reiniciar 3",
+		"RDFont_Clear 3": "14",
+	"RD_Clear 4": "Reiniciar 4",
+		"RDFont_Clear 4": "14",
+	"RD_Clear 5": "Reiniciar 5",
+		"RDFont_Clear 5": "14",
+	"RD_Clear 6": "Reiniciar 6",
+		"RDFont_Clear 6": "14",
+	"RD_Clear 7": "Reiniciar 7",
+		"RDFont_Clear 7": "14",
+	"RD_Clear 8": "Reiniciar 8",
+		"RDFont_Clear 8": "14",
+	"RD_Clear 9": "Reiniciar 9",
+		"RDFont_Clear 9": "14",
+	"RD_Clear 10": "Reiniciar 10",
+		"RDFont_Clear 10": "14",
+	"RD_Clear 11": "Reiniciar 11",
+		"RDFont_Clear 11": "14",
+	"RD_Clear 12": "Reiniciar 12",
+		"RDFont_Clear 12": "14",
+
+	"RD_Pace Car Recording": "Pace Car Recording",
+	"RD_End Recording": "Save Pace Car Rercording",
+
+	"GID_WavFilter": "wav files (*.wav)|*.wav|All files (*.*)|*.*",
+	"GID_WavTitle": "Select an audio file",
+
+	"GID_ImageFilter": "All files (*.*)|*.*|jpg files (*.jpg)|*.jpg|bmp files (*.bmp)|*.bmp|png files (*.png)|*.png|gif files (*.gif)|*.gif",
+	"GID_ImageTitle": "Select an image file",
+
+	"GID_PngImageFilter": "(*.png)|*.png",
+	"GID_PngImageTitle": "Select a png image file",
+
+	"GID_GhostFilter": "json file (*.json)|*.json|All files (*.*)|*.*",
+	"GID_GhostTitle":"Select json file for dynamic pace car",
+
+	"GID_XamlFilter": "xaml file (*.xaml)|*.xaml|All files (*.*)|*.*",
+	"GID_XamlTltle": "Select xaml file for the UI",
+
+	"GID_DialogFileName": "File Name",
+
+	"GID_DialogYes": "Sim",
+	"GID_DialogNo": "Não",
+	"GID_DialogNext": "Próximo",
+	"GID_DialogBack": "Anterior",
+	"GID_DialogMore": "Mais",
+	"GID_DialogSave": "Salvar",
+	"GID_DialogCancel": "Cancelar",
+	"GID_DialogCancelVerify": "Você realmente quer cancelar esta configuração?",
+	"GID_DialogParameterError": "Parametro Errado",
+
+	"GID_DTitle":"Assistente de configuração de um Piloto",
+	
+	"GID_DNameHeader":"Nome",
+	"GID_DNameLess":"Digite um nome para o Piloto.  Este nome também pode ser o mesmo do apelido para o Piloto",
+	"GID_DNameName":"Nome do Piloto",
+	"GID_DNameUniqueError": "Nome inválido.  O nome deve ser diferente de um previamente definido.",
+	"GID_DNameEmptyError": "Nome inválido.  O nome deve ter pelo menos um caracter valido e ser diferente de um previamente definido.",
+
+	"GID_DThrottlePCTHeader":"Throttle Percentage",
+	"GID_DThrottlePCTLess":"Set the throttle percentage to use for this driver.  This percentage will be multplied with the actual throttle level and can be used to handicap a driver.  Setting the value to 100 allows full throttle",
+	"GID_DThrottlePCTLabel":"Throttle Percentage",
+
+	"GID_DScorpiusControllerHeader":"Scorpius Wireless Controller?",
+	"GID_DScorpiusControllerLess":"Is this driver using a Scorpius Wireless controller?",
+
+	"GID_DAudioConfigHeader": "Usar sons padrão?",
+	"GID_DAudioConfigLess": "Você gostaria de utilizar as sons e vozes padrão para este Piloto?  Se você optar em configurar os sons para este Piloto e deixar uma opção 'vazia', não haverá a reprodução do som em determinado evento.",
+
+	"GID_DPersonalBestHeader": "Melhor Volta da Corrida",
+	"GID_DPersonalBestLess": "Clique duas vezes na caixa abaixo para alterar o som que será reproduzido quando este Piloto completar uma volta que seja a mais rapida da corrida. Geralmente, este som não deve ser verbal (falado)."
+	"GID_DPersonalBestLabel": "Som para a melhor volta da corrida",
+
+	"GID_DPersonalHeatBestHeader": "Melhor volta da Etapa",
+	"GID_DPersonalHeatBestLess": "Clique duas vezes na caixa abaixo para alterar o som que será reproduzido quando este Piloto completar uma volta que seja a mais rapida de uma etap da corrida. Geralmente, este som não deve ser verbal (falado)."
+	"GID_DPersonalHeatBestLabel": "Som para a melhor volta da etapa",
+
+	"GID_DLapHeader": "Volta",
+	"GID_DLapLess": "Clique duas vezes na caixa abaixo para alterar o som que será reproduzido quando este Piloto completar uma volta. Geralmente, este som não deve ser verbal (falado)."
+	"GID_DLapLabel": "Som ao completar uma volta",
+
+	"GID_DRaceLeaderHeader": "Lider da Corrida",
+	"GID_DRaceLeaderLess": "Clique duas vezes na caixa abaixo para alterar o som que será reproduzido quando este Piloto for o novo lider de uma corrida. Este som pode ser verbal (falado)."
+	"GID_DRaceLeaderLabel": "Som para o lider da corrida",
+
+	"GID_DHeatLeaderHeader": "Lider da Etapa",
+	"GID_DHeatLeaderLess": "Clique duas vezes na caixa abaixo para alterar o som que será reproduzido quando este Piloto for o lider da etapa corrente. Este som pode ser verbal (falado)."
+	"GID_DHeatLeaderLabel": "Som para o lider da etapa",
+	 
+	"GID_DMinLapTimeHeader": "Min Lap Time Audio Warning",
+	"GID_DMinLapTimeLess": "Double click the box below to change the audio sound that plays for this driver if/when the driver finishes a lap faster than the races min lap time.  This sound is very useful for troubleshooting race configurations and detecting errant marshalling during a race.  Leave the box blank to disable this sound."
+	"GID_DMinLapTimeLabel": "Min Lap Time Audio",
+
+	"GID_DAudioRecordsHeader": "Play Record Lap Sounds?",
+	"GID_DAudioRecordsLess": "Would you like to play verbal audio callouts when this driver posts a lap time that is either a race record, race best or a personal best?",
+
+	"GID_DAudioRecordsDefaultsHeader": "Use Default Record Lap Sounds?",
+	"GID_DAudioRecordsDefaultsLess": "Would you like to use the default sounds for driver record laps?",
+
+	"GID_DRecordLapHeader": "Record Lap Sound",
+	"GID_DRecordLapLess": "Double click the box below to change the audio sound that plays whenever this driver beats the races overall fastest lap time.",
+	"GID_DRecordLapLabel": "Record Lap Sound",
+
+	"GID_DRecordLaneLapHeader": "Record Lane Lap Sound",
+	"GID_DRecordLaneLapLess": "Double click the box below to change the audio sound that plays whenever this driver beats the races overall fastest lap time for the lane the driver is currently on.",
+	"GID_DRecordLaneLapLabel": "Record Lane Lap Sound",
+
+	"GID_DBestLapHeader": "Best Lap Sound",
+	"GID_DBestLapLess": "Double click the box below to change the audio sound that plays whenever this driver beats the fastest lap time of the current race.",
+	"GID_DBestLapLabel": "Best Lap Sound",
+
+	"GID_DBestLaneLapHeader": "Best Lane Lap Sound",
+	"GID_DBestLaneLapLess": "Double click the box below to change the audio sound that plays whenever this driver beats the fastest lap time for their lane in the current race.",
+	"GID_DBestLaneLapLabel": "Best Lane Lap Sound",
+
+	"GID_DBestHeatLapHeader": "Best Heat Lap Sound",
+	"GID_DBestHeatLapLess": "Double click the box below to change the audio sound that plays whenever this driver beats the fastest lap time for the current heat.",
+	"GID_DBestHeatLapLabel": "Best Heat Lap Sound",
+
+	"GID_DAudioDefaultMiscHeader": "Use Default For Miscellaneous Sounds?",
+	"GID_DAudioDefaultMiscLess": "Would you like to use the default sounds for the remaining audio callouts?  These sounds include fuel related sounds and penalty/warning related audio.",
+
+	"GID_DFalseStartHeader": "False Start Audio",
+	"GID_DFalseStartLess": "Double click the box below to change the audio sound that plays for this driver if/when the driver false starts.",
+	"GID_DFalseStartLabel": "False Start Audio",
+
+	"GID_DBreakoutTimeHeader": "Breakout Time Audio Warning",
+	"GID_DBreakoutTimeLess": "Double click the box below to change the audio sound that plays for this driver if/when the driver finishes a lap faster than the races breakout time.",
+	"GID_DBreakoutTimeLabel": "Breakout Time Audio",
+
+	"GID_DPitInHeader": "Pit In Audio",
+	"GID_DPitInLess": "Double click the box below to change the audio sound that plays for this driver when they stop over the pit sensor correctly to refuel.",
+	"GID_DPitInLabel": "Pit In Audio",
+
+	"GID_DFuelLevelHeader": "Fuel Level Audio",
+	"GID_DFuelLevelLess": "Double click the box below to change the audio sounds that play to indicate a drivers fuel level.  This needs to be a sequence of files that are all named with the same prefix followed by an '_#.wav' suffix\n\nThe sequence must consist of at least 3 files where the _0.wav file will play when the driver is out of fuel and each subsequent number will play at the increased fuel level.\n\nFor example if you use the defalt settings:\ndata\\audio\\english\\woman\\w_fuel_0.wav\ndata\\audio\\english\\woman\\w_fuel_1.wav\ndata\\audio\\english\\woman\\w_fuel_2.wav\n\nThe w_fuel_0.wav will play when the driver is out of fuel, the w_fuel_1.wav will play at half fuel, and upon refueling the w_fuel_2.wav will play at full fuel",
+	"GID_DFuelLevelLabel": "Fuel Level Audio",
+
+	"GID_DImageDefaultHeader": "Use Default Images?",
+	"GID_DImageDefaultLess": "Would you like to use the default images for this driver?",
+
+	"GID_DImageAvatarHeader": "Figura do Piloto",
+	"GID_DImageAvatarLess": "Clique na figura abaixo para alterar a imagem que será utilizada para representar este piloto. Esta imagem será exibida em telas específicas no 'Dia da Corrida'.",
+	"GID_DImageAvatarLabel": "Figura",
+
+	"GID_DImageRacingStateHeader": "Racing State Image",
+	"GID_DImageRacingStateLess": "Click the box below to change the image used when the driver is racing under a green flag.  The image will only be displayed on specific Race Day screens.",
+	"GID_DImageRacingStateLabel": "Flag Image",
+
+	"GID_DImagePauseStateHeader": "Yellow Flag State Image",
+	"GID_DImagePauseStateLess": "Click the box below to change the image used when the heat is under a yellow flag.  The image will only be displayed on specific Race Day screens.",
+	"GID_DImagePauseStateLabel": "Flag Image",
+
+	"GID_DImageLastLapStateHeader": "Last Lap State Image",
+	"GID_DImageLastLapStateLess": "Click the box below to change the image used when the driver is racing the final lap of the heat.  The image will only be displayed on specific Race Day screens.",
+	"GID_DImageLastLapStateLabel": "Flag Image",
+
+	"GID_DImageInPitsStateHeader": "In Pits State Image",
+	"GID_DImageInPitsStateLess": "Click the box below to change the image used when the driver is refueling in a pit bay.  The image will only be displayed on specific Race Day screens.",
+	"GID_DImageInPitsStateLabel": "Flag Image",
+
+	"GID_DImageHeatOverStateHeader": "Heat Over State Image",
+	"GID_DImageHeatOverStateLess": "Click the box below to change the image used when the heat is over.  The image will only be displayed on specific Race Day screens.",
+	"GID_DImageHeatOverStateLabel": "Flag Image",
+
+	"GID_DImageDQStateHeader": "Heat Over State Image",
+	"GID_DImageDQStateLess": "Click the box below to change the image used when the heat is over.  The image will only be displayed on specific Race Day screens.",
+	"GID_DImageDQStateLabel": "Flag Image",
+
+	"GID_DGhostDefaultHeader": "Human Driver?",
+	"GID_DGhostDefaultLess": "Is this a human driver?",
+
+	"GID_DGhostTypeHeader": "Pacer Playback Type",
+	"GID_DGhostTypeLess": "Please select the type of pacer playback this driver should be",
+	"GID_DGhostTypeLabel": "Type",
+	"GID_DGhostTypeHuman": "Human",
+	"GID_DGhostTypeConstantSpeed": "Constant Speed",
+	"GID_DGhostTypeRPathLLane": "Recorded Path (Left Lane)",
+	"GID_DGhostTypeRPathRLane": "Recorded Path (Right Lane)",
+	"GID_DGhostTypeSPathLLane": "Smart Path (Left Lane))",
+	"GID_DGhostTypeSPathRLane": "Smart Path (Right Lane)",
+
+	"GID_DGhostRecordedFileHeader": "Dynamic Pacer Recording",
+	"GID_DGhostRecordedFileLess": "Double click the box below to select the file you wish to your for dynamic playback",
+	"GID_DGhostRecordedFileLabel": "File",
+
+	"GID_DGhostCoastSpeedHeader": "Dynamic Pacer Coast Speed",
+	"GID_DGhostCoastSpeedLess": "Select the speed at which a dynamic pace car should race at when it losses sync with the playback data.  This speed will be used for a short time after a crash, or in certain circumstances when the pace car thinks it's in one place in the recorded data, but is a completely different place on the track",
+	"GID_DGhostCoastSpeedLabel": "Throttle Percentage",
+
+	"GID_DGhostLinearSpeedHeader": "Pacer Linear Speed",
+	"GID_DGhostLinearSpeedLess": "Select the speed at which the constant speed pace car will race at.",
+	"GID_DGhostLinearSpeedLabel": "Throttle Percentage",
+
+	"GID_DGhostLinearLaneChangingHeader": "Linear Pacer Lane Changing",
+	"GID_DGhostLinearLaneChangingLess": "Linear pace cars will cycle through trying to change lanes and not trying to change lanes.  The Time Frame sets the duration of the cycle and the Lane Change Percentage controls what percentage of that time it will attempt an actual lane change.
+
+For example, setting the time frame to 5 and setting the percentage to 10 will cause the LC button to be held down for 0.5 seconds every 5 seconds.",
+	"GID_DGhostLinearLaneChangingLabel1": "Time Frame",
+	"GID_DGhostLinearLaneChangingLabel2": "Lane Change Percentage",
+
+	"GID_DGhostLinearLapResetHeader": "Linear Pacer Lap Reset",
+	"GID_DGhostLinearLapResetLess": "Do you want to reset the linear pace car lane changing timing when a lap occurs?",
+
+	"GID_DCompleteHeader": "Configuração do Piloto Completa"
+	"GID_DCompleteLess": "A configuração do Piloto está pronta.  Clique em 'Salvar' para gravar e sair do assistente ou em 'Anterior', para voltar e alterar alguma configuração. Para cancelar, clique em 'Cancelar'.
+	
+Se você desejar fazer alterações nesta configuração depois de salvá-la, pode fazê-lo usando a opção 'Configuração Avançada do Piloto'.  Esta opção também permite a copia desta (ou outra) configuração de um Piloto exitênte, e use-a como modelo. Esta, sem dúvida, é a maneira mais rápida de criar novos Pilotos no RMS (Race Coordinator), especialmente se estes utilizam uma configuração similar.",
+
+	"GID_DCompleteFailTitle": "Driver Creation Failed"
+	"GID_DCompleteFailBody": "Driver creation failed.  Please report this issue to contact@racecoordinator.net",
+
+	"GID_RBasicTitle":"Guia Básico para Configuração de uma Corrida",
+	"GID_RIntermediateTitle":"Guia Intermediário para Configuração de uma Corrida",
+	"GID_RExpertTitle":"Guia Avançado para Configuração de uma Corrida",
+	
+	"GID_RNameHeader":"Nome",
+	"GID_RNameLess":"Digite um nome para esta corrida.  Considere um nome que ajude-o a lembrar de como esta corrida foi configurada.",
+	"GID_RNameName":"Nome da corrida",
+	"GID_RNameUniqueError": "Nome inválido.  O nome deve ser diferente de um previamente definido.",
+	"GID_RNameEmptyError": "Nome inválido.  O nome deve ter pelo menos um caracter valido e ser diferente de um previamente definido.",
+	"GID_RNameInvalidCharError": "Nome inválido.  O nome não pode conter caracteres 'especiais'.",
+
+	"GID_RTrackHeader":"Track Selection",
+	"GID_RTrackLess":"Select the track configuration you want to use for this race.",
+	"GID_RTrackLabel":"Available Tracks",
+
+	"GID_RMinLapTimeHeader":"Tempo mínimo de uma volta",
+	"GID_RMinLapTimeLess":"Defina o tempo mínimo de uma volta.  Voltas com o tempo inferiores ao definido aqui, serão desconsideradas.",
+	"GID_RMinLapTimeLabel":"Tempo (em segundos)",
+
+	"GID_RBreakoutTimeHeader": "Breakout Time",
+	"GID_RBreakoutTimeLess": "Please set the breakout time for this race.  Any lap faster than this time will not be counted.", 
+	
+	"GID_RBreakoutTimeLabel": "Tempo (em segundos)",
+
+	"GID_RDriftTimeHeader":"Drift Time",
+	"GID_RDriftTimeLess":"Please set the amount of time immediately following a heat stoppage that a lap can still be counted.
+
+Setting this time to 0 means the moment a stoppage occurs (yellow flag, heat end, etc.) no laps will be recorded.",
+	"GID_RDriftTimeLabel":"Tempo (em segundos)",
+
+	"GID_RAdustDriftHeader": "Drift Laps Count as Bests?",
+	"GID_RAdustDriftLess": "Do you want laps that were completed by a driver that included drifting to be eligible lap times for driver and race records?",
+
+	"GID_RHeatRoundRobinHeader":"Round Robin / Rotação das Fendas",
+	"GID_RHeatRoundRobinLess":"A rotação de fendas mais comum é a 'Round Robins', onde cada piloto corre uma vez em cada fenda da pista. Cada tipo de 'Round Robin' difere apenas da forma de como os pilotos alteram a ordem das fendas.
+	
+Selecione o formato 'Round Robin' que você gostaria de usar e em seguida clique em 'Próximo'",
+	"GID_RHeatRoundRobinLabel":"Formatos de 'Round Robin'",
+	"GID_RHeatRoundRobinRR":"Round Robin Simples",
+	"GID_RHeatRoundRobinFRR":"Round Robin Amigavel",
+	"GID_RHeatRoundRobinERR":"Round Robin Europeu",
+	"GID_RHeatRoundRobinNone":"Outro Tipo",
+	"GID_RHeatRotationHint":"*Dica:  Clique em 'Mais' para obter informações adicionais sobre cada tipo de rotação 'Round Robin'",
+	"GID_RHeatRoundRobinMoreWinTitle": "Detalhes de: Round Robin Simples",
+	"GID_RHeatRoundRobinMoreTitle": "Round Robin Simples",
+	"GID_RHeatRoundRobinMore": "Na opção 'Round Robin Simples' cada Piloto deve correr em todas as fendas da pista, onde a posição dele na primeira etapa, será conforme a sequencia de inclusão dos Pilotos para a corrida.  Ao final da primeira etapa, cada Piloto deve mover-se para a próxima fenda e o Piloto da última fenda, deve ir para a posição de 'espera' (Deck).  A fenda vazia (fenda 1) será ocupada pelo ULTIMO Piloto incluido, que atualmente está em 'espera'.  Este ciclo deve continuar até que todos os Pilotos tenham corrido em todas as fendas da pista.
+	
+A direita, um exemplo com este tipo de rotação, em uma corrida com 20 Pilotos.",
+	"GID_RHeatRoundRobinMoreLabel": "Exemplo da Rotação",
+
+	"GID_RHeatRoundRobinFriendlyMoreWinTitle": "Detalhes de: Round Robin Amigavel",
+	"GID_RHeatRoundRobinFriendlyMoreTitle": "Round Robin Amigavel",
+	"GID_RHeatRoundRobinFriendlyMore": "A opção 'Round Robin Amigavel' é considerada 'amigável' para os Pilotos atrasados, pois permite ao diretor da corrida inclui-los, de foma simples, em uma corrida que já começou.
+
+A opção 'Round Robin Amigavel' é similar a opção 'Simples', diferenciando apenas na ordem de entrada do Piloto em 'espera' (Deck). Ao final da etapa, a fenda vazia (fenda 1) será ocupada pelo PRÓXIMO Piloto incluido na corrida, que atualmente está em 'espera'.  Este ciclo deve continuar até que todos os Pilotos tenham corrido em todas as fendas da pista.
+	
+A direita, um exemplo com este tipo de rotação, em uma corrida com 20 Pilotos.",
+	"GID_RHeatRoundRobinFriendlyMoreLabel": "Exemplo da Rotação",
+
+	"GID_RHeatRoundRobinEuroMoreWinTitle": "Detalhes de: Round Robin Europeu",
+	"GID_RHeatRoundRobinEuroMoreTitle": "Round Robin Europeu",
+	"GID_RHeatRoundRobinEuroMore": "Na opção 'Round Robin Europeu' cada Piloto também deve correr em todas as fendas da pista, porém nenhum Piloto pode conduzir ao lado do mesmo Piloto duas vezes.
+
+A direita, um exemplo com este tipo de rotação, em uma corrida com 20 Pilotos.",
+	"GID_RHeatRoundRobinEuroMoreLabel": "Exemplo da Rotação",
+
+	"GID_RHeatOtherHeader":"Otras Opções Comuns de Rotação",
+	"GID_RHeatOtherLess":"As opções a seguir, mostram outras formas de rotação de fendas, durante uma corrida.  As opções 'Solo', são apenas para um único Piloto na pista.
+	
+Selecione um tipo de rotação ou a opção 'Rotação Personalizada' para definir um formato personalizado e mais complicado."
+	"GID_RHeatOtherLabel":"Outros Tipos de rotação",
+	"GID_RHeatOtherPractice":"Treino",
+	"GID_RHeatOtherSLSAny":"Única Etapa (Solo/Qualquer Fenda)",
+	"GID_RHeatOtherSLS":"Rally (Etala Solo)",
+	"GID_RHeatOtherSingleHeat" : "Etapa Simples",
+	"GID_RHeatOtherSL":"Fenda Simples",
+	"GID_RHeatOtherGhost" "Pace Car Recording",
+	"GID_RHeatOtherNone":"Rotação Personalizada",
+
+	"GID_RHeatPracticeMoreWinTitle": "Detalhes do Treino",
+	"GID_RHeatPracticeMoreHeader": "Treino",
+	"GID_RHeatPracticeMore": "A opção 'Treino', é um formato de corrida muito específico que permite acesso livre a pista, para treino, prática ou teste dos carros.  Por padrão, as voltas e tempos de volta são exibidos para cada fenda e os estes dados podem ser 'zerados' individualmente, a medida que outros Pilotos entram ou saem da pista.  Se a opção 'Treino' for selecionada, outras questões relativas ao treino, devem ser respondidas.
+	
+As corridas de 'Treino' só podem ser baseadas em tempo, porém, se definir o tempo em 0 (zero), isto permitirá o treino sem limites de duração, ou até o diretor da corrida finalizar manualmente."
+
+	"GID_RHeatGhostMoreWinTitle": "Pace Car Recording Details",
+	"GID_RHeatGhostMoreHeader": "Pace Car Recordings",
+	"GID_RHeatGhostMore": "A pace car recording race is a special race intended to record dyamic playback pace cars.  By selecting this race format, all the options needed to record pace cars will be configured.
+	
+To record a pace cars dynamic playback, simple select this race and start it.  Using CarId 1, run a standing start lap and then one or more rolling start laps.  When done, pause the race and select save from the Race Day menu.  Everything will be saved except the partial lap in which you paused the race on.  The partial lap will be discarded.
+
+If you plan on using this recording for 'smart' pace car playback, you need to record the car at every lane brain, in every lane doing every combination of lane changing and not lane changing so that the smart pace car can choose any piece of the recording to play back at any time.",
+
+	"GID_RHeatSingleHeatMoreWinTitle": "Single Heat Rotation Details",
+	"GID_RHeatSingleHeatMoreTitle": "Single Heat",
+	"GID_RHeatSingleHeatMore": "A single heat rotation is one in which each driver races in one and only one heat.  If there are more drivers in the race than the track allows at one time, the drivers are split evenly into two more more heats such that each heat has approximately the same number of drivers in it.
+
+To the right is an example of a 20 driver single heat rotation on your track.",
+	"GID_RHeatSingleHeatMoreLabel": "Example Rotation",
+
+	"GID_RHeatSLSAnyMoreWinTitle": "Single Lane (Solo Any Lane) Rotation Details",
+	"GID_RHeatSLSAnyMoreTitle": "Single Lane (Solo Any Lane)",
+	"GID_RHeatSLSAnyMore": "A single lane (solo any lane) heat rotation is one in which each driver races alone on the track, but can race on any lane the driver chooses.  The best score put in on a any single lane is the score that counts for the driver.  This type of rotation is great for Sprint races in which you rank the drivers by their fastest lap time.
+
+To the right is an example of a 20 driver single lane (solo any lane) rotation on your track.",
+	"GID_RHeatSLSAnyMoreLabel": "Example Rotation",
+
+	"GID_RHeatSLMoreWinTitle": "Single Lane Rotation Details",
+	"GID_RHeatSLMoreTitle": "Single Lane",
+	"GID_RHeatSLMore": "A single lane heat rotation is one in which each driver races on a single lane in a single heat, but with other drivers on the track at the same time.  Typically with this rotation type, the drivers are allowed to choose which lane they race on by their seeding, thus giving the best seeded driver in the heat a slight advantage.  To allow drivers to choose their own lanes, the Race Director must use the Manage Heats interface to change the lane assignments before the heat starts.
+
+To the right is an example of a 20 driver single lane rotation on your track.",
+	"GID_RHeatSLMoreLabel": "Example Rotation",
+
+	"GID_RHeatSLSMoreWinTitle": "Rally (Solo Heats) Rotation Details",
+	"GID_RHeatSLSMoreTitle": "Rally (Solo Heats)",
+	"GID_RHeatSLSMore": "A rally heat rotation is one in which each driver races on a single lane in a single heat with nobody else on the track.  The driver is only allowed to race in the lane they are assigned, which can be changed by the Race Director before the heat begins.
+
+To the right is an example of a 20 driver rally rotation on your track.",
+	"GID_RHeatSLSMoreLabel": "Example Rotation",
+
+	"GID_RHeatUseCustomFilesHeader": "Use Custom Rotation Files?",
+	"GID_RHeatUseCustomFilesLess": "Would you like to use custom rotation files to define the heat rotation?",
+
+	"GID_RHeatCustomFilesHeader": "Add Custom Files",
+	"GID_RHeatCustomFilesLess": "Please add all the custom rotation files you would like to use for this race.  You can use the Rotation Editor to create new files or select existing ones.",
+	"GID_RHeatCustomFilesLabel": "Custom Files",
+	"GID_RHeatCustomFilesAddFile": "Add File",
+	"GID_RHeatCustomFilesRemoveFile": "Remove File",
+	"GID_RHeatCustomFilesRotationEditor": "Rotation Editor",
+	"GID_RHeatCustomFilesFilter": "txt files (*.txt)|*.txt|All files (*.*)|*.*",
+	"GID_HeatCustomFilesTitle": "Select custom heat file",
+	"GID_RHeatCustomFilesEmptyError": "You must add at least one custom rotation file to use this race format.",
+
+	"GID_RHeatCustomFilesMoreWinTitle": "Custom Files Roation Details",
+	"GID_RHeatCustomFilesMoreTitle": "Custom Files",
+	"GID_RHeatCustomFilesMore": "Custom heat files define the heat rotation for a specified number of drivers.  Although the custom heat will work for any number of drivers, if there are more drivers in the race than the custom heat supports some drivers will be left out of the race.  Similarly if there are fewer drivers in the race than the custom heat is setup for some lanes will be left unintentionally empty during the race.
+
+To overcome this, the RMS supports supplying any number of custom heat files to a race configuration. The RMS will select the custom heat file that best matches the number of drivers in the actual race being run.  If there is a custom heat file with exactly the number of drivers in the race that custom rotation will be used, otherwise it selects one as close as possible.",
+	"GID_RHeatCustomFilesMoreLabel": "Example Rotation",
+
+	"GID_RHeatCustomRRHeader": "Custom Round Robin",
+	"GID_RHeatCustomRRLess": "Using a list of lanes, specify a custom round robin format.  Each value in the list represents the lane the driver should use (0 or a number greater than the number of lanes on the track indicates a sit out).  A lane can not appear more than once in the list as that would assign two drivers the same lane in a given heat.  If a lane does not appear in the list, that lane will be empty for the entire race.
+
+Please enter your custom round robin rotation below.  To see what your rotation will look like with 20 drivers in the race click 'more'.",
+	"GID_RHeatCustomRRLabel": "Sequence",
+	"GID_RHeatCustomRRTitle": "Custom Round Robin Format Error",
+	"GID_RHeatCustomRRError": "Invalid custom round robin format.",
+
+	"GID_RHeatCustomRRMoreWinTitle": "Custom Round Robin Race Details",
+	"GID_RHeatCustomRRMoreTitle": "Custom Round Robin",
+	"GID_RHeatCustomRRMore": "Custom Round Robin rotations use a string of lane numbers to specify a custom round robin format.  Each value in the list represents the actual lane the driver should be placed in (0 or a number greater than the actual lanes on the track indicates a sit out).  A lane number can not appear more than once in the list as that would assign two drivers the same lane in a given heat.  If a lane does not appear in the list, that lane will be empty for the entire race.
+
+For example, using a 4 lane track, [1,2,3,4] represents a straight round robin, [1,3,4,2] represents a European round robin, [1,0,2,0,3,0,4,0] indicates a straight round robin, but each driver will sit out every other heat, and finally [1,3] indicates a straight round robin, but only using lanes 1 and 3 on the track.",
+	"GID_RHeatCustomRRMoreLabel": "Example Rotation",
+
+	"GID_RHeatReverseHeader":"Reverse Rotation Order",
+	"GID_RHeatReverseLess":"Do you want to reverse the default heat structure for the selected rotation type.",
+	"GID_RHeatReverseMoreWinTitle": "Reverse Rotation Order Details",
+	"GID_RHeatReverseMoreTitle": "Reverse Rotation Order",
+	"GID_RHeatReverseMore": "Electing to reverse the rotation order simply runs the heats generated backwards.  As such, the first heat becomes the last, the second heat becomes the second last, etc.
+
+***Note: if you are running a step up race, this option will be ignored.",
+
+	"GID_RPracticeAudioDefaultsHeader": "Use Default Audio?",
+	"GID_RPracticeAudioDefaultsLess": "Would you like to use the default audio configuration for this practice race?",
+
+	"GID_RAudioCalloutsHeader": "Heat Audio Callouts",
+	"GID_RAudioCalloutsLess": "Please add any heat callouts you would like.  To add callouts, select the callout and set the time/lap count you want the callout to occur at, then hit 'add'."
+	"GID_RAudioAutoStartCalloutsHeader": "Heat Auto Start Callouts",
+	"GID_RAudioAutoStartCalloutsLess": "Please add any auto start callouts you would like.  To add callouts, select the callout and set the time you want the callout to occur at, then hit 'add'."
+	"GID_RAudioCalloutsLabel": "Callout Setup",
+	"GID_RAudioCalloutsCallout": "Callout",
+	"GID_RAudioCalloutsCalloutTime": "Callout Time(s)",
+	"GID_RAudioCalloutsCalloutLap": "Callout Lap",
+	"GID_RAudioCalloutsAdd": "Add >>",
+	"GID_RAudioCalloutsRemove": "<< Remove",
+	"GID_RAudioCalloutsList": "Callouts",
+	"GID_RAudioCalloutError": "Cannot add callout.  File not found.",
+	
+	"GID_RPracticeAudioHeader": "Practice Best Lap Audio Prefix",
+	"GID_RPracticeAudioLess": "Please select the audio file set to play whenever a driver get a new best lap time in practice",
+	"GID_RPracticeAudioLabel": "Audio Set",
+
+	"GID_RPracticeLapAudioHeader": "Practice Lap Sound",
+	"GID_RPracticeLapAudioLess": "Please select the audio file whenever a driver gets a lap in practice",
+	"GID_RPracticeLapAudioLabel": "Audio",
+
+	"GID_RLapBasedHeader": "Fim da Corrida",
+	"GID_RLapBasedLess": "Você gostaria de terminar cada etapa (Heat) pelo número de voltas ou por um tempo de corrida determinado?",
+	"GID_RLap": "Voltas",
+	"GID_RTime": "Tempo",
+
+	"GID_RLapBasedValueHeader": "Finalizar pelo Número de Voltas", 
+	"GID_RLapBasedValueLess": "Introduza o número de voltas para finalizar cada etapa (Heat) de uma corrida.  Se configurado para 0 (zero), a corrida só terminará manualmente, pelo diretor da corrida.",
+	"GID_RLapBasedValueLabel": "Voltas",
+
+	"GID_RTimeBasedValueHeader": "Finalizar por Tempo de Corrida",
+	"GID_RTimeBasedValueLess": "Introduza o tempo de duração (em segundos) que cada etapa (Heat) deve durar.  Se configurado para 0 (zero), a corrida só terminará manualmente, pelo diretor da corrida.",
+	"GID_RTimeBasedValueLabel": "Tempo",
+
+	"GID_RHeatLapCountHeader": "Heat Ranking By Lap Count?",
+	"GID_RHeatLapCountLess": "Would you like to rank each heat by lap count?",
+
+	"GID_RHeatFastestLapHeader": "Heat Ranking By Fastest Lap?",
+	"GID_RHeatFastestLapLess": "Would you like to score each heat by the fastest lap time recorded in the heat?  Selecting No will result in the heat being scored by the total lap time of each driver.",
+
+	"GID_RHeatAllowFinishHeader": "Heat End Setup",
+	"GID_RHeatAllowFinishLess": "Please select when you would like each heat to end.  You can end the heat as soon as the conditions are met, allow drivers to finish a single lap, or race until every driver reaches the end condition.  If you allow each driver to complete a single lap you can also have the RMS estimate the fractional lap the driver had achieved.
+
+If you have chosen to score the heat by total time, it is strongly recommended that you choose one of the allow finish methods, otherwise drivers end up being ranked by who finished their last lap first.",
+	"GID_RHeatAllowFinishLabel": "Options",
+	"GID_RHeatAllowFinishNone": "Do not allow finish",
+	"GID_RHeatAllowFinishAllowOne": "Allow single lap",
+	"GID_RHeatAllowFinishAllowOneAS": "Allow single lap and estimate segments",
+	"GID_RHeatAllowFinishAllowFull": "Allow complete finish",
+
+	"GID_RStepUpHeader": "Step Up Race?",
+	"GID_RStepUpLess": "Do you want this to be a step up of ladder style race?",
+
+	"GID_RStepUpMoreWinTitle": "Step Up Race Details",
+	"GID_RStepUpMoreHeader": "Step Up Race",
+	"GID_RStepUpMore": "A step up race is one in which the winner(s) of a heat or set of heats advance foward or step up to the next rung in the ladder.  Ultimately the winner of the last heat or set of heats is the winner of the entire race.  
+	
+This type of race is typically used as a finals race in an event and will typically be run after a qualifying race.  Step up races allow the lowest seeded drivers to win their way up to the winners circle and give an advantage to the higher seeded drivers.",
+	
+	"GID_RStepUpCountHeader": "Step Up Count",
+	"GID_RStepUpCountLess": "Please set the number of drivers to step up.  This number must be at least one and must be less than the number of drivers participating in each sub-race.",
+	"GID_RStepUpCountLabel": "Count",
+
+	"GID_RAccumulateHeader": "Accumulate Heat Scores",
+	"GID_RAccumulateLess": "Would you like to accumulate the score a driver gets in each heat to compose the drivers overall standings score?  If selecting no, the drivers best heat will be taken to determine their overall score.",
+
+	"GID_RDropNHeader": "Drop N Heats",
+	"GID_RDropNLess": "When accumulating heat scores to determine a drivers overall score, it's possible to drop the lowest N number of heats for each driver.  This allows a driver to have a bad heat(s) and still have a good overall standing ranking by doing well in the other heats the driver is in.",
+	"GID_RDropNLabel": "N Count",
+
+	"GID_RRepeatCountHeader": "Times Through",
+	"GID_RRepeatCountLess": "Please specifiy how many times you would like to go through the heat rotation.  Most users will only want to go through the heat rotation once.",
+	"GID_RRepeatCountLabel" "Times Through",
+
+	"GID_RUsePointsHeader": "Overall Ranking By Points?",
+	"GID_RUsePointsLess": "Would you like to calculate the overall ranking by assigning points to each driver based on how well they do in each heat?  If you select yes, you will be asked to configure points assigned by heat ranking and other bonus point situations.",
+
+	"GID_RPointsScoreListHeader": "Points By Heat Ranking",
+	"GID_RPointsScoreListLess": "Please enter the points you wish to give each driver based on their heat ranking.  The first entry in the list will be given to the first place driver, the second entry to the second place driver, etc.  If you specify less values than drivers in the race, all unspecified placings will receive 0 points.  More than likely this is the primary source of points for the heat.",
+	"GID_RPointsScoreListLabel": "Point List",
+	"GID_RPointsScoreListErrorTitle": "Invalid Point List",
+	"GID_RPointsScoreListError": "The point list you entered is invalid.  A valid list contains all integer comma sepearted values.  For example, [20, 18, 16, 15]",
+
+	"GID_RPointsCarryOverPctHeader": "Heat Carryover Percentage",
+	"GID_RPointsCarryOverPctLess": "Please select the percentage of a drivers heat score to carry over into the points total for the driver.  This can be used to award a driver for winning by the largest margin possible.
+
+For example, if this value is set to 50% and a driver had 30 laps in their heat, they would be awarded an additional 15 points for their overall point total.",
+	"GID_RPointsCarryOverPctLabel": "Percentage",
+
+	"GID_RPointsUseHeatBonusPointsHeader": "Use Heat Bonus Points?",
+	"GID_RPointsUseHeatBonusPointsLess": "Do you want to assign bonus points to drivers based on their performance in each heat?",
+
+	"GID_RPointsBonusHeatFastestLapHeader": "Heat Fastest Lap Bonus",
+	"GID_RPointsBonusHeatFastestLapLess": "Please set the number of bonus points to assign the driver with the fastest lap time in each heat.",
+	"GID_RPointsBonusHeatFastestLapLabel": "Bonus Points",
+
+	"GID_RPointsBonusHeatLedMostLapsHeader": "Heat Most Led Laps Bonus",
+	"GID_RPointsBonusHeatLedMostLapsLess": "Please set the number of bonus points to assign the driver who led the most laps in each heat.",
+	"GID_RPointsBonusHeatLedMostLapsLabel": "Bonus Points",
+
+	"GID_RPointsBonusHeatLedLapsHeader": "Heat Led Laps Bonus",
+	"GID_RPointsBonusHeatLedLapsLess": "Please set the number of bonus points to assign every driver that led at least one lap in each heat.",
+	"GID_RPointsBonusHeatLedLapsLabel": "Bonus Points",
+
+	"GID_RPointsUseOverallBonusPointsHeader": "Use Overall Bonus Points?",
+	"GID_RPointsUseOverallBonusPointsLess": "Do you want to assign bonus points to drivers based on their overall performance?",
+
+	"GID_RPointsBonusFastestLapHeader": "Fastest Lap Bonus",
+	"GID_RPointsBonusFastestLapLess": "Please set the number of bonus points to assign the driver with the fastest lap time in the race.",
+	"GID_RPointsBonusFastestLapLabel": "Bonus Points",
+
+	"GID_RPointsBonusLedMostLapsHeader": "Race Most Led Laps Bonus",
+	"GID_RPointsBonusLedMostLapsLess": "Please set the number of bonus points to assign the driver with the most laps led in the entire race.",
+	"GID_RPointsBonusLedMostLapsLabel": "Bonus Points",
+
+	"GID_RPointsBonusLedLapsHeader": "Race Led Laps Bonus",
+	"GID_RPointsBonusLedLapsLess": "Please set the number of bonus points to assign any driver who led at least one lap in the overall standings.",
+	"GID_RPointsBonusLedLapsLabel": "Bonus Points",
+
+	"GID_RPointsOneLaneBonusPerHeader": "One Lane Bonus Per Driver",
+	"GID_RPointsOneLaneBonusPerLess": "Do you want to allow just one lane bonus per driver, thus preventing the same driver from getting all the lane bonuses?  If selected, a driver with the multiple lane bonuses will be awarded the one bonus they did the best in, and the second bonus will go to the next best driver on the second lane.",
+
+	"GID_RPointsBonusFastestLaneLapHeader": "Fastest Lap Per Lane Bonus",
+	"GID_RPointsBonusFastestLaneLapLess": "Please set the number of bonus points to assign the driver with the fastest lap time on each lane.",
+	"GID_RPointsBonusFastestLaneLapLabel": "Bonus Points",		
+
+	"GID_RTiebreakerNone": "None",
+	"GID_RTiebreakerAverageLapTime": "Average Lap Time",
+	"GID_RTiebreakerMedianLapTime": "Median Lap Time",
+	"GID_RTiebreakerFastestLapTime": "Fastest Lap Time",
+
+	"GID_ROverallTiebreakerHeader": "Overall Tiebreaker",
+	"GID_ROverallTiebreakerLess": "Please select how you'd like to break ties for the overall standings.",
+	"GID_ROverallTiebreakerLabel": "Tiebreakers",
+	"GID_ROverallTiebreakerHint": "***Note: Drop N races will not count the heats dropped as part of the tiebreaker, however they may not work completely as expected.",
+
+	"GID_RHeatTiebreakerHeader": "Heat Tiebreaker",
+	"GID_RHeatTiebreakerLess": "Please select how you'd like to break ties for the heat standings.",
+	"GID_RHeatTiebreakerLabel": "Tiebreakers",
+
+	"GID_RDefaultStartSetupHeader": "Use Default Heat Start Setup?",
+	"GID_RDefaultStartSetupLess": "Would you like to use the default heat starting conditions?",
+
+	"GID_RHotStartHeader": "Heat Hot Starts",
+	"GID_RHotStartLess": "Do you want track power on during the heat start sequence?",
+
+	"GID_RFalseStartRestartHeader": "Heat Restart on False Start",
+	"GID_RFalseStartRestartLess": "Would you like to restart the heat if a driver false starts?  You can asign the false starting driver a penalty and setup for a clean heat start.",
+	
+	"GID_RFalseStartTimePenaltyHeader": "False Start Time Penalty",
+	"GID_RFalseStartTimePenaltyLess": "Please set the time penalty you want to assign a driver who false starts.  If you have per-lane relays installed this is a good way to penalize a driver as it will cause lane power to be turned off for the driver for this amount of time.  Otherwise, the lap penalty is more likely the best choice of penalties, however that depends on your race configuration and personal preferences.",
+	"GID_RFalseStartTimePenaltyLabel": "Tempo (em segundos)",
+
+	"GID_RFalseStartLapPenaltyHeader": "False Start Lap Penalty",
+	"GID_RFalseStartLapPenaltyLess": "Please set the lap penalty you want to assign a driver who false starts.",
+	"GID_RFalseStartLapPenaltyLabel": "Penalty (laps)",
+
+	"GID_RStartBehindHeader": "Heat Start Location",
+	"GID_RStartBehindLess": "Would you like to start each heat behind the start/finish line?",
+
+	"GID_RStartCurrentHeader": "Start at Current Location",
+	"GID_RStartCurrentLess": "Would you like to start each heat at the track location where the driver left off in their previous heat?",
+
+	"GID_RAddGhostsHeader": "Add Pace Cars?",
+	"GID_RAddGhostsLess": "Do you want to add pace cars to the heats so that any empty space on the track is filled?
+	
+***NOTE: For this option to do anything you must create one or more pace car drivers using one of the driver setup methods.  If you add pace cars and change your mind, simply do not place them on the track and run the heat without them."
+
+	"GID_RBlackFlagTypeHeader": "Black Flag Type",
+	"GID_RBlackFlagTypeLess": "Please select what type of black flag penalties you'd like to use for this race.  If set to 'None' no penalties will be assigned for false starts or pit speed violations",
+	"GID_RBlackFlagTypeLabel" "Type",
+	"GID_RBlackFlagTypeDriveThrough": "Drive Through",
+	"GID_RBlackFlagTypeStopGo": "Stop and Go",
+	"GID_RBlackFlagTypeTimed": "Timed Stop",
+	"GID_RBlackFlagTypeNone": "None",
+
+	"GID_RTimedBFValueHeader": "Timed Stop Duration",
+	"GID_RTimedBFValueLess": "Please select the amount of time a driver needs to stop in a pit bay to serve a black flag penalty.",
+	"GID_RTimedBFValueLabel": "Tempo (em segundos)",
+
+	"GID_RPitThrottlePctHeader": "Max Pit Row Speed",
+	"GID_RPitThrottlePctLess": "Please set the maximum throttle percentage you would like to allow when a driver enters pit row before assigning the driver a black flag penalty.  If this value is set to 100 no Pit Row Speed violations will be assigned.",
+	"GID_RPitThrottlePctLabel": "Throttle Percentage",
+
+	"GID_RFalseStartThrottlePctHeader": "False Start Throttle Percentage",
+	"GID_RFalseStartThrottlePctLess": "Please set the maximum throttle percentage allowed during the start sequence before a driver is assessed a black flag penalty for false starting.  If this value is set to 100 no False Start violations will be assigned.",
+	"GID_RFalseStartThrottlePctLabel": "Throttle Percentage",
+
+	"GID_RBlackFlagToleranceHeader": "Black Flag Tolerance",
+	"GID_RBlackFlagToleranceLess": "Please set the number of laps a driver has to serve a black flag penalty before being disqualified from the heat.",
+	"GID_RBlackFlagToleranceLabel": "Number of Laps",
+
+	"GID_RFuelUseHeader": "Fazer Reabastecimento?"
+	"GID_RFuelUseLess": "Você gostaria de usar a opção de reabastecimento para esta corrida?",
+
+	"GID_RFuelUseMoreWinTitle": "Detalhes do Reabastecimento",
+	"GID_RFuelUseMoreHeader": "Reabastecimento",
+	"GID_RFuelUseMore": "O RMS (Race Coordinator) pode ser configurado para simular um reabastecimento durante a corrida.  Quando habilitado, os carros simulam o consumo de combustível a cada volta completada.  Você pode configurar a quantidade de combustível gasto por volta, onde tempos de volta mais rápidos usam mais combustível do que tempos de volta mais lentas, além de configurar o tempo necessário para 'completar o tanque' quando um carro fizer uma parada no Pit Stop.  O quanto você precisa parar para reabastecer e quanto tempo para reabastecer, fazem parte da estratégia da corrida com esta opção.
+	
+O uso da opção de reabastecimento durante uma corrida, depende muito do tipo de sensor utilizado em sua pista, pois será necessário parar o carro sobre o mesmo (para os tipos IR, Óptico, reed switch, etc.) ou utilizar sensores mais avançados. Você também pode criar um intervalo utilizando 2 conjuntos de sensores, por fenda, para criar uma area de Pit Stop.",
+	
+	"GID_RFuelAnalogUsageHeader": "Uso do Combustível",
+	"GID_RFuelAnalogUsageLess": "Defina a quantidade de combustível que um carro pode ter em seu tanque e quanto de combustivél será gasto a cada volta:",
+	
+	"GID_RFuelUsageMoreWinTitle": "Detalhes do Uso do Combustível",
+	"GID_RFuelUsageMoreHeader": "Uso do Combustível",
+	"GID_RFuelUsageMore": "A frequencia em que um Piloto deve realizar um reabastecimento, é determinada pela combinação entre a capacidade do tanque e consumo por volta.  Os Pilotos com tempos de voltas mais rápidos irão consumir mais conbustível do que os Pilotos com voltas mais lentas.  
+		
+Usando a configuração padrão como exemplo (200 - 6.95 - 20 - Linear), o primeiro gráfico mostra que um Piloto com um tempo de volta próximo de 3,5 segundos usará cerca de 40 unidades de combustível, se fizer uma volta em 6,95 segundos, utilizará cerca de 20 unidades de combustível, e fazendo em cerca de 14 segundos, usará aproximadamente 10 unidades de combustível.
+
+O segundo gráfico mostra aproximadamente quanto tempo vai demorar para um Piloto ficar sem combustível, se ele manter o mesmo ritimo de Tempo de volta.  No exemplo, mostra que sob a configuração padrão, um Piloto com um tempo de volta constante de 6,95 segundos terá que fazer uma parada para reabastecimento próximo dos 60 segundos. Usando estes dois gráficos, você pode ajustar a frequência com que os Pilotos precisarão reabastecer.
+
+Usando uma curva linear de uso de combustível, o combustível é usado a uma taxa de:
+   ([Referência do Tempo de uma Volta] / [Tempo de Volta Atual]) * [Referência Gasto por Tempo]",
+
+	"GID_RFuelAnalogUsageCapacityLabel": "Capacidade",
+	"GID_RFuelAnalogUsageLabel": "Consumo por Tempo",
+	"GID_RFuelAnalogUsageReferenceTimeLabel": "Tempo da Volta",
+	"GID_RFuelAnalogUsageCurveTypeLabel": "Forma de Uso",
+	"GID_RFuelAnalogPlotHeader": "Consumo X Tempo da Volta",
+	"GID_RFuelAnalogPlotXAxis": "Tempo da Volta (segundos)",
+	"GID_RFuelAnalogPlotYAxis": "Consumo",
+	"GID_RFuelAnalogPlot2Header": "Pit Stop X Tempo das Voltas",
+	"GID_RFuelAnalogPlot2XAxis": "Parada para Pit Stop (segundos)",
+	"GID_RFuelAnalogPlot2YAxis": "Tempo (seg.)",
+
+	"GID_RFuelDigitalUsageHeader": "Consumo de Combustível",
+	"GID_RFuelDigitalUsageLess": "How much fuel would you like to at full throttle per second?  The actual fuel consumed will be calcuated by multiplying this value by the throttle percentage and scaling that value to the amount of time the throttle is at that level.
+	
+For example, if a driver is at half throttle for 0.25 seconds, the actual consumption will be this value multiplied by 0.5 and then saceled to a per second value by multiplying it by 0.25",
+	"GID_RFuelDigitalUsageLabel": "Full Throttle Usage/s",
+	"GID_RFuelTypeLinear": "Linear",
+	"GID_RFuelTypeQuadratic": "Quadratic",
+	"GID_RFuelTypeCubic": "Cubic",
+	"GID_RFuelDigitalPlotHeader": "Fuel Usage",
+	"GID_RFuelDigitalPlotXAxis": "Throttle Position (0 - 100%)",
+	"GID_RFuelDigitalPlotYAxis": "Fuel Usage Per Second",
+
+	"GID_RFuelStartLevelHeader": "Quantidade Inicial de Combustível",
+	"GID_RFuelStartLevelLess": "Defina a quantidade de combustível com que cada carro irá largar.  Esse valor pode ser maior ou menor do que a capacidade configurada para os carros e é usado apenas para a primeira etapa de uma corrida, exceto se você optar em redefinir os níveis de combustível no início de cada etapa.",
+	"GID_RFuelStartLevelLabel": "Quantidade",
+
+	"GID_RFuelPitDelayHeader": "Atraso para inicio do Reabastecimento",
+	"GID_RFuelPitDelayLess": "Introduza o tempo de atraso para iniciar o reabastecimento, após a parada do carro, no Pit Stop.",
+	"GID_RFuelPitDelayLabel": "Atraso (seg.)",
+
+	"GID_RFuelRefuelRateHeader": "Ritimo do Reabastecimento",
+	"GID_RFuelRefuelRateLess": "Introduza a quantidade de combustível a ser colocado, a cada segundo parado no Pit Stop.",
+	"GID_RFuelRefuelRateLabel": "Quantidade (por seg.)",
+
+	"GID_RFuelResetHeader": "Redefinir?"
+	"GID_RFuelResetLess": "Você gostaria de reiniciar os niveis de combustivel a cada nova etapa de uma corrida?",
+
+	"GID_RFuelEndHeatHeader": "Finaliza a Etapa"
+	"GID_RFuelEndHeatLess": "Você quer finalizar a etapa do Piloto que ficar sem combustível?",
+
+	"GID_RFuelLevelImageHeader": "Imagens do Indicador de Combustível",
+	"GID_RFuelLevelImageLess": "Selecione o conjunto de imagens para utilizar como marcador do nível de combustível. O conjunto de imagens deve ter pelo menos três imagens na série.",
+	"GID_RFuelLevelImageLabel": "Imagem",
+
+	"GID_RPitThrottlePCTHeader": "Pit Lane Throttle Percentage",
+	"GID_RPitThrottlePCTLess": "Please set the maximum speed allowed when driving down the pit lane.  If set to 100%, drivers can go full speed through the pit lane, but if set lower, the drivers throttle level will be reduced by this percentage."
+	"GID_RPitThrottlePCTLabel": "Throttle Percentage"
+
+	"GID_RFuelWeightLimitHeader": "Fuel Weight Throttle Curve",
+	"GID_RFuelWeightLimitLess": "For added realism, a cars maximum speed can be adjusted by the amount of fuel the car current carries.  The two values below control at what fuel level the car will be allowed to go full speed and how much to reduce the cars speed at full fuel.  The graph shows how various fuel levels affect the throttle based on these parameters."
+	"GID_RFuelWeightLimitMaxLossLabel": "Max Throttle Loss Pct",
+	"GID_RFuelWeightLimitMaxPctLabel": "Fuel Percent for Max Throttle",
+	"GID_RFuelWeightLimitPlotHeader": "Fuel Level vs. Throttle",
+	"GID_RFuelWeightLimitPlotXAxis": "Fuel Level (0 - 100%)",
+	"GID_RFuelWeightLimitPlotYAxis": "Weight Adjusted Throttle",
+	"GID_RFuelOofPCTLabel": "Out of Fuel Throttle Pct",
+
+	"GID_RCnLHeader": "'Aprendendo com seus Erros'",
+	"GID_RCnLLess": "Você quer usar a opção 'Aprendendo com seus Erros' nesta corrida?",
+	"GID_RCnlMoreWinTitle": "Detalhes de 'Aprendendo com seus Erros'",
+	"GID_RCnlMoreHeader": "'Aprendendo com seus Erros'",
+	"GID_RCnlMore": "Esta opção permite penalizar ou desclassificar um Piloto, que 'errar' muito durante uma corrida ou etapa.  A ideia é que com uma penalização ou desclassificação, o Piloto tenha mais cuidado na sua forma de pilotar, aprendendo assim com os seus erros.
+	
+A condição para um erro de pilotagem (exemplo: Sair da pista) será através de um tempo de volta muito longo ou quando o Piloto acionar varias vezes o botão de parada individual (quando disponível).",
+
+	"GID_RCnLDeslotTimeHeader": "Tempo para uma Volta com Erro",
+	"GID_RCnLDeslotTimeLess": "Defina o tempo máximo permitido para uma volta normal. Tempos de volta acima deste valor serão considerados como uma volta com erro de pilotagem.  Se definido como 0 (zero), este parâmetro não será utilizado.",
+	"GID_RCnLDeslotTimeLabel": "Tempo (em segundos)",
+
+	"GID_RCnLMultipleDeslotsHeader": "Varias Paradas Individuais por Volta?",
+	"GID_RCnLMultipleDeslotsLess": "Será permitido o várias paradas individuais (acionar o botão de parada individual, quando disponível) de um Piloto, em uma única volta?",
+
+	"GID_RCnLYellowOnDeslotHeader": "Bandeira Amarela para um Erro?",
+	"GID_RCnLYellowOnDeslotLess": "Gostaria de ativar a bandeira amarela (parar a corrida) automaticamente, sempre que houver a detecção de um erro por algum Piloto?",
+	
+	"GID_RCnLMaxDeslotsHeader": "Maximo de Erros",
+	"GID_RCnLMaxDeslotsLess": "Defina o numero máximo de vezes que um Piloto pode errar, antes de ser desclassificado.",
+	"GID_RCnLMaxDeslotsLabel": "Erros",
+
+	"GID_RCnLMaxDeslotsMoreWinTitle": "Detalhes de Máximo de Erros",
+	"GID_RCnLMaxDeslotsMoreHeader": "Máximo de Erros",
+	"GID_RCnLMaxDeslotsMore": "Uma vez desclassificado, o Piloto não terá mais o registro das voltas e estará sujeito a outras penalidades com base nesta configuração.  Se definido como 0 (zero), o Piloto nunca será desclassificado.",
+
+	"GID_RCnLHeatResetCrashHeader": "'Zera' o Contador de Erros?",
+	"GID_RCnLHeatResetCrashLess": "Você gostaria de 'zerar' a contagem do numero de erros de um Piloto, a cada nova etapa de uma corrida?",
+
+	"GID_RCnLHeatResetDQHeader": "'Zera' a Desclassificação?",
+	"GID_RCnLHeatResetDQLess": "Você gostaria de 'zerar' a Desclassificação do Piloto, a cada nova etapa de uma corrida?",
+
+	"GID_RCnLLapPenaltyHeader": "Penalidade: Voltas",
+	"GID_RCnLLapPenaltyLess": "Introduza o numero de voltas que o Piloto irá perder, se ele errar muito.  This penalty is above and beyond any delays in the detection of the crash itself.",
+	"GID_RCnLLapPenaltyLabel": "Voltas",
+
+	"GID_RCnLTimePenaltyHeader": "Penalidade: Tempo 'Parado'",
+	"GID_RCnLTimePenaltyLess": "Introduza o tempo em que o Piloto ficará 'parado' na pista, se ele errar muito.  This penalty is above and beyond any delays in the detection of the crash itself.",		
+	"GID_RCnLTimePenaltyLabel": "Tempo (em segundos)",
+	"GID_RCnlTimePenaltyWinTitle": "Detalhes de Penalidade de Tempo 'Parado'",
+	"GID_RCnlTimePenaltyMoreHeader": "Penalidade de Tempo 'Parado'",
+	"GID_RCnlTimePenaltyMore": "Se sua pista estiver equipada com relês individuais por fenda, a energia da pista para este Piloto será desligada pelo tempo aqui definido. If not, this time will be applied to the drivers score, which depending on the race configuration may or may not be meaningful.",
+
+	"GID_RCnLDQHeatScorePCTHeader": "DQ Heat Score Penalty",
+	"GID_RCnLDQHeatScorePCTLess": "Please set the percentage of a drivers heat score to use for the driver when a driver DQ's.  This value only affects the position of the heat itself and does not directly impact the overall standings unless the drivers heat position affects the overall standings as it does in a points race.  Setting this value to 100% will not penalize the driver for a DQ.",
+	"GID_RCnLDQHeatScorePCTLabel": "Score Percentage",
+
+	"GID_RCnLDQHeatOverallScorePCTHeader": "DQ Overall Heat Score Penalty",
+	"GID_RCnLDQHeatOverallScorePCTLess": "Please set the percentage of a drivers heat score to use towards the overall standings.  If set to 100%, the driver will not be directly penalized in the overall standings for a DQ.",
+	"GID_RCnLDQHeatOverallScorePCTLabel": "Score Percentage",
+	
+	"GID_RAutoAdvanceTimeHeader": "Avanço entre corridas (etapas)",
+	"GID_RAutoAdvanceTimeLess": "Digite o tempo de espera para que haja o avanço automático entre uma corrida (etapa) e outra .  Configurando o valor em 0 (zero), desativatá o avanço automático",
+	"GID_RAutoAdvanceTimeLabel": "Tempo (em segundos)",
+
+	"GID_RAutoAdvanceTimeMoreWinTitle": "Detalhes do avanço entre corridas (etapas)",
+	"GID_RAutoAdvanceTimeMoreHeader": "Avanço entre corridas (etapas)",
+	"GID_RAutoAdvanceTimeMore": "Depois que uma corrida ou etapa termina, o RMS (Race Coordinator) pode avançar automaticamente para uma próxima corrida ou etapa, se houver um tempo definido. O valor definido é quanto tempo aguardamos antes de ocorrer o avanço automático. Este período de tempo dá aos diretores da corrida tempo para rever alguns detalhes da corrida que acabou de finalizar.
+	
+O diretor da corrida pode alterar este avanço automático há qualquer momento, usando a opção de pausa no menu Direção da Corrida na tela do Dia da Corrida.",
+
+	"GID_RAutoStartTimeHeader": "Inicio de uma corrida (etapa)",
+	"GID_RAutoStartTimeLess": "Digite o tempo de espera para iniciar uma corrida (etapa) automaticamente.  Configurando o valor em 0 (zero), desativatá o inicio automático",
+	"GID_RAutoStartTimeLabel": "Tempo (em segundos)",
+
+	"GID_RAutoStartTimeMoreWinTitle": "Detalhes do inicio de uma corrida (etapa)",
+	"GID_RAutoStartTimeMoreHeader": "Inicio de uma corrida (etapa)",
+	"GID_RAutoStartTimeMore": "When starting a new heat, the RMS can automatically start the heat.  The auto start time is the amount of time to wait before starting.  This time period gives the racers and race directors time to prepare for the new heat.
+
+The Race Director can override the auto starting timer anytime before it goes off by using the pause option in the Race Director menu on the race day screen.",
+
+	"GID_RCompleteHeader": "Configuração da Corrida Completa"
+	"GID_RCompleteLess": "A configuração da corrida está pronta.  Clique em 'Salvar' para gravar esta configuração e sair.  Você também pode voltar (Anterior) e alterar alguma opção ou até cancelar toda configuração (Cancelar).
+	
+Se você necessitar fazer alterações nesta configuração depois de salvá-la, utilize a opção 'Configuração Avançada da Corrida'.  A 'Configuração Avançada da Corrida' também permite copiar esta configuração e usá-la como modelo para uma outra configuração de corrida. Esta é a forma mais rápida para criar novas corridas no RMS (Race Coordinator), principalmente se essas corridas utilizam configuraçãoes similares."
+	"GID_RCompleteFailTitle": "Falha na Criação da Corrida"
+	"GID_RCompleteFailBody": "Houve uma falha na criação da corrida.  Se possível, relate o ocorrida ao desenvolvedor através do EMAIL: contact@racecoordinator.net",
+
+	"GID_RAudioDefaultsHeader": "Use Audio Defaults?",
+	"GID_RAudioDefaultsLess": "Would you like to use the default audio setup for the race?",
+
+	"GID_RAudioStartPrefixHeader": "Heat Start Audio Set",
+	"GID_RAudioStartPrefixLess": "Please select the set of audio files to use for the heat start/restart callouts.",
+	"GID_RAudioStartPrefixLabel": "Audio Set",
+
+	"GID_RAudioYellowFlagHeader": "Yellow Flag Callout",
+	"GID_RAudioYellowFlagLess": "Please select the audio file to play when a heat is paused for a yellow flag.",
+	"GID_RAudioYellowFlagLabel": "Audio File",
+
+	"GID_RAudioHeatOverHeader": "Heat Over Callout",
+	"GID_RAudioHeatOverLess": "Please select the audio file to play when each heat ends.",
+	"GID_RAudioHeatOverLabel": "Audio File",
+
+	"GID_RAudioRaceOverHeader": "Race Over Callout",
+	"GID_RAudioRaceOverLess": "Please select the audio file to play when race ends.",
+	"GID_RAudioRaceOverLabel": "Audio File",
+
+	"GID_RUIDefaultsHeader": "Use UI Defaults?",
+	"GID_RUIDefaultsLess": "Would you like to use the default UI setup?",
+
+	"GID_RUIShowImagesHeader": "Show Images?",
+	"GID_RUIShowImagesLess": "Would you like to display extra images like driver and car images on your Race Day screen?",
+
+	"GID_RUISortHeatsHeader": "Sort Race Day Screen?",
+	"GID_RUISortHeatsLess": "Would you like to sort the driver rows by heat standings on your Race Day screen in realtime?",
+
+	"GID_RUIRaceDayXamlHeader": "Race Day Xaml File",
+	"GID_RUIRaceDayXamlLess": "Please select the Race Day Xaml file you would like to use to display heat data for this race.",
+	"GID_RUIRaceDayXamlLabel": "Xaml File",
+	"GID_RUIRaceDayXamlMoreWinTitle": "Xaml File Details",
+	"GID_RUIRaceDayXamlMoreHeader": "Xaml File",
+	"GID_RUIRaceDayXamlMore": "The RMS supports configuration options for displaying images and sorting the driver heat data by the drivers heat positions.  It does this by providing different XAML files for each possible configuration option chosen.  Each file provided uses a naming convention so the RMS can find it.
+
+If the file chosen here has an '_' in it, then it is assumed you are using set files that correspond to the various questions you've already answered and the RMS will choose the correct file from the set.  If the correct file from the set can not be found, or the file does not contain any '_' in it, the file will be used exactly as selected here.
+
+***NOTE: Typically custom XAML file creators will not worry about this naming convention or the configurtion options the RMS provides.  Instead the custom XAML will simply be created exactly the way the creator wants it displayed.  In this common case, the custom XAML file should simply be named with no '_' in the name.",
+
+	"GID_RUIDefaultImagesHeader": "Use Default Race Images?",
+	"GID_RUIDefaultImagesLess": "Would you like to use the default race images?  These images include flag images, start light images, fuel related images, etc.",
+
+	"GID_RUIRedStartFlagHeader": "Off Start Image",
+	"GID_RUIRedStartFlagLess": "Please select the image to display when the start/restart countdown has not reached the time for this particular indicator",
+	"GID_RUIRedStartFlagLabel": "Image",
+
+	"GID_RUIYellowStartFlagHeader": "Staging Start Image",
+	"GID_RUIYellowStartFlagLess": "Please select the image to display when the start/restart countdown has reached the time for this particular indicator, but the countdown has now finished",
+	"GID_RUIYellowStartFlagLabel": "Image",
+
+	"GID_RUIGreenStartFlagHeader": "Go Start Image",
+	"GID_RUIGreenStartFlagLess": "Please select the image to display when the start/restart countdown has reached 0 and the heat should begin/resume.",
+	"GID_RUIGreenStartFlagLabel": "Image",
+
+	"GID_RUIDefaultStartHeader": "Use Default Start/Restart Sequence?",
+	"GID_RUIDefaultStartLess": "Would you like to use the default start/restart settings?",
+	
+	"GID_RUIDefaultPerformanceImagesHeader": "Use Default Performance Images?",
+	"GID_RUIDefaultPerformanceImagesLess": "Do you want to use the default performance image indicators?  These images are only used if you chose to show images or if you have a custom UI setup to display them.",
+
+	"GID_RUISelfUpImageHeader": "Self Peformance Up Image",
+	"GID_RUISelfUpImageLess": "Please select the image to display when a lap time is regestered that is faster than the drivers current average lap time.",
+	"GID_RUISelfUpImageLabel": "Image",
+
+	"GID_RUISelfDownImageHeader": "Self Peformance Down Image",
+	"GID_RUISelfDownImageLess": "Please select the image to display when a lap time is regestered that is slower than the drivers current average lap time.",
+	"GID_RUISelfDownImageLabel": "Image",
+
+	"GID_RUIHeatUpImageHeader": "Heat Leader Peformance Up Image",
+	"GID_RUIHeatUpImageLess": "Please select the image to display when a lap time is regestered that is faster than the heat leaders current average lap time.",
+	"GID_RUIHeatUpImageLabel": "Image",
+
+	"GID_RUIHeatDownImageHeader": "Heat Leader Peformance Down Image",
+	"GID_RUIHeatDownImageLess": "Please select the image to display when a lap time is regestered that is slower than the heat leaders current average lap time.",
+	"GID_RUIHeatDownImageLabel": "Image",
+
+	"GID_RUIRaceUpImageHeader": "Race Record Peformance Up Image",
+	"GID_RUIRaceUpImageLess": "Please select the image to display when a lap time is regestered that is faster than the race records average lap time.",
+	"GID_RUIRaceUpImageLabel": "Image",
+
+	"GID_RUIRaceDownImageHeader": "Race Record Peformance Down Image",
+	"GID_RUIRaceDownImageLess": "Please select the image to display when a lap time is regestered that is slower than the race records average lap time.",
+	"GID_RUIRaceDownImageLabel": "Image",
+	
+	"GID_RUIDefaultFlagImagesHeader": "Use Default Heat Flag Images?",
+	"GID_RUIDefaultFlagImagesLess": "Would you like to use the default heat flag images?",
+
+	"GID_RUIRedFlagImageHeader": "Red Flag",
+	"GID_RUIRedFlagImageLess": "Please select the image you would like to indicate a red flag.  The red flag comes out at the end of each heat and in between heats.",
+	"GID_RUIRedFlagImageLabel": "Flag Image",
+
+	"GID_RUIYellowFlagImageHeader": "Yellow Flag",
+	"GID_RUIYellowFlagImageLess": "Please select the image you would like to indicate a yellow flag.  The yellow flag comes out after a heat is started and then paused for any reason.",
+	"GID_RUIYellowFlagImageLabel": "Flag Image",
+
+	"GID_RUIGreenFlagImageHeader": "Green Flag",
+	"GID_RUIGreenFlagImageLess": "Please select the image you would like to indicate a green flag.  The green flag comes out as long as the heat is running and indicates that laps will be counted.",
+	"GID_RUIGreenFlagImageLabel": "Flag Image",
+
+	"GID_RUIWhiteFlagImageHeader": "White Flag",
+	"GID_RUIWhiteFlagImageLess": "Please select the image you would like to indicate a white flag.  The white flag comes out when the heat ends, but drivers are allowed to complete one or more laps before the heat is officially over.",
+	"GID_RUIWhiteFlagImageLabel": "Flag Image",
+
+	"GID_RUICheckeredFlagImageHeader": "Checkered Flag",
+	"GID_RUICheckeredFlagImageLess": "Please select the image you would like to indicate the checkered flag.  The checkered flag comes out at the completion of the last heat and indicates that the race is over and that race stats are officially saved.",
+	"GID_RUICheckeredFlagImageLabel": "Flag Image",
+
+	"GID_RUIBlackFlagImageHeader": "Black Flag",
+	"GID_RUIBlackFlagImageLess": "Please select the image you would like to indicate a black flag has been issued to a driver.  The black flag comes out whenever a driver is assesed any form of penalty including false start penalties and pit row speed violations.",
+	"GID_RUIBlackFlagImageLabel": "Flag Image",
+
+	"GID_RUIBlackFlagIndicatorImageHeader": "Black Flag Indicator",
+	"GID_RUIBlackFlagIndicatorImageLess": "Please select the image set you would like to use to indicate how much of the black flag penalty the driver has left to serve.",
+	"GID_RUIBlackFlagIndicatorImageLabel": "Flag Image Set",
+
+	"GID_RUIStartXamlHeader": "Heat Start Xaml File",
+	"GID_RUIStartXamlLess": "Please select the Heat Start Xaml file you would like to use for this race.  This file will be used only at the very start of each heat.",
+	"GID_RUIStartXamlLabel": "Xaml File",
+
+	"GID_RUIStartDelayHeader": "Heat Start Delay",
+	"GID_RUIStartDelayLess": "Please set the amount of time (in seconds), to wait before opening up the Heat Start window.  This is useful if for example the Race Director is driving in the race because it will allow them time to get from the computer to the driver station.",
+	"GID_RUIStartDelayLabel": "Delay in Seconds",
+
+	"GID_RUIStartRandomizerHeader": "Heat Start Randomizer",
+	"GID_RUIStartRandomizerLess": "Please select the amount of time (in seconds) to randomly delay the heat start countdown.  If this value is greater than 0, instead of getting the 'Go' 1 second after the '1' in the countdown, the 'Go' will happen anytime between 1 second and 1 second plus this value making it impossible for drivers to anticipate the 'Go' and forcing them to rely completely on reaction time.",
+	"GID_RUIStartRandomizerLabel": "Time in Seconds",
+	
+	"GID_RUIRestartXamlHeader": "Heat Restart Xaml File",
+	"GID_RUIRestartXamlLess": "Please select the Heat Restart Xaml file you would like to use for this race.  This file will be used anytime the heat needs to be restarted from a yellow flag.",
+	"GID_RUIRestartXamlLabel": "Xaml File",
+
+	"GID_RUIRestartDelayHeader": "Heat Restart Delay",
+	"GID_RUIRestartDelayLess": "Please set the amount of time (in seconds), to wait before opening up the Heat Restart window.  This is useful if for example the Race Director is driving in the race because it will allow them time to get from the computer to the driver station.",
+	"GID_RUIRestartDelayLabel": "Delay in Seconds",
+		
+	"GID_RUIRestartRandomizerHeader": "Heat Restart Randomizer",
+	"GID_RUIRestartRandomizerLess": "Please select the amount of time (in seconds) to randomly delay the heat restart countdown.  If this value is greater than 0, instead of getting the 'Go' 1 second after the '1' in the countdown, the 'Go' will happen anytime between 1 second and 1 second plus this value making it impossible for drivers to anticipate the 'Go' and forcing them to rely completely on reaction time.",
+	"GID_RUIRestartRandomizerLabel": "Time in Seconds",
+	
+	"GID_RSeasonUseHeader": "Configure Season Points?",
+	"GID_RSeasonUseLess": "Would you like to configure this race to use season points based on the overall standings?  If you select yes, the points will be configured only if you select a season before you run the race.  If you select no, 0 points will be awarded even if you select a season when you run the race.",
+	
+	"GID_RSPointsRaceScoreListHeader": "Season Points By Overall Ranking",
+	"GID_RSPointsRaceScoreListLess": "Please enter the season points you wish to give each driver based on their overall ranking.  The first entry in the list will be given to the first place driver, the second entry to the second place driver, etc.  If you specify less values than drivers in the race, all unspecified placings will receive 0 points.  More than likely this is the primary source of season points for the race.",
+	"GID_RSPointsRaceScoreListLabel": "Point List",
+
+	"GID_RSPointsCarryOverPctHeader": "Season Overall Score Carryover Percent",
+	"GID_RSPointsCarryOverPctLess": "Please select the percentage of a drivers overall score to carry over into the drivers season points total.  This can be used to award a driver for winning by the largest margin possible.
+
+For example, if this value is set to 50% and a driver had 80 total laps in the race, they would be awarded an additional 40 points to their season point total.",
+	"GID_RSPointsCarryOverPctLabel": "Percentage",
+
+	"GID_RSPointsHeatScoreListHeader": "Season Bonus Points By Heat Ranking",
+	"GID_RSPointsHeatScoreListLess": "Please enter the season points you wish to give each based on their ranking in each heat they race in.  The first entry in the list will be given to the first place driver, the second entry to the second place driver, etc.  If you specify less values than drivers in the heat, all unspecified placings will receive 0 points.",
+	"GID_RSPointsHeatScoreListLabel": "Point List",
+
+	"GID_RSPointsBonusHeatFastestLapHeader": "Season Heat Fastest Lap Bonus",
+	"GID_RSPointsBonusHeatFastestLapLess": "Please set the number of bonus points to assign the driver with the fastest lap time in each heat.",
+	"GID_RSPointsBonusHeatFastestLapLabel": "Bonus Points",
+
+	"GID_RSPointsBonusFastestLapHeader": "Season Fastest Lap Bonus",
+	"GID_RSPointsBonusFastestLapLess": "Please set the number of bonus points to assign the driver with the fastest lap time in the race.",
+	"GID_RSPointsBonusFastestLapLabel": "Bonus Points",
+
+	"GID_RSPointsOneLaneBonusPerHeader": "Season One Lane Bonus Per Driver",
+	"GID_RSPointsOneLaneBonusPerLess": "Do you want to allow just one lane bonus per driver, thus preventing the same driver from getting all the lane bonuses?  If selected, a driver with multiple lane bonuses will be awarded the one bonus they did the best in, and the additinal bonus will go to the next best driver.
+
+If selected all bonus points will be awarded even if a single driver was fastest on all lanes.",
+
+	"GID_RSPointsBonusFastestLaneLapHeader": "Season Fastest Lap Per Lane Bonus",
+	"GID_RSPointsBonusFastestLaneLapLess": "Please set the number of bonus points to assign the driver with the fastest lap time on each lane.",
+	"GID_RSPointsBonusFastestLaneLapLabel": "Bonus Points",		
+
+	"GID_RGroupUseHeader": "Use Groups?",
+	"GID_RGroupUseLess": "Do you want to run this race using driver groups?
+
+NOTE: This is not a common setting to use.",
+
+	"GID_RGroupsMoreWinTitle": "Group Details",
+	"GID_RGroupsMoreHeader": "Groups",
+	"GID_RGroupsMore": "Groups allow you to separate drivers from each other so that no matter what other race configurations you have setup, drivers in separate groups will not race head to head together in a heat.  Using groups also allows you to force one or more drivers from each group to be placed at the top of the leader board regardless of the actual scores for the drivers, which can be very useful for specific types of qualifying races.
+
+Driver group assignments are made strictly by the drivers seeds and the number of groups created by your configurations.",	
+
+	"GID_RGroupMaxGroupsHeader": "Maximum Groups",
+	"GID_RGroupMaxGroupsLess": "Please select the maximum number of groups to use.  Once this number of groups are created, drivers will simply be distributed between the groups rather than creating new groups.",
+	"GID_RGroupMaxGroupsLabel" "Max",
+	
+	"GID_RGroupMinAdvanceHeader": "Number to Advance",
+	"GID_RGroupMinAdvanceLess": "Please select the number of drivers from each group to always rank highest in the overall standings despite their actual overall score.",
+	"GID_RGroupMinAdvanceLabel": "Advance",
+	"GID_RGroupMinAdvanceMoreWinTitle": "Number to Advance Details",
+	"GID_RGroupMinAdvanceMoreHeader": "Number to Advance",
+	"GID_RGroupMinAdvanceMore": "The number of driver to advance is the number of drivers from each group to force to the top of the standings.  These drivers are forced to the top in a round robin fashion by group.
+
+For example, if this value is set to 2 and there are 4 groups in the race, the 1st and 5th place drivers in the overall standings will be the top 2 drivers from group 1.  The 2nd and 6th place drivers will be the top 2 from group 2, the 3rd and 7th place drivers will be from group 3, and the 4th and 8th place drivers will be from group 4.  The remaining drivers in the overall standings wil be taken from the remaining drivers based on their scores regardless of the group they are in.
+
+The overall standings always shows the standings in this fashion, however there is a group leader board that only shows the standings for a particular group.",
+
+	"GID_RGroupBalanceHeader": "Balance Seeds?",
+	"GID_RGroupBalanceLess": "Would you like to balance driver seeds within the groups?",
+	"GID_RGroupBalanceMoreWinTitle": "Balance Seeds Details",
+	"GID_RGroupBalanceMoreHeader": "Balance Seeds",
+	"GID_RGroupBalanceMore": "The RMS can assign drivers to groups in two ways.  If you choose to balance seeds then the RMS will round robin the drivers into the groups used.  If you choose not to balance the seeds the top seeds will be used to fill the first group, then the next highest seeds will be used to fill each remaining groups.
+
+For example, if your max groups is 2, selecting balancing seeds will cause all the even seeds to be in one group and all the odd seeds to be in the other.  On the other hand if you do not balance seeds, the top X drivers are assigned to the first group, then the next Y drivers are assigned to the second group.",
+
+	"GID_RGroupAllowEmptyLanesHeader": "Allow Empty Lanes?",
+	"GID_RGroupAllowEmptyLanesLess": "Do you want to allow groups to race heats with empty lanes?",
+	"GID_RGroupAllowEmptyLanesMoreWinTitle": "Allow Empty Lanes Details",
+	"GID_RGroupAllowEmptyLanesMoreHeader": "Allow Empty Lanes",
+	"GID_RGroupAllowEmptyLanesMore": "Allowing empty lanes means that when setting up the groups, there can be less drivers in the group than lanes on the track, thus creating heats with empty lanes in one more more heats for the group.  
+	
+If not allowed, the number of drivers in each group is forced to be at least the number of lanes on the track.  New groups will not get created until there are enough drivers in each group such that there would be no empty lanes in a heat.
+
+Allowing empty lanes will have the effect of creating more groups with less drivers in each group.  Not allowing empty lanes will create fewer groups with more drivers in each group.",
+
+	"GID_RGroupForceMultipleHeader": "Force Multiple of Max?",
+	"GID_RGroupForceMultipleLess": "Do you want to force the number of groups to be a multiple of the maximum number of groups allowed?",
+	"GID_RGroupForceMultipleMoreWinTitle": "Force Multiple of Max Details",
+	"GID_RGroupForceMultipleMoreHeader": "Force Multiple of Max",
+	"GID_RGroupForceMultipleMore": "If set, the number of groups will be a multiple of the max groups.  The actual number of groups will depend on the number of drivers and your other configuration options.  If you do not force a multiple of the max, your group count will be between 2 and the maximum number set.
+
+This is a very useful option if this group race is not the final race in your event and you want to advance an even number of drivers from each group to the next race.",
+
+	"GID_RGroupRotateHeatsHeader": "Rotate Group Heats?",
+	"GID_RGroupRotateHeatsLess": "Would you like to run your heat rotation by rotating each group on and off the track?",
+
+	"WEVENT_Intro":"Visão Geral",
+	"WEVENT_IntroExpander":"Visão Geral",
+	"WEVENT_IntroTB1":"No RMS (Race Coordinator), um Evento corresponde a uma série de corridas executadas em sequencia. O resultado de cada etapa, seleciona os Pilotos para a próxima corrida no evento, até que a corrida final seja realizada e um vencedor geral do evento seja determinado.  Algumas corridas (como Treino) não afetam a próxima sequencia de corrida.  Alguns itens podem determinar a pontuação do Piloto, enquanto outros irão determinar quantos Pilotos seguem para a próxima etapa de uma corrida.  Ganhar corridas intermediárias é importante para pontuar para a próxima fase e qualificar um Piloto para a próxima corrida. O vencedor da última corrida é o vencedor geral do Evento.",
+	"WEVENT_IntroTB2":"A primeira corrida do Evento terá sua sequencia pela ordem em que os Pilotos aparecem na lista 'Pilotos da Corrida', na tela principal.  Todas as corridas subseqüentes levarão a pontuação da classificação da corrida anterior. Não poderão participar outros Pilotos que não tenham sido incluidos na listagem inicial (atrasados).  Havendo muitos Pilotos, o numero poderá ser reduzido, excluindo da corrida, Pilotos com baixa pontuação. Isso é muito útil para avançar Pilotos de uma corrida na qualificação, para uma corrida final.",
+	"WEVENT_IntroTB3":"Este Assistente irá orientá-lo através de todas as configurações em todos os itens de um Evento. A tabela a esquerda fornece acesso rápido para as diferentes propriedades de um evento, bem como codificações de cores que indicam o status dessas propriedades. Um item em vermelho indica que a propriedade contém um valor inválido. Para propriedades de texto, isso provavelmente é causado pelo campo que precisa ser exclusivo ou vazio. Para valores numéricos, o valor contém caracteres inválidos (como letras), o valor está fora do intervalo esperado, ou o valor é um decimal quando um valor inteiro é esperado. Uma propriedade azul na tabela indica a propriedade atual que está sendo visualizada e uma propriedade amarela indica uma propriedade que foi alterada de seu valor padrão. Se uma propriedade estiver vermelha, este assistente não permitirá que o Evento seja criado.",
+
+	"RD_NoviSlot Race":"NoviSlot - Corrida",
+	"RD_NoviSlot Race Results":"NoviSlot - Resultado da Corrida",
+	"RD_NoviSlot Qualify":"NoviSlot - Qualificação",
+	"RD_NoviSlot Qualify Results":"NoviSlot - Resultado da Qualificação",
+	"RD_Qualify Leaders":"Líderes da Qualificação",
+	"RD_Leaderboard":"Líderes da Qualificação",
+	"RD_Defer Driver":"Pular Piloto",
+	"RD_Restart Driver":"Reiniciar Piloto",
+	"RD_Modify Qualify":"Modificar Qualificação",
+	"RD_Qualify Results":"Resultado da Qualificação",
+	"RD_Last Time Laps":"Tempo das Últimas Voltas",
+	"RD_Best Driver":"Melhor Piloto",
+	"RD_Driver ":"Piloto ",
+	"RD_Drivers: ":"Pilotos: ",
+	"RD_Heats: ":"Etapas: ",
+	"RD_Groups: ":"Grupos: ",
+	"RD_Next":"Próximo",
+	"RD_Pole Position":"Pole Position",
+	"RD_Bike":"Ciclista",
+	"RD_Bike ID":"Identificação",
+	"RD_Total Time":"Tempo Total",
+	"RD_Leader":"Líder",
+	"RD_Heats":"Etapas",
+	"RD_--":"--",
+
+}
