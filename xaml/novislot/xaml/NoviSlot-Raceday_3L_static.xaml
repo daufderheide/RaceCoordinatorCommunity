@@ -1,0 +1,1103 @@
+<!-- R.1.0 / 18/12/19 / Versão inicial -->
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Width="1024" Height="768" Background="DarkGray" Title="NoviSlot Race" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="ThreeDBorderWindow">
+	<Viewbox Stretch="Fill">
+	<!-- Definição das linhas: Menu + Cabeçalho + Dados + Botões e Colunas: Corrida + Informações -->
+		<Grid ShowGridLines="False">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1024"/>
+				<ColumnDefinition Width="256"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="22"/>
+				<RowDefinition Height="76"/>
+				<RowDefinition Height="640"/>
+				<RowDefinition Height="30"/>
+			</Grid.RowDefinitions>
+	<!-- Configurações de efeitos e estilos comuns aos elementos de toda a janela -->
+			<Grid.Resources>
+				<Style TargetType="Border">
+					<Setter Property="Margin" Value="2"/>
+					<Setter Property="Background" Value="LightSteelBlue"/>
+					<Setter Property="BorderBrush" Value="White"/>
+					<Setter Property="BorderThickness" Value="1"/>
+					<Setter Property="CornerRadius" Value="5"/>
+					<Setter Property="Padding" Value="2"/>
+				</Style>
+				<Style TargetType="Button">
+					<Setter Property="Width" Value="150"/>
+					<Setter Property="Height" Value="22"/>
+					<Setter Property="Focusable" Value="False"/>
+					<Setter Property="Margin" Value="10,2,10,2"/>
+				</Style>
+				<Style TargetType="Grid">
+					<Setter Property="Margin" Value="2,0,2,4"/>
+				</Style>
+				<Style TargetType="Image">
+					<Setter Property="Margin" Value="5"/>
+					<Setter Property="Stretch" Value="Uniform"/>
+				</Style>
+				<Style TargetType="TextBlock">
+					<Setter Property="Margin" Value="0"/>
+					<Setter Property="FontWeight" Value="Bold"/>
+					<Setter Property="Foreground" Value="White"/>
+				</Style>
+			</Grid.Resources>
+	<!-- Menu -->
+			<Menu Name="menu1" Height="22" Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Top">
+				<MenuItem Header="File">
+					<MenuItem Name="Save_1" DataContext="'key':'S','modifier':'Alt'" Header="Save" InputGestureText="Alt+S" ToolTip="Salvar esta corrida"/>
+					<MenuItem Name="SaveAs_1" DataContext="'key':'A','modifier':'Alt'" Header="Save As..." InputGestureText="Alt+A" ToolTip="Salvar esta corrida, com um nome específico"/>
+					<Separator/>
+					<MenuItem Name="Export_1" DataContext="'key':'X','modifier':'Alt'" Header="Export Race" InputGestureText="Alt+X" ToolTip="Exportar esta corrida"/>
+				</MenuItem>
+				<MenuItem Header="Race Director">
+					<MenuItem Name="Start_1" DataContext="'key':'S','modifier':'Control'" Header="Start/Resume Heat" InputGestureText="Ctrl+S" ToolTip="Iniciar ou reiniciar esta etapa"/>
+					<MenuItem Name="Pause_1" DataContext="'key':'P','modifier':'Control'" Header="Pause Heat" InputGestureText="Ctrl+P" ToolTip="Pausar esta etapa"/>
+					<Separator/>
+					<MenuItem Name="AddLaps_1" DataContext="'key':'A','modifier':'Control'" Header="Add Laps/Sections" InputGestureText="Ctrl+A" ToolTip="Adicionar voltas, setores ou tempos"/>
+					<MenuItem Name="NextHeat_1" DataContext="'key':'N','modifier':'Control'" Header="Next Heat" InputGestureText="Ctrl+N" ToolTip="Pular esta etapa"/>
+					<Separator/>
+					<MenuItem Name="RestartHeat_1" DataContext="'key':'R','modifier':'Control'" Header="Restart Heat" InputGestureText="Ctrl+R" ToolTip="Reiniciar esta etapa"/>
+					<MenuItem Name="DeferHeat_1" DataContext="'key':'D','modifier':'Control'" Header="Defer Heat" InputGestureText="Ctrl+D" ToolTip="Adiar esta etapa. A etapa será realizada no final"/>
+					<MenuItem Name="SkipHeat_1" DataContext="'key':'F5','modifier':'Alt'" Header="Skip Heat" InputGestureText="Alt+F5" ToolTip="Pular esta etapa. A etapa será finalizada"/>
+					<MenuItem Name="SkipRace_1" DataContext="'key':'F4','modifier':'Alt'" Header="Skip Race" InputGestureText="Ctrl+F4" ToolTip="Finalizar esta corrida"/>
+					<Separator/>
+					<MenuItem Name="ModifyHeats_1" DataContext="'key':'H','modifier':'Control'" Header="Modify Heats" InputGestureText="Ctrl+H" ToolTip="Modificar esta etapa"/>
+					<MenuItem Name="LapEditor_1" DataContext="'key':'E','modifier':'Control'" Header="Edit Laps" InputGestureText="Ctrl+E" ToolTip="Modificar voltas"/>
+				</MenuItem>
+				<MenuItem Header="Track Power">
+					<MenuItem Name="PowerOn_1" CommandParameter="0" DataContext="'key':'0','modifier':'Control'" Header="Master Power On" InputGestureText="Ctrl+0" ToolTip="Liga todas as fendas da pistas"/>
+					<MenuItem Name="PowerOff_1" CommandParameter="0" DataContext="'key':'0','modifier':'Alt'" Header="Master Power Off" InputGestureText="Alt+0" ToolTip="Desliga todas as fendas da pistas"/>
+					<Separator/>
+					<MenuItem Name="PowerOn_2" CommandParameter="1" DataContext="'key':'1','modifier':'Control'" Header="Lane 1 Power On" InputGestureText="Ctrl+1" ToolTip="Liga a fenda 1 da pista"/>
+					<MenuItem Name="PowerOff_2" CommandParameter="1" DataContext="'key':'1','modifier':'Alt'" Header="Lane 1 Power Off" InputGestureText="Alt+1" ToolTip="Desliga a fenda 1 da pista"/>
+	<!-- *** Alterar de acordo com o numero de fendas *** -->
+					<MenuItem Name="PowerOn_3" CommandParameter="2" DataContext="'key':'2','modifier':'Control'" Header="Lane 2 Power On" InputGestureText="Ctrl+2" ToolTip="Liga a fenda 2 da pista"/>
+					<MenuItem Name="PowerOff_3" CommandParameter="2" DataContext="'key':'2','modifier':'Alt'" Header="Lane 2 Power Off" InputGestureText="Alt+2" ToolTip="Desliga a fenda 2 da pista"/>
+					<MenuItem Name="PowerOn_4" CommandParameter="3" DataContext="'key':'3','modifier':'Control'" Header="Lane 3 Power On" InputGestureText="Ctrl+3" ToolTip="Liga a fenda 3 da pista"/>
+					<MenuItem Name="PowerOff_4" CommandParameter="3" DataContext="'key':'3','modifier':'Alt'" Header="Lane 3 Power Off" InputGestureText="Alt+3" ToolTip="Desliga a fenda 3 da pista"/>
+	<!-- *** -->
+				</MenuItem>
+				<MenuItem Header="Windows">
+					<MenuItem Name="Window_1" CommandParameter="data/xaml/LeaderBoard.xaml" DataContext="'key':'F1'" Header="Leader Board" InputGestureText="F1" ToolTip="Mostrar lista com o lider da corrida"/>
+					<MenuItem Name="Window_2" CommandParameter="data/xaml/Top5.xaml" DataContext="'key':'F1','modifier':'Control'" Header="Top 5" InputGestureText="Ctrl+F1" ToolTip="Mostrar lista com os 5 primeiros da corrida"/>
+					<MenuItem Name="Window_3" CommandParameter="data/xaml/GroupLeaderBoard.xaml" DataContext="'key':'F3'" Header="Group Leader Board" InputGestureText="F3" ToolTip="Mostrar lista do grupo de pilotos"/>
+					<MenuItem Name="Window_4" CommandParameter="data/xaml/HeatResults.xaml" DataContext="'key':'F4'" Header="Heat Results" InputGestureText="F4" ToolTip="Mostrar resultado desta etapa"/>
+					<MenuItem Name="Window_5" CommandParameter="data/xaml/RaceResults.xaml" DataContext="'key':'F5'" Header="Race Results" InputGestureText="F5" ToolTip="Mostrar resultado da corrida"/>
+	<!-- *** Alterar de acordo com o numero de fendas *** -->
+					<MenuItem Name="Window_6" CommandParameter="data/xaml/SegmentTimeOnlyView_3L.xaml" DataContext="'key':'F6','modifier':'Control'" Header="Segment Times" InputGestureText="Ctrl+F6" ToolTip="Mostrar lista com os tempos parciais"/>
+	<!-- *** -->
+					<Separator/>
+					<MenuItem Name="Window_7" CommandParameter="data/xaml/SeasonRaceLeaderBoard.xaml" DataContext="'key':'F1' ,'modifier':'Alt'" Header="Season Race Leader Board" InputGestureText="Alt+F1" ToolTip="Mostrar lista com o lider da corrida no evento"/>
+					<MenuItem Name="Window_8" CommandParameter="data/xaml/SeasonLeaderBoard.xaml" Header="Season Leader Board" ToolTip="Mostrar lista do evento"/>
+					<Separator/>
+	<!-- *** Alterar de acordo com o numero de fendas *** -->
+					<MenuItem Name="Window_9" CommandParameter="data/xaml/OnDeck_3L.xaml" DataContext="'key':'F6'" Header="On Deck" InputGestureText="F6" ToolTip="Mostrar piloto em espera"/>
+	<!-- *** -->
+					<MenuItem Name="ViewHeats_1" DataContext="'key':'F7'" Header="Heat List" InputGestureText="F7" ToolTip="Mostrar lista de todas as etapas"/>
+	<!-- *** Alterar de acordo com o numero de fendas *** -->
+					<MenuItem Name="Window_10" CommandParameter="data/xaml/NextHeat_3L.xaml" DataContext="'key':'F8'" Header="Next Heat" InputGestureText="F8" ToolTip="Mostrar pilotos da próxima etapa"/>
+	<!-- *** -->
+				</MenuItem>
+			</Menu>
+	<!-- Fim Menu -->
+	<!-- Cabeçalho 1 -->
+			<Grid Grid.Row="1" ShowGridLines="False">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+	<!-- Configurações de efeitos e estilos comuns aos elementos deste item -->
+				<Grid.Effect>
+					<DropShadowEffect/>
+				</Grid.Effect>
+	<!-- Imagem com o logotipo da loja ou clube -->
+				<Image Name="TrackImage_1" Grid.Column="0" Grid.Row="0" ToolTip="Logotipo da loja ou clube. Pode ser modificado em configurações da pista"/>
+	<!-- Nome da pista -->
+				<Viewbox MaxHeight="30" Grid.Column="1" Grid.Row="0" ToolTip="Nome da pista, loja ou clube. Pode ser modificado em configurações da pista">
+					<TextBlock Name="TrackName_1"/>
+				</Viewbox>
+	<!-- Tempo da corrida -->
+				<Viewbox Grid.Column="2" Grid.Row="0">
+					<TextBlock Name="RaceTime_1" DataContext="'decimals':3" Foreground="Lime" ToolTip="Tempo da corrida ou contagem regressiva para o próximo evento da corrida"/>
+				</Viewbox>
+	<!-- Status da corrida (bandeira) -->
+				<Image Name="RaceStateImage_1" Grid.Column="3" Grid.Row="0" ToolTip="Status da corrida. Clique aqui para fazer a Largada / Parada / Relargada ou utilize a barra de espaço"/>
+				<Button Name="Toggle_1" Grid.Column="3" Grid.Row="0" DataContext="'key':'Space'" Focusable="False" IsTabStop="False" Opacity="0" ToolTip="Status da corrida. Clique aqui para fazer a Largada / Parada / Relargada ou utilize a barra de espaço"/>
+	<!-- Nome da corrida -->
+				<Viewbox MaxHeight="30" Grid.Column="4" Grid.Row="0" ToolTip="Nome da corrida. Pode ser modificado em configurações da corrida">
+					<TextBlock Name="RaceName_1"/>
+				</Viewbox>
+			</Grid>
+	<!-- Fim Cabeçalho 1 -->
+	<!-- Cabeçalho 2 -->
+			<Grid Grid.Column="1" Grid.Row="1" ShowGridLines="False">
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+	<!-- Configurações de efeitos e estilos comuns aos elementos deste item -->
+				<Grid.Effect>
+					<DropShadowEffect/>
+				</Grid.Effect>
+	<!-- Etapas / Grupos -->
+				<Viewbox MaxHeight="30" Grid.Column="0" Grid.Row="0" ToolTip="Numero de etapas da corrida">
+					<DockPanel>
+						<TextBlock Text="Heat "/>
+						<TextBlock Name="HeatNumber_1"/>
+						<TextBlock Text=" of "/>
+						<TextBlock Name="NumHeats_1"/>
+					</DockPanel>
+				</Viewbox>
+				<Viewbox MaxHeight="30" Grid.Column="0" Grid.Row="1" ToolTip="Número do grupo de pilotos (bateria)">
+					<DockPanel>
+						<TextBlock Text="Group "/>
+						<TextBlock Name="GroupNumber_1"/>
+					</DockPanel>
+				</Viewbox>
+			</Grid>
+	<!-- Fim Cabeçalho 2 -->
+	<!-- Corrida: Definição das colunas Corrida + Informações -->
+			<Border Grid.Column="0" Grid.Row="2">
+				<Border.Effect>
+					<DropShadowEffect/>
+				</Border.Effect>
+				<Grid ShowGridLines="False">
+	<!-- Telemetria -->
+					<Grid Grid.Row="0" ShowGridLines="False">
+						<Grid.Effect>
+							<DropShadowEffect/>
+						</Grid.Effect>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="30"/>
+							<RowDefinition/>
+	<!-- *** Alterar de acordo com o numero de fendas *** -->
+							<RowDefinition/>
+							<RowDefinition/>
+	<!-- *** -->
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="30"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="80"/>
+							<ColumnDefinition Width="120"/>
+							<ColumnDefinition Width="120"/>
+							<ColumnDefinition Width="120"/>
+							<ColumnDefinition Width="120"/>
+							<ColumnDefinition Width="100"/>
+						</Grid.ColumnDefinitions>
+	<!-- Configurações de efeitos e estilos comuns aos elementos deste item -->
+						<Grid.Resources>
+							<Style TargetType="Button">
+								<Setter Property="Width" Value="Auto"/>
+								<Setter Property="Height" Value="Auto"/>
+								<Setter Property="Focusable" Value="False"/>
+								<Setter Property="IsTabStop" Value="False"/>
+								<Setter Property="Opacity" Value="0"/>
+								<Setter Property="Margin" Value="5"/>
+							</Style>
+							<Style TargetType="Label">
+								<Setter Property="Background" Value="Black"/>
+								<Setter Property="BorderBrush" Value="Black"/>
+								<Setter Property="BorderThickness" Value="0.5"/>
+								<Setter Property="Foreground" Value="Transparent"/>
+								<Setter Property="FontWeight" Value="Bold"/>
+								<Setter Property="Margin" Value="0"/>
+							</Style>
+							<Style TargetType="Viewbox">
+								<Setter Property="MaxHeight" Value="60"/>
+								<Setter Property="Margin" Value="2,0,2,0"/>
+							</Style>
+						</Grid.Resources>
+	<!-- Legendas -->
+						<Viewbox Grid.Column="0" Grid.Row="0" Margin="2,0,2,6">
+							<TextBlock Text="Pos" ToolTip="Posição do piloto na corrida"/>
+						</Viewbox>
+						<Viewbox Grid.Column="1" Grid.Row="0" Margin="2,0,2,6">
+							<TextBlock Text="Drivers" ToolTip="Informações e detalhes do piloto"/>
+						</Viewbox>
+						<Viewbox Grid.Column="2" Grid.Row="0" Margin="2,0,2,6">
+							<TextBlock Text="Laps" ToolTip="Contagem das voltas"/>
+						</Viewbox>
+						<Viewbox Grid.Column="3" Grid.Row="0" Margin="2,0,2,6">
+							<TextBlock Text="Lap Time" ToolTip="Tempo da última volta e reação na largada"/>
+						</Viewbox>
+						<Viewbox Grid.Column="4" Grid.Row="0" Margin="2,0,2,6">
+							<TextBlock Text="Gap" ToolTip="Diferença de tempo entre pilotos e o lider"/>
+						</Viewbox>
+						<Viewbox Grid.Column="5" Grid.Row="0" Margin="2,0,2,6">
+							<TextBlock Text="Best Lap" ToolTip="Tempo da melhor volta na etapa"/>
+						</Viewbox>
+						<Viewbox Grid.Column="6" Grid.Row="0" Margin="2,0,2,6">
+							<TextBlock Text="Avg Time" ToolTip="Média e Mediana do tempo das voltas na etapa"/>
+						</Viewbox>
+						<Viewbox Grid.Column="7" Grid.Row="0" Margin="2,0,2,6">
+							<TextBlock Text="KPH" ToolTip="Velocidade média da volta"/>
+						</Viewbox>
+	<!-- Posição -->
+						<Label Name="HeatPosition_Lane1_1" Grid.Column="0" Grid.Row="1"/>
+						<Grid Grid.Column="0" Grid.Row="1" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<Viewbox Grid.Column="0" Grid.Row="1" ToolTip="Posição do piloto na corrida">
+								<TextBlock Name="HeatPosition_Lane1_2"/>
+							</Viewbox>
+						</Grid>
+	<!-- Nome -->
+						<Label Name="Nickname_Lane1_1" Grid.Column="1" Grid.Row="1"/>
+						<Grid Grid.Column="1" Grid.Row="1" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="Name_Lane1_1" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Margin="5,0,5,0" VerticalAlignment="Center" FontWeight="Normal" TextTrimming="CharacterEllipsis" ToolTip="Nome completo do piloto"/>
+							<Viewbox Grid.Column="0" Grid.Row="1">
+								<TextBlock Name="Nickname_Lane1_2"/>
+							</Viewbox>
+							<Button Name="ChangeDriver_Lane1_1" Grid.Column="0" Grid.Row="1" ToolTip="Nome resumido do piloto (Apelido) / Clique aqui para modificar"/>
+						</Grid>
+	<!-- Volta -->
+						<Label Name="Lap_Lane1_1" Grid.Column="2" Grid.Row="1"/>
+						<Grid Grid.Column="2" Grid.Row="1" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="Led_Lane1_1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Center" FontWeight="Normal" ToolTip="Número de voltas que o piloto liderou a etapa da corrida"/>
+							<Image Name="DriftLap_Lane1_1" MaxHeight="25" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Margin="0,2,2,0" ToolTip="Volta registrada após o desligamento da pista"/>
+							<Viewbox Grid.Column="0" Grid.Row="1">
+								<TextBlock Name="Lap_Lane1_2"/>
+							</Viewbox>
+							<Button Name="AddLapSections_Lane1_1" Grid.Column="0" Grid.Row="1" ToolTip="Numero de voltas / Clique aqui para adcionar o setor (zona) deste piloto"/>
+						</Grid>
+	<!-- Tempo da volta -->
+						<Label Name="LapTime_Lane1_1" Grid.Column="3" Grid.Row="1"/>
+						<Grid Grid.Column="3" Grid.Row="1" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="ReactionTime_Lane1_1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" DataContext="'decimals':3" FontWeight="Normal" ToolTip="Tempo de reação na largada"/>
+							<DockPanel MaxHeight="25" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right">
+								<Image Name="TrackPerformance_Lane1_1" Margin="0,2,2,0" ToolTip="Performance comparada a outras corridas"/>
+								<Image Name="HeatPerformance_Lane1_1" Margin="0,2,2,0" ToolTip="Performance na etapa da corrida"/>
+								<Image Name="SelfPerformance_Lane1_1" Margin="0,2,2,0" ToolTip="Performance do tempo médio das voltas"/>
+							</DockPanel>
+							<Viewbox Grid.Column="0" Grid.Row="1" ToolTip="Tempo da volta">
+								<TextBlock Name="LapTime_Lane1_2" DataContext="'decimals':3"/>
+							</Viewbox>
+						</Grid>
+	<!-- Diferença -->
+						<Label Name="GapPosition_Lane1_1" Grid.Column="4" Grid.Row="1"/>
+						<Grid Grid.Column="4" Grid.Row="1" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="GapLeader_Lane1_1" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" DataContext="'decimals':2" FontWeight="Normal" ToolTip="Tempo entre a passagem da volta do lider e este piloto"/>
+							<Viewbox Grid.Column="0" Grid.Row="1" ToolTip="Tempo entre a passagem da volta do piloto na frente e este piloto">
+								<TextBlock Name="GapPosition_Lane1_2" DataContext="'decimals':2"/>
+							</Viewbox>
+						</Grid>
+	<!-- Melhor tempo de volta -->
+						<Label Name="BestLapTime_Lane1_1" Grid.Column="5" Grid.Row="1"/>
+						<Grid Grid.Column="5" Grid.Row="1" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="BestLaneNickname_Lane1_1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,40,0" VerticalAlignment="Center" FontWeight="Normal" TextTrimming="CharacterEllipsis" ToolTip="Piloto da melhor volta nesta fenda"/>
+							<TextBlock Name="BestLaneTime_Lane1_1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center" DataContext="'decimals':3" FontWeight="Normal" ToolTip="Tempo da melhor volta nesta fenda"/>
+							<Viewbox Grid.Column="0" Grid.Row="1" ToolTip="Tempo da melhor volta nesta etapa">
+								<TextBlock Name="BestLapTime_Lane1_2" DataContext="'decimals':3"/>
+							</Viewbox>
+						</Grid>
+	<!-- Tempo Medio / Mediana por volta -->
+						<Label Name="AverageTime_Lane1_1" Grid.Column="6" Grid.Row="1"/>
+						<Grid Grid.Column="6" Grid.Row="1" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="MedianTime_Lane1_1" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" DataContext="'decimals':3" FontWeight="Normal" ToolTip="MEDIANA: Considerando os tempos organizados em ordem crescente ou decrescente, a sua mediana será o tempo que ocupar a posição central da lista"/>
+							<Viewbox Grid.Column="1" Grid.Row="1" ToolTip="MÉDIA: Resultado da soma de todos os tempos dividida pelo número de voltas">
+								<TextBlock Name="AverageTime_Lane1_2" DataContext="'decimals':3"/>
+							</Viewbox>
+						</Grid>
+	<!-- KM/h -->
+						<Label Name="KPH_Lane1_1" Grid.Column="7" Grid.Row="1"/>
+						<Grid Grid.Column="7" Grid.Row="1" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<Viewbox Grid.Column="0" Grid.Row="1" ToolTip="Velocidade média da volta">
+								<TextBlock Name="KPH_Lane1_2" DataContext="'decimals':0"/>
+							</Viewbox>
+						</Grid>
+	<!-- Fim Piloto 1 -->
+	<!-- Piloto 2 -->
+	<!-- Posição -->
+						<Label Name="HeatPosition_Lane2_1" Grid.Column="0" Grid.Row="2"/>
+						<Grid Grid.Column="0" Grid.Row="2" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<Viewbox Grid.Column="0" Grid.Row="1" ToolTip="Posição do piloto na corrida">
+								<TextBlock Name="HeatPosition_Lane2_2"/>
+							</Viewbox>
+						</Grid>
+	<!-- Nome -->
+						<Label Name="Nickname_Lane2_1" Grid.Column="1" Grid.Row="2"/>
+						<Grid Grid.Column="1" Grid.Row="2" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="Name_Lane2_1" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Margin="5,0,5,0" VerticalAlignment="Center" FontWeight="Normal" TextTrimming="CharacterEllipsis" ToolTip="Nome completo do piloto"/>
+							<Viewbox Grid.Column="0" Grid.Row="1">
+								<TextBlock Name="Nickname_Lane2_2"/>
+							</Viewbox>
+							<Button Name="ChangeDriver_Lane2_1" Grid.Column="0" Grid.Row="1" ToolTip="Nome resumido do piloto (Apelido) / Clique aqui para modificar"/>
+						</Grid>
+	<!-- Volta -->
+						<Label Name="Lap_Lane2_1" Grid.Column="2" Grid.Row="2"/>
+						<Grid Grid.Column="2" Grid.Row="2" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="Led_Lane2_1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Center" FontWeight="Normal" ToolTip="Número de voltas que o piloto liderou a etapa da corrida"/>
+							<Image Name="DriftLap_Lane2_1" MaxHeight="25" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Margin="0,2,2,0" ToolTip="Volta registrada após o desligamento da pista"/>
+							<Viewbox Grid.Column="0" Grid.Row="1">
+								<TextBlock Name="Lap_Lane2_2"/>
+							</Viewbox>
+							<Button Name="AddLapSections_Lane2_1" Grid.Column="0" Grid.Row="1" ToolTip="Numero de voltas / Clique aqui para adcionar o setor (zona) deste piloto"/>
+						</Grid>
+	<!-- Tempo da volta -->
+						<Label Name="LapTime_Lane2_1" Grid.Column="3" Grid.Row="2"/>
+						<Grid Grid.Column="3" Grid.Row="2" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="ReactionTime_Lane2_1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" DataContext="'decimals':3" FontWeight="Normal" ToolTip="Tempo de reação na largada"/>
+							<DockPanel MaxHeight="25" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right">
+								<Image Name="TrackPerformance_Lane2_1" Margin="0,2,2,0" ToolTip="Performance comparada a outras corridas"/>
+								<Image Name="HeatPerformance_Lane2_1" Margin="0,2,2,0" ToolTip="Performance na etapa da corrida"/>
+								<Image Name="SelfPerformance_Lane2_1" Margin="0,2,2,0" ToolTip="Performance do tempo médio das voltas"/>
+							</DockPanel>
+							<Viewbox Grid.Column="0" Grid.Row="1" ToolTip="Tempo da volta">
+								<TextBlock Name="LapTime_Lane2_2" DataContext="'decimals':3"/>
+							</Viewbox>
+						</Grid>
+	<!-- Diferença -->
+						<Label Name="GapPosition_Lane2_1" Grid.Column="4" Grid.Row="2"/>
+						<Grid Grid.Column="4" Grid.Row="2" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="GapLeader_Lane2_1" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" DataContext="'decimals':2" FontWeight="Normal" ToolTip="Tempo entre a passagem da volta do lider e este piloto"/>
+							<Viewbox Grid.Column="0" Grid.Row="1" ToolTip="Tempo entre a passagem da volta do piloto na frente e este piloto">
+								<TextBlock Name="GapPosition_Lane2_2" DataContext="'decimals':2"/>
+							</Viewbox>
+						</Grid>
+	<!-- Melhor tempo de volta -->
+						<Label Name="BestLapTime_Lane2_1" Grid.Column="5" Grid.Row="2"/>
+						<Grid Grid.Column="5" Grid.Row="2" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="BestLaneNickname_Lane2_1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,40,0" VerticalAlignment="Center" FontWeight="Normal" TextTrimming="CharacterEllipsis" ToolTip="Piloto da melhor volta nesta fenda"/>
+							<TextBlock Name="BestLaneTime_Lane2_1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center" DataContext="'decimals':3" FontWeight="Normal" ToolTip="Tempo da melhor volta nesta fenda"/>
+							<Viewbox Grid.Column="0" Grid.Row="1" ToolTip="Tempo da melhor volta nesta etapa">
+								<TextBlock Name="BestLapTime_Lane2_2" DataContext="'decimals':3"/>
+							</Viewbox>
+						</Grid>
+	<!-- Tempo Medio / Mediana por volta -->
+						<Label Name="AverageTime_Lane2_1" Grid.Column="6" Grid.Row="2"/>
+						<Grid Grid.Column="6" Grid.Row="2" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="MedianTime_Lane2_1" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" DataContext="'decimals':3" FontWeight="Normal" ToolTip="MEDIANA: Considerando os tempos organizados em ordem crescente ou decrescente, a sua mediana será o tempo que ocupar a posição central da lista"/>
+							<Viewbox Grid.Column="1" Grid.Row="1" ToolTip="MÉDIA: Resultado da soma de todos os tempos dividida pelo número de voltas">
+								<TextBlock Name="AverageTime_Lane2_2" DataContext="'decimals':3"/>
+							</Viewbox>
+						</Grid>
+	<!-- KM/h -->
+						<Label Name="KPH_Lane2_1" Grid.Column="7" Grid.Row="2"/>
+						<Grid Grid.Column="7" Grid.Row="2" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<Viewbox Grid.Column="0" Grid.Row="2" ToolTip="Velocidade média da volta">
+								<TextBlock Name="KPH_Lane2_2" DataContext="'decimals':0"/>
+							</Viewbox>
+						</Grid>
+	<!-- Fim Piloto 2 -->
+	<!-- Piloto 3 -->
+	<!-- Posição -->
+						<Label Name="HeatPosition_Lane3_1" Grid.Column="0" Grid.Row="3"/>
+						<Grid Grid.Column="0" Grid.Row="3" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<Viewbox Grid.Column="0" Grid.Row="1" ToolTip="Posição do piloto na corrida">
+								<TextBlock Name="HeatPosition_Lane3_2"/>
+							</Viewbox>
+						</Grid>
+	<!-- Nome -->
+						<Label Name="Nickname_Lane3_1" Grid.Column="1" Grid.Row="3"/>
+						<Grid Grid.Column="1" Grid.Row="3" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="Name_Lane3_1" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Margin="5,0,5,0" VerticalAlignment="Center" FontWeight="Normal" TextTrimming="CharacterEllipsis" ToolTip="Nome completo do piloto"/>
+							<Viewbox Grid.Column="0" Grid.Row="1">
+								<TextBlock Name="Nickname_Lane3_2"/>
+							</Viewbox>
+							<Button Name="ChangeDriver_Lane3_1" Grid.Column="0" Grid.Row="1" ToolTip="Nome resumido do piloto (Apelido) / Clique aqui para modificar"/>
+						</Grid>
+	<!-- Volta -->
+						<Label Name="Lap_Lane3_1" Grid.Column="2" Grid.Row="3"/>
+						<Grid Grid.Column="2" Grid.Row="3" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="Led_Lane3_1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,5,0" VerticalAlignment="Center" FontWeight="Normal" ToolTip="Número de voltas que o piloto liderou a etapa da corrida"/>
+							<Image Name="DriftLap_Lane3_1" MaxHeight="25" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Margin="0,2,2,0" ToolTip="Volta registrada após o desligamento da pista"/>
+							<Viewbox Grid.Column="0" Grid.Row="1">
+								<TextBlock Name="Lap_Lane3_2"/>
+							</Viewbox>
+							<Button Name="AddLapSections_Lane3_1" Grid.Column="0" Grid.Row="1" ToolTip="Numero de voltas / Clique aqui para adcionar o setor (zona) deste piloto"/>
+						</Grid>
+	<!-- Tempo da volta -->
+						<Label Name="LapTime_Lane3_1" Grid.Column="3" Grid.Row="3"/>
+						<Grid Grid.Column="3" Grid.Row="3" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="ReactionTime_Lane3_1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" DataContext="'decimals':3" FontWeight="Normal" ToolTip="Tempo de reação na largada"/>
+							<DockPanel MaxHeight="25" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right">
+								<Image Name="TrackPerformance_Lane3_1" Margin="0,2,2,0" ToolTip="Performance comparada a outras corridas"/>
+								<Image Name="HeatPerformance_Lane3_1" Margin="0,2,2,0" ToolTip="Performance na etapa da corrida"/>
+								<Image Name="SelfPerformance_Lane3_1" Margin="0,2,2,0" ToolTip="Performance do tempo médio das voltas"/>
+							</DockPanel>
+							<Viewbox Grid.Column="0" Grid.Row="1" ToolTip="Tempo da volta">
+								<TextBlock Name="LapTime_Lane3_2" DataContext="'decimals':3"/>
+							</Viewbox>
+						</Grid>
+	<!-- Diferença -->
+						<Label Name="GapPosition_Lane3_1" Grid.Column="4" Grid.Row="3"/>
+						<Grid Grid.Column="4" Grid.Row="3" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="GapLeader_Lane3_1" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" DataContext="'decimals':2" FontWeight="Normal" ToolTip="Tempo entre a passagem da volta do lider e este piloto"/>
+							<Viewbox Grid.Column="0" Grid.Row="1" ToolTip="Tempo entre a passagem da volta do piloto na frente e este piloto">
+								<TextBlock Name="GapPosition_Lane3_2" DataContext="'decimals':2"/>
+							</Viewbox>
+						</Grid>
+	<!-- Melhor tempo de volta -->
+						<Label Name="BestLapTime_Lane3_1" Grid.Column="5" Grid.Row="3"/>
+						<Grid Grid.Column="5" Grid.Row="3" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="BestLaneNickname_Lane3_1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,40,0" VerticalAlignment="Center" FontWeight="Normal" TextTrimming="CharacterEllipsis" ToolTip="Piloto da melhor volta nesta fenda"/>
+							<TextBlock Name="BestLaneTime_Lane3_1" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center" DataContext="'decimals':3" FontWeight="Normal" ToolTip="Tempo da melhor volta nesta fenda"/>
+							<Viewbox Grid.Column="0" Grid.Row="1" ToolTip="Tempo da melhor volta nesta etapa">
+								<TextBlock Name="BestLapTime_Lane3_2" DataContext="'decimals':3"/>
+							</Viewbox>
+						</Grid>
+	<!-- Tempo Medio / Mediana por volta -->
+						<Label Name="AverageTime_Lane3_1" Grid.Column="6" Grid.Row="3"/>
+						<Grid Grid.Column="6" Grid.Row="3" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<TextBlock Name="MedianTime_Lane3_1" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" DataContext="'decimals':3" FontWeight="Normal" ToolTip="MEDIANA: Considerando os tempos organizados em ordem crescente ou decrescente, a sua mediana será o tempo que ocupar a posição central da lista"/>
+							<Viewbox Grid.Column="1" Grid.Row="1" ToolTip="MÉDIA: Resultado da soma de todos os tempos dividida pelo número de voltas">
+								<TextBlock Name="AverageTime_Lane3_2" DataContext="'decimals':3"/>
+							</Viewbox>
+						</Grid>
+	<!-- KM/h -->
+						<Label Name="KPH_Lane3_1" Grid.Column="7" Grid.Row="3"/>
+						<Grid Grid.Column="7" Grid.Row="3" ShowGridLines="False">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="3*"/>
+							</Grid.RowDefinitions>
+							<Viewbox Grid.Column="0" Grid.Row="3" ToolTip="Velocidade média da volta">
+								<TextBlock Name="KPH_Lane3_2" DataContext="'decimals':0"/>
+							</Viewbox>
+						</Grid>
+	<!-- Fim Piloto 3 -->
+					</Grid>
+	<!-- Fim Telemetria -->
+				</Grid>
+			</Border>
+	<!-- Fim Corrida -->
+	<!-- Informações: Definições das linhas Espera + Etapa + Classificação -->
+			<Border Grid.Column="1" Grid.Row="2">
+				<Border.Effect>
+					<DropShadowEffect/>
+				</Border.Effect>
+				<Grid ShowGridLines="False">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+	<!-- Configurações de efeitos e estilos comuns aos elementos deste item -->
+					<Grid.Effect>
+						<DropShadowEffect/>
+					</Grid.Effect>
+	<!-- Espera e Etapa -->
+					<Grid Grid.Column="0" Grid.Row="0" ShowGridLines="False">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="30"/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+	<!-- Legendas: -->
+						<Viewbox Grid.Column="0" Grid.Row="0" Margin="2,0,2,6">
+							<TextBlock Text="On Deck" ToolTip="Listagem do(s) Piloto(s) em espera (Deck)"/>
+						</Viewbox>
+						<Viewbox Grid.Column="1" Grid.Row="0" Margin="2,0,2,6" ToolTip="Pilotos da próxima etapa na corrida">
+							<DockPanel>
+								<TextBlock Text="Heat "/>
+								<TextBlock Name="NextHeatNumber_1"/>
+							</DockPanel>
+						</Viewbox>
+	<!-- Espera -->
+	<!-- Cria linhas coloridas -->
+						<StackPanel Grid.Column="0" Grid.Row="1" Margin="0,0,2,0">
+							<TextBlock Name="OnDeckNickname1_1" Background="Black" Foreground="Transparent"/>
+	<!-- *** Alterar de acordo com o numero de fendas *** -->
+							<TextBlock Name="OnDeckNickname2_1" Background="Black" Foreground="Transparent"/>
+							<TextBlock Name="OnDeckNickname3_1" Background="Black" Foreground="Transparent"/>
+	<!-- *** -->
+						</StackPanel>
+	<!-- Cria nomes centralizados -->
+						<StackPanel Grid.Column="0" Grid.Row="1">
+							<TextBlock Name="OnDeckNickname1_2" HorizontalAlignment="Center" FontWeight="Normal" TextTrimming="CharacterEllipsis"/>
+	<!-- *** Alterar de acordo com o numero de fendas *** -->
+							<TextBlock Name="OnDeckNickname2_2" HorizontalAlignment="Center" FontWeight="Normal" TextTrimming="CharacterEllipsis"/>
+							<TextBlock Name="OnDeckNickname3_2" HorizontalAlignment="Center" FontWeight="Normal" TextTrimming="CharacterEllipsis"/>
+	<!-- *** -->
+						</StackPanel>
+	<!-- Etapa -->
+	<!-- Cria linhas coloridas -->
+						<StackPanel Grid.Column="1" Grid.Row="1" Margin="2,0,0,0">
+							<TextBlock Name="NextHeatNickname1_1" Background="Black" Foreground="Transparent"/>
+	<!-- *** Alterar de acordo com o numero de fendas *** -->
+							<TextBlock Name="NextHeatNickname2_1" Background="Black" Foreground="Transparent"/>
+							<TextBlock Name="NextHeatNickname3_1" Background="Black" Foreground="Transparent"/>
+	<!-- *** -->
+						</StackPanel>
+	<!-- Cria nomes centralizados -->
+						<StackPanel Grid.Column="1" Grid.Row="1">
+							<TextBlock Name="NextHeatNickname1_2" HorizontalAlignment="Center" FontWeight="Normal" TextTrimming="CharacterEllipsis"/>
+	<!-- *** Alterar de acordo com o numero de fendas *** -->
+							<TextBlock Name="NextHeatNickname2_2" HorizontalAlignment="Center" FontWeight="Normal" TextTrimming="CharacterEllipsis"/>
+							<TextBlock Name="NextHeatNickname3_2" HorizontalAlignment="Center" FontWeight="Normal" TextTrimming="CharacterEllipsis"/>
+	<!-- *** -->
+						</StackPanel>
+						<Button Name="ViewHeats_2" Width="Auto" Height="Auto" Grid.Column="1" Grid.Row="1" Margin="5" Focusable="False" IsTabStop="False" Opacity="0" ToolTip="Clique aqui para ver todas as etapas da corrida"/>
+					</Grid>
+	<!-- Fim Espera e Etapa -->
+	<!-- Legendas da tabela -->
+					<Grid Grid.Column="0" Grid.Row="1" ShowGridLines="False">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="30"/>
+							<RowDefinition Height="18"/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="20"/>
+							<ColumnDefinition/>
+							<ColumnDefinition Width="50"/>
+							<ColumnDefinition Width="50"/>
+						</Grid.ColumnDefinitions>
+	<!-- Legendas -->
+						<Viewbox MaxHeight="25" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0">
+							<TextBlock Text="Season Race Leaders" ToolTip="Listagem dos pilotos com os melhores resultados na corrida"/>
+						</Viewbox>
+						<Viewbox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="0,0,0,2">
+							<TextBlock Text="Drivers"/>
+						</Viewbox>
+						<Viewbox Grid.Column="2" Grid.Row="1" Margin="0,0,0,2">
+							<TextBlock Text="Laps"/>
+						</Viewbox>
+						<Viewbox Grid.Column="3" Grid.Row="1" Margin="0,0,0,2">
+							<TextBlock Text="Best Lap"/>
+						</Viewbox>
+					</Grid>
+	<!-- Fim Legendas da tabela -->
+	<!-- Tabela -->
+					<DockPanel Grid.Column="0" Grid.Row="2" ToolTip="Use a 'roda' do mouse para ver o resultados dos demais pilotos">
+						<ScrollViewer VerticalScrollBarVisibility="Hidden">
+							<Grid ShowGridLines="False">
+								<Grid.RowDefinitions>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="20"/>
+									<ColumnDefinition/>
+									<ColumnDefinition Width="50"/>
+									<ColumnDefinition Width="50"/>
+								</Grid.ColumnDefinitions>
+	<!-- Configurações de efeitos e estilos comuns aos elementos deste item -->
+								<Grid.Resources>
+									<Style TargetType="TextBlock">
+										<Setter Property="Foreground" Value="Yellow"/>
+										<Setter Property="FontWeight" Value="Bold"/>
+									</Style>
+									<Style TargetType="Viewbox">
+										<Setter Property="Height" Value="20"/>
+										<Setter Property="Margin" Value="2,0,2,0"/>
+									</Style>
+									<Style TargetType="Label">
+										<Setter Property="Background" Value="DarkSlateGray"/>
+										<Setter Property="Content" Value=""/>
+									</Style>
+								</Grid.Resources>
+	<!-- Linhas CLARAS da tabela (Posições IMPARES) -->
+								<Label Grid.ColumnSpan="4" Grid.Row="0"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="2"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="4"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="6"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="8"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="10"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="12"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="14"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="16"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="18"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="20"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="22"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="24"/>
+	<!-- Linhas ESCURAS da tabela (Posições PARES) -->
+								<Label Grid.ColumnSpan="4" Grid.Row="1" Background="Black"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="3" Background="Black"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="5" Background="Black"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="7" Background="Black"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="9" Background="Black"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="11" Background="Black"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="13" Background="Black"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="15" Background="Black"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="17" Background="Black"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="19" Background="Black"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="21" Background="Black"/>
+								<Label Grid.ColumnSpan="4" Grid.Row="23" Background="Black"/>
+	<!-- Linha 1 -->
+								<Viewbox Grid.Column="0" Grid.Row="0">
+									<TextBlock Text=" 1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader1_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="0">
+									<TextBlock Name="Lap_RaceLeader1_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="0">
+									<TextBlock Name="BestLapTime_RaceLeader1_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 2 -->
+								<Viewbox Grid.Column="0" Grid.Row="1">
+									<TextBlock Text=" 2"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader2_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="1">
+									<TextBlock Name="Lap_RaceLeader2_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="1">
+									<TextBlock Name="BestLapTime_RaceLeader2_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 3 -->
+								<Viewbox Grid.Column="0" Grid.Row="2">
+									<TextBlock Text=" 3"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader3_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="2">
+									<TextBlock Name="Lap_RaceLeader3_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="2">
+									<TextBlock Name="BestLapTime_RaceLeader3_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 4 -->
+								<Viewbox Grid.Column="0" Grid.Row="3">
+									<TextBlock Text=" 4"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader4_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="3">
+									<TextBlock Name="Lap_RaceLeader4_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="3">
+									<TextBlock Name="BestLapTime_RaceLeader4_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 5 -->
+								<Viewbox Grid.Column="0" Grid.Row="4">
+									<TextBlock Text=" 5"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader5_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="4">
+									<TextBlock Name="Lap_RaceLeader5_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="4">
+									<TextBlock Name="BestLapTime_RaceLeader5_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 6 -->
+								<Viewbox Grid.Column="0" Grid.Row="5">
+									<TextBlock Text=" 6"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader6_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="5">
+									<TextBlock Name="Lap_RaceLeader6_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="5">
+									<TextBlock Name="BestLapTime_RaceLeader6_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 7 -->
+								<Viewbox Grid.Column="0" Grid.Row="6">
+									<TextBlock Text=" 7"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader7_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="6">
+									<TextBlock Name="Lap_RaceLeader7_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="6">
+									<TextBlock Name="BestLapTime_RaceLeader7_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 8 -->
+								<Viewbox Grid.Column="0" Grid.Row="7">
+									<TextBlock Text=" 8"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader8_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="7">
+									<TextBlock Name="Lap_RaceLeader8_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="7">
+									<TextBlock Name="BestLapTime_RaceLeader8_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 9 -->
+								<Viewbox Grid.Column="0" Grid.Row="8">
+									<TextBlock Text=" 9"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="8" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader9_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="8">
+									<TextBlock Name="Lap_RaceLeader9_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="8">
+									<TextBlock Name="BestLapTime_RaceLeader9_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 10 -->
+								<Viewbox Grid.Column="0" Grid.Row="9">
+									<TextBlock Text="10"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="9" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader10_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="9">
+									<TextBlock Name="Lap_RaceLeader10_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="9">
+									<TextBlock Name="BestLapTime_RaceLeader10_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 11 -->
+								<Viewbox Grid.Column="0" Grid.Row="10">
+									<TextBlock Text="11"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="10" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader11_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="10">
+									<TextBlock Name="Lap_RaceLeader11_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="10">
+									<TextBlock Name="BestLapTime_RaceLeader11_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 12 -->
+								<Viewbox Grid.Column="0" Grid.Row="11">
+									<TextBlock Text="12"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="11" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader12_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="11">
+									<TextBlock Name="Lap_RaceLeader12_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="11">
+									<TextBlock Name="BestLapTime_RaceLeader12_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 13 -->
+								<Viewbox Grid.Column="0" Grid.Row="12">
+									<TextBlock Text="13"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="12" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader13_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="12">
+									<TextBlock Name="Lap_RaceLeader13_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="12">
+									<TextBlock Name="BestLapTime_RaceLeader13_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 14 -->
+								<Viewbox Grid.Column="0" Grid.Row="13">
+									<TextBlock Text="14"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="13" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader14_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="13">
+									<TextBlock Name="Lap_RaceLeader14_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="13">
+									<TextBlock Name="BestLapTime_RaceLeader14_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 15 -->
+								<Viewbox Grid.Column="0" Grid.Row="14">
+									<TextBlock Text="15"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="14" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader15_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="14">
+									<TextBlock Name="Lap_RaceLeader15_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="14">
+									<TextBlock Name="BestLapTime_RaceLeader15_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 16 -->
+								<Viewbox Grid.Column="0" Grid.Row="15">
+									<TextBlock Text="16"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="15" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader16_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="15">
+									<TextBlock Name="Lap_RaceLeader16_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="15">
+									<TextBlock Name="BestLapTime_RaceLeader16_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 17 -->
+								<Viewbox Grid.Column="0" Grid.Row="16">
+									<TextBlock Text="17"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="16" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader17_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="16">
+									<TextBlock Name="Lap_RaceLeader17_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="16">
+									<TextBlock Name="BestLapTime_RaceLeader17_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 18 -->
+								<Viewbox Grid.Column="0" Grid.Row="17">
+									<TextBlock Text="18"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="17" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader18_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="17">
+									<TextBlock Name="Lap_RaceLeader18_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="17">
+									<TextBlock Name="BestLapTime_RaceLeader18_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 19 -->
+								<Viewbox Grid.Column="0" Grid.Row="18">
+									<TextBlock Text="19"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="18" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader19_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="18">
+									<TextBlock Name="Lap_RaceLeader19_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="18">
+									<TextBlock Name="BestLapTime_RaceLeader19_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 20 -->
+								<Viewbox Grid.Column="0" Grid.Row="19">
+									<TextBlock Text="20"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="19" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader20_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="19">
+									<TextBlock Name="Lap_RaceLeader20_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="19">
+									<TextBlock Name="BestLapTime_RaceLeader20_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 21 -->
+								<Viewbox Grid.Column="0" Grid.Row="20">
+									<TextBlock Text="21"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="20" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader21_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="20">
+									<TextBlock Name="Lap_RaceLeader21_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="20">
+									<TextBlock Name="BestLapTime_RaceLeader21_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 22 -->
+								<Viewbox Grid.Column="0" Grid.Row="21">
+									<TextBlock Text="22"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="21" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader22_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="21">
+									<TextBlock Name="Lap_RaceLeader22_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="21">
+									<TextBlock Name="BestLapTime_RaceLeader22_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 23 -->
+								<Viewbox Grid.Column="0" Grid.Row="22">
+									<TextBlock Text="23"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="22" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader23_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="22">
+									<TextBlock Name="Lap_RaceLeader23_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="22">
+									<TextBlock Name="BestLapTime_RaceLeader23_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 24 -->
+								<Viewbox Grid.Column="0" Grid.Row="23">
+									<TextBlock Text="24"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="23" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader24_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="23">
+									<TextBlock Name="Lap_RaceLeader24_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="23">
+									<TextBlock Name="BestLapTime_RaceLeader24_1" DataContext="'decimals':3"/>
+								</Viewbox>
+	<!-- Linha 25 -->
+								<Viewbox Grid.Column="0" Grid.Row="24">
+									<TextBlock Text="25"/>
+								</Viewbox>
+								<Viewbox Grid.Column="1" Grid.Row="24" HorizontalAlignment="Left" Stretch="None">
+									<TextBlock Name="Nickname_RaceLeader25_1"/>
+								</Viewbox>
+								<Viewbox Grid.Column="2" Grid.Row="24">
+									<TextBlock Name="Lap_RaceLeader25_1" DataContext="'decimals':0"/>
+								</Viewbox>
+								<Viewbox Grid.Column="3" Grid.Row="24">
+									<TextBlock Name="BestLapTime_RaceLeader25_1" DataContext="'decimals':3"/>
+								</Viewbox>
+							</Grid>
+						</ScrollViewer>
+					</DockPanel>
+	<!-- Fim Tabela -->
+				</Grid>
+			</Border>
+	<!-- Fim Informações -->
+	<!-- Botões: Salvar + Pular + Reiniciar + Modificar -->
+			<DockPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center">
+				<Button Name="Save_2" Content="Save" DataContext="'key':'S','modifier':'Alt'" ToolTip="Salvar esta corrida">
+					<Button.Effect>
+						<DropShadowEffect/>
+					</Button.Effect>
+				</Button>
+				<Button Name="DeferHeat_2" CommandParameter="0" Content="Defer Heat" DataContext="'key':'D','modifier':'Control'" ToolTip="Adiar esta etapa da corrida. Ela será realizada no final">
+					<Button.Effect>
+						<DropShadowEffect/>
+					</Button.Effect>
+				</Button>
+				<Button Name="RestartHeat_2" Content="Restart Heat" DataContext="'key':'R','modifier':'Control'" ToolTip="Reiniciar esta etapa da corrida">
+					<Button.Effect>
+						<DropShadowEffect/>
+					</Button.Effect>
+				</Button>
+				<Button Name="ModifyHeats_2" Content="Modify Heats" DataContext="'key':'H','modifier':'Control'" ToolTip="Modificar esta corrida">
+					<Button.Effect>
+						<DropShadowEffect/>
+					</Button.Effect>
+				</Button>
+			</DockPanel>
+	<!-- Botão Resultado -->
+			<Button Name="Window_11" Grid.Column="1" Grid.Row="3" CommandParameter="data/xaml/NoviSlot-RaceResults.xaml" Content="Race Results" ToolTip="Mostrar o resultado da corrida">
+				<Button.Effect>
+					<DropShadowEffect/>
+				</Button.Effect>
+			</Button>
+	<!-- Fim Botões -->
+		</Grid>
+	</Viewbox>
+</Window>
