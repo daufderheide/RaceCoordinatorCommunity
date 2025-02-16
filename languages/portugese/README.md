@@ -1,7 +1,7 @@
 # Creator (March 2017)
-Novi Slot (I think)
-https://novislot.blogspot.com/2017/01/RC-Janelas.de.corridas.html
-http://novislot.ueuo.com/download.html
+Novi Slot (I think)  
+https://novislot.blogspot.com/2017/01/RC-Janelas.de.corridas.html  
+http://novislot.ueuo.com/download.html  
 
 # Info
 This is a translation of into Portugese.  It's done as a "custom.json" file to make it easier to use.  
