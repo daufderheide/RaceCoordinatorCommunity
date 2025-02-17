@@ -3,7 +3,7 @@ TopDown and CHORC
 
 # Info
 * 4 Lane Race Day screen
-* 4 Lane Race Day screen with large timing and black header
+* 4 Lane Race Day screen with large timing
 * 4 Lane Practice
 
 ## _RD
@@ -17,8 +17,8 @@ To find your <install_dir> simply go to the Race Day Setup screen and use the Fi
 [Race Day 4 Lane](./xaml/CHORCRaceDay_4L.xaml)
 
 ## Race Day (Large timing)
-![alt text](./screenshot_racedaylargeblack_4l.png)
-[Race Day 4 Lane Large Black](./xaml/CHORCRaceDayLargeBlack_4L.xaml)
+![alt text](./screenshot_racedaylargeblack.png)
+[Race Day Large 4 Lane](./xaml/CHORCRaceDayLargeBlack_4L.xaml)
 
 ## Practice
 ![alt text](./screenshot_practice.png)
