@@ -1,5 +1,5 @@
 # Creator (February 2023)
-wizardgm
+bournemouth slot car club
 
 # Info
 4 Lane Race Day screen  
