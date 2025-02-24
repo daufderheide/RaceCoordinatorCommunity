@@ -1,0 +1,1262 @@
+<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="RaceResultsLaps" Height="1000" Width="1280" WindowState="Maximized" Background="Transparent" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Brush x:Key="LabelColor">#FFFFFFFF</Brush>
+        <Brush x:Key="ValueColor">#FFFFFFFF</Brush>
+
+        <Brush x:Key="RSLabelColor">#FFFFFFFF</Brush>
+        <Brush x:Key="RSValueColor">#FFFFFFFF</Brush>
+        <Brush x:Key="RSBorderBrush">#FFFFFFFF</Brush>
+
+
+        <Brush x:Key="RSTopGridBackground">#00000000</Brush>
+        <Brush x:Key="RSTableLabelBackground">#00000000</Brush>
+        <Brush x:Key="RSTableCellBackground">#00000000</Brush>
+
+    </Window.Resources>
+
+    <Viewbox Stretch="Fill">
+<Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="75"/>
+        <RowDefinition Height="46"/>
+        <RowDefinition Height="560"/>
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+
+<Grid Grid.Row="0">
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="400" />
+        <ColumnDefinition Width="700"/>
+    </Grid.ColumnDefinitions>
+
+
+<Viewbox Stretch="Fill" Grid.Column="0">
+    <StackPanel Grid.Column="0" VerticalAlignment="Top" Background="Transparent" >
+        <Viewbox Margin="5,0,25,0" Stretch="None">
+<!--            <Image Name="TrackImage_1" VerticalAlignment="Center" Margin="15,0,0,0" Height="100" StretchDirection="Both" MaxWidth="300" /> -->
+        </Viewbox>
+        <Viewbox MaxWidth="400"  MaxHeight="60" MinHeight="60">
+            <Label Margin="5,0,25,0" Name="TrackName_1" VerticalAlignment="Top" Foreground="Lime" FontSize="30" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalContentAlignment="Top" Padding="2" FontWeight="Bold" FontStyle="Italic" />
+        </Viewbox>
+        <Viewbox MaxWidth="400" MaxHeight="45">
+            <Label Background="Transparent" BorderBrush="Transparent" BorderThickness="2" FontSize="25" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Name="RaceName_1" Foreground="Dodgerblue" FontWeight="Bold"></Label>
+        </Viewbox>
+    </StackPanel>
+</Viewbox>
+
+<!-- Class and race records - DGM March 2023 -->
+<StackPanel Orientation="Vertical" Background="Transparent" Grid.Column="1" VerticalAlignment="Center">
+    <TextBlock FontSize="20" Foreground="Tomato" Text="ClassRecordLap" FontWeight="Bold" Margin="75, 0, 5, 0" />
+    <DockPanel LastChildFill="False" Margin="25, 0, 5, 0">
+            <TextBlock FontSize="14" Name="RecordName_1" DockPanel.Dock="Left" Margin="75,0,10,0" Foreground="Tomato" />
+            <TextBlock FontSize="14" Foreground="Tomato" Text="("/>
+            <TextBlock FontSize="14" Name="RecordNickname_1" Foreground="Tomato" />
+            <TextBlock FontSize="14" Foreground="Tomato" Text="): "/>
+            <TextBlock FontSize="14" Name="RecordTime_1" Foreground="Tomato"  DataContext="'decimals':3"/>
+        </DockPanel>
+</StackPanel>
+
+
+<StackPanel Orientation="Vertical" Background="{StaticResource RSTopGridBackground}" Grid.Column="1" VerticalAlignment="Center">
+    <TextBlock FontSize="20" Foreground="Lime" Margin="300, 0, 5, 0" Text="Current Race Best Lap" FontWeight="Bold"/>
+        <DockPanel  LastChildFill="False" Margin="10, 0, 5, 0">
+            <TextBlock FontSize="14" Name="BestName_1" DockPanel.Dock="Left" Margin="300,0,5,0" Foreground="Lime"/>
+            <TextBlock FontSize="14" Foreground="Lime" Text="("/>
+            <TextBlock FontSize="14" Name="BestNickname_1" Foreground="Lime" />
+            <TextBlock FontSize="14" Foreground="Lime" Text="): "/>
+            <TextBlock FontSize="14" Name="BestTime_1" Foreground="Lime"  DataContext="'decimals':3"/>
+        </DockPanel>
+</StackPanel>
+
+</Grid>
+<!--Labels for Column Headers-->
+<StackPanel Grid.Row="1" Width="1024" Height="40" Margin="15,0,10,0" Orientation="Horizontal" HorizontalAlignment="Left">
+<!--Pos-->          <Label Width="75"   Background="Transparent" BorderBrush="Transparent" BorderThickness="1" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Pos" Foreground="White" FontStyle="Normal" FontWeight="Bold" />
+<!--Driver-->       <Label Width="275"  Background="Transparent" BorderBrush="Transparent" BorderThickness="1" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Driver" Foreground="White" FontStyle="Normal" FontWeight="Bold" />
+<!--Laps-->         <Label Width="200"  Background="Transparent" BorderThickness="1" FontSize="25" HorizontalContentAlignment="Center"           VerticalContentAlignment="Center" Content="Laps" Foreground="White" FontStyle="Normal" FontWeight="Bold" />
+<!--Average-->      <Label Width="110"  Background="Transparent" BorderThickness="1" FontSize="24" HorizontalContentAlignment="Center"           VerticalContentAlignment="Center" Foreground="White" Content="Avg Lap" FontStyle="Normal" FontWeight="Bold" />
+<!--Best-->         <Label Width="130"  Background="Transparent" BorderThickness="1" FontSize="24" HorizontalContentAlignment="Center"           VerticalContentAlignment="Center" Foreground="White" Content="Best Lap" FontWeight="Bold" FontStyle="Normal" />
+<!--Gap to Prev-->  <Label Width="225"  Background="Transparent" BorderBrush="Transparent" BorderThickness="1" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" Content="Gap to Leader" FontStyle="Normal" FontWeight="Bold" />
+</StackPanel>
+<!--End of labels for Column Headers-->
+
+<ScrollViewer Grid.Row="2" Background="Transparent" Margin="15,0,10,0" VerticalAlignment="Top" ClipToBounds="True" CanContentScroll="True">
+    <StackPanel Orientation="Vertical">
+
+<!--  Driver Information.
+      Increased to 28 Driver display for FPR Grp-C enduro - May 2018
+      Dennis M, 23 April 2018  -->
+
+
+<!--Row for first position racer-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="Transparent">
+        <Grid Width="75">
+            <Label Name="Pos1_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                                <Label Name="Pos1_1" Content=" 1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader1_2" Background="Gold" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader1_1" Foreground="Black" Background="Transparent" BorderBrush="Transparent" FontSize="45" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader1_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader1_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader1_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader1_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader1_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader1_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader1_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader1_1" Content="" Foreground="Transparent" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for first -->
+
+<!--Row for racer position 2-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos2_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos2_1" Content=" 2" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader2_2" Background="Silver" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader2_1" Foreground="Black" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader2_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader2_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader2_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader2_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader2_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader2_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader2_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader2_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for racer position 2-->
+
+<!--Row for racer position 3_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos3_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos3_1" Content=" 3" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader3_2" Background="Sienna" BorderBrush="Transparent"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader3_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader3_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader3_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader3_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader3_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader3_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader3_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader3_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader3_1" Content=" " Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for racer position 3_-->
+
+<!--Row for racer position 4_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos4_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos4_1" Content=" 4" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader4_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader4_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader4_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader4_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader4_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader4_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader4_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader4_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader4_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader4_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for racer position 4_-->
+
+<!--Row for racer position 5_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos5_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos5_1" Content=" 5" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader5_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader5_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader5_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader5_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader5_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader5_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader5_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader5_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader5_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader5_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for racer position 5_-->
+
+<!--Row for racer position 6_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos6_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos6_1" Content=" 6" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader6_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader6_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader6_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader6_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader6_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader6_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader6_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader6_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader6_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader6_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+    <!--End of row for racer position 6_-->
+<!--Row for racer position 7_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos7_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos7_1" Content=" 7" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader7_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader7_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader7_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader7_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader7_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader7_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader7_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader7_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader7_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader7_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+    <!--End of row for racer position 7_-->
+<!--Row for racer position 8_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos8_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos8_1" Content=" 8" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader8_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader8_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader8_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader8_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader8_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader8_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader8_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader8_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader8_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader8_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+    <!--End of row for racer position 8_-->
+<!--Row for racer position 9_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos9_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos9_1" Content=" 9" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader9_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader9_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader9_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader9_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader9_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader9_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader9_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader9_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader9_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader9_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+    <!--End of row for racer position 9_-->
+<!--Row for racer position 10_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos10_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos10_1" Content="10" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader10_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader10_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader10_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader10_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader10_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader10_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader10_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader10_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader10_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader10_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+    <!--End of row for racer position 10_-->
+<!--Row for racer position 11_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos11_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos11_1" Content="11" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader11_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader11_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader11_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader11_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader11_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader11_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader11_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader11_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader11_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader11_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+    <!--End of row for racer position 11_-->
+<!--Row for racer position 12_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos12_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos12_1" Content="12" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader12_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader12_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader12_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader12_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader12_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader12_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader12_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader12_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader12_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader12_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+    <!--End of row for racer position 12_-->
+<!--Row for racer position 13_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos13_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos13_1" Content="13" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader13_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader13_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader13_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader13_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader13_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader13_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader13_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader13_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader13_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader13_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+    <!--End of row for racer position 13_-->
+    <!--Row for racer position 14_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos14_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos14_1" Content="14" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader14_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader14_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader14_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader14_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader14_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader14_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader14_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader14_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader14_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader14_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+    <!--End of row for racer position 14_-->
+<!--Row for racer position 15_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos15_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos15_1" Content="15" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader15_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader15_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader15_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader15_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader15_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader15_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader15_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader15_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader15_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader15_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+    <!--End of row for racer position 15_-->
+<!--Row for racer position 16_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos16_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos16_1" Content="16" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader16_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader16_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader16_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader16_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader16_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader16_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader16_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader16_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader16_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader16_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+    <!--End of row for racer position 16_-->
+<!--Row for racer position 17_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos17_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos17_1" Content="17" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader17_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader17_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader17_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader17_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader17_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader17_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader17_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader17_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader17_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader17_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+    <!--End of row for racer position 17_-->
+<!--Row for racer position 18_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos18_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos18_1" Content="18" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader18_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader18_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader18_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader18_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader18_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader18_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader18_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader18_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader18_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader18_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+    <!--End of row for racer position 18_-->
+<!--Row for racer position 19_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos19_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos19_1" Content="19" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader19_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader19_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader19_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader19_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader19_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader19_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader19_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader19_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader19_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader19_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for racer position 19_-->
+
+<!--Row for racer position 20_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos20_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos20_1" Content="20" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader20_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader20_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader20_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader20_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader20_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader20_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader20_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader20_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader20_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader20_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for racer position 20_-->
+
+<!--Row for racer position 21_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos21_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos21_1" Content="21" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader21_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader21_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader21_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader21_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader21_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader21_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader21_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader21_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader21_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader21_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for racer position 21_-->
+
+<!--Row for racer position 22_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos22_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos22_1" Content="22" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader22_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader22_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader22_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader22_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader22_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader22_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader22_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader22_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader22_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader22_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for racer position 22_-->
+
+<!--Row for racer position 23_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos23_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos23_1" Content="23" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader23_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader23_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader23_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader23_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader23_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader23_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader23_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader23_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader23_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader23_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for racer position 23_-->
+
+<!--Row for racer position 24_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos24_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos24_1" Content="24" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader24_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader24_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader24_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader24_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader24_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader24_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader24_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader24_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader24_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader24_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for racer position 24_-->
+
+<!--Row for racer position 25_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos25_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos25_1" Content="25" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader25_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader25_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader25_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader25_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader25_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader25_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader25_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader25_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader25_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader25_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for racer position 25_-->
+
+<!--Row for racer position 26_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos26_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos26_1" Content="26" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader26_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader26_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader26_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader26_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader26_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader26_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader26_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader26_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader26_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader26_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for racer position 26_-->
+
+<!--Row for racer position 27_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos27_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos27_1" Content="27" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader27_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader27_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader27_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader27_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader27_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader27_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader27_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader27_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader27_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader27_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for racer position 27_-->
+
+<!--Row for racer position 28_-->
+    <StackPanel Orientation="Horizontal" Height="40" Background="{StaticResource RSTableCellBackground}">
+        <Grid Width="75">
+            <Label Name="Pos28_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                <Label Name="Pos28_1" Content="28" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="275">
+            <Label Name="Nickname_RaceLeader28_2" Background="Transparent" BorderBrush="White"  BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox MaxWidth="275"  MaxHeight="40" MinHeight="40">
+                <Label Name="Nickname_RaceLeader28_1" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="40" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+            </Viewbox>
+        </Grid>
+        <Grid Width="200">
+            <Label Name="Lap_RaceLeader28_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="Lap_RaceLeader28_1" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="110">
+            <Label Name="AverageTime_RaceLeader28_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="AverageTime_RaceLeader28_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="130">
+            <Label Name="BestLapTime_RaceLeader28_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="BestLapTime_RaceLeader28_1" MaxWidth="110" Foreground="White" Background="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+        <Grid Width="250">
+            <Label Name="GapLeader_RaceLeader28_2" Background="Transparent" BorderBrush="White" BorderThickness="1" Foreground="Transparent"/>
+            <Viewbox StretchDirection="DownOnly">
+                <Label Name="GapLeader_RaceLeader28_1" Content="" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="30" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" DataContext="'decimals':3"/>
+            </Viewbox>
+        </Grid>
+    </StackPanel>
+<!--End of row for racer position 28_-->
+
+
+
+
+</StackPanel>
+
+            </ScrollViewer>
+        </Grid>
+    </Viewbox>
+</Window>
+
+<!--
+        Hopefully this fully commented file helped you to get at least a start on designing your own screen for Race Coordinator. The best way to begin is just like we demonstrated here, take an existing file and make a few small modifications.
+        There are so many ways you an modify RC's User Interface, the lessons shown here are minor compared to the radical changes you could make with a little understanding of the xaml language. If you wish to get really creative, be sure to
+        visit http://msdn.microsoft.com/en-us/library where you can search specific topics regarding xaml and interacting with WPF applications like RC. There are many other websites that can help spawn crazy yet completely "do-able" ideas, as
+        always remember that google is your friend...just be sure to share your ideas with other RC users so everyone can enjoy them! Good luck and happy racing!
+
+         -Gene Stalnecker aka "SwamperGene"
+
+24 April 2018 - Dennis M - aka Wizardgm on Auslot forum
+   April 2021 - minor updates
+     This screen displays 28 Drivers
+added colour and Class Record Lap - Feb 2023 DGM
+
+
+
+
+
+
+Touched to update the date stamp - 20 Feb 2025
+    -->
