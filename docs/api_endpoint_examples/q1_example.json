@@ -1,0 +1,19 @@
+ {
+    "tid": "m0",
+    "r": [
+      {
+        "q": 1,
+        "n": "DG Espanha",
+        "l": [
+          { "c": "Red", "fc": "Black", "l": 66 },
+          { "c": "White", "fc": "Black", "l": 66 },
+          { "c": "Green", "fc": "White", "l": 66 },
+          { "c": "Orange", "fc": "Black", "l": 66 },
+          { "c": "#0080FF", "fc": "White", "l": 66 },
+          { "c": "Yellow", "fc": "Black", "l": 66 },
+          { "c": "Purple", "fc": "White", "l": 66 },
+          { "c": "Black", "fc": "White", "l": 66 }
+        ]
+      }
+    ]
+  }
