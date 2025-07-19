@@ -1,3 +1,9 @@
+# Creator (June 2025)
+@gersonfer ( slotforum.com )
+
+# Info
+This is another full translation of into Brazilian Portuguese. It's done as a "br_analog.json" but can be used as "custom.json" to make it easier to use. The Installation can be done by following the same instructions as the version below. 
+
 # Creator (March 2017)
 Novi Slot (I think)  
 https://novislot.blogspot.com/2017/01/RC-Janelas.de.corridas.html  
