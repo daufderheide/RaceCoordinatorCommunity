@@ -1,0 +1,22 @@
+ {
+    "tid": "m0",
+    "r": [
+      {
+        "q": 2,
+        "n": "DG 6 hs SPA",
+        "rlt": { "n": "Jundiai Team", "nn": "Jundiai Team", "v": 6.657948, "d": "2025-05-31T16:43:59" },
+        "rs": { "n": "RIB Team", "nn": "RIB Team", "v": 50, "d": "2025-06-01T19:02:43" },
+        "blt": { "n": "TOP Team", "nn": "TOP Team", "v": 7.28980894, "d": "" },
+        "d": [
+          { "n": "Valinhos Team", "nn": "Valinhos Team", "s": 1, "did": 88, "h": [0,1,2,3,4,5,6,7] },
+          { "n": "TOP Team", "nn": "TOP Team", "s": 2, "did": 90, "h": [0,1,2,3,4,5,6,7] },
+          { "n": "DG Team", "nn": "DG Team", "s": 3, "did": 85, "h": [0,1,2,3,4,5,6,7] },
+          { "n": "DGV10 Team", "nn": "DGV10 Team", "s": 4, "did": 89, "h": [0,1,2,3,4,5,6,7] },
+          { "n": "RIB Team", "nn": "RIB Team", "s": 5, "did": 91, "h": [0,1,2,3,4,5,6,7] },
+          { "n": "DUMA Tem", "nn": "DUMA Team", "s": 6, "did": 92, "h": [0,1,2,3,4,5,6,7] },
+          { "n": "PUMP Team", "nn": "PUMP Team", "s": 7, "did": 93, "h": [0,1,2,3,4,5,6,7] },
+          { "n": "PAIN Team", "nn": "PAIN Team", "s": 8, "did": 94, "h": [0,1,2,3,4,5,6,7] }
+        ]
+      }
+    ]
+  }
