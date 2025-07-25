@@ -12,9 +12,6 @@ Many of the files in this package can be directly copied over the original RC fi
 ## Classic
 ![alt text](./classic/Fuel_10.png)
 
-## Stewart-Warner w/low fuel indicator
-![alt text](./SW-Red-Needle/Fuel_2.png)
-
 ## Digital
 ![alt text](./digital/Fuel_5.png)
 
