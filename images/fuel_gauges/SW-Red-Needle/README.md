@@ -6,7 +6,7 @@ This fuel gauge provides a realistic appearance with high contrast for easy view
 
 ## Stewart-Warner fuel gauge
 Three images to illustrate the primary states of the gauge
-![alt text](./SW-Red-Needle/Fuel_15.png)
-![alt text](./SW-Red-Needle/Fuel_5.png)
-![alt text](./SW-Red-Needle/Fuel_0.png)
+![alt text](./Fuel_15.png)
+![alt text](./Fuel_5.png)
+![alt text](./Fuel_0.png)
 
