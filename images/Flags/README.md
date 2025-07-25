@@ -7,11 +7,11 @@ Alternative flag pack.  It is suggested that these flag files be placed in a sep
 # Waving Flag Pack
 
 ## USA Flag
-![alt text](./analog/usa-flag.png)
+![alt text](./Waving_Flags/usa-flag.png)
 
 ## Racing Flags
-![alt text](./green_flag.png)
-![alt text](./yellow_flag.png)
-![alt text](./white_flag.png)
-![alt text](./red_flag.png)
-![alt text](./checkered_flag.png)
+![alt text](./Waving_Flags/green_flag.png)
+![alt text](./Waving_Flags/yellow_flag.png)
+![alt text](./Waving_Flags/white_flag.png)
+![alt text](./Waving_Flags/red_flag.png)
+![alt text](./Waving_Flags/checkered_flag.png)
