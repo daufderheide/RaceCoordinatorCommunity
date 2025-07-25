@@ -14,5 +14,5 @@ To find your <install_dir> simply go to the Race Day Setup screen and use the Fi
 
 # Example: 4L_cnl_fuel
 Note: the fuel gauge will display a Low Fuel indicator and yellow region when the the remaining fuel quantity reaches approximately 1/4 tank.
-![alt text](./screenshot_SBB_4L_cnl_low_fuel.png)
+![alt text](./screenshot_SBB_4L_cnl_low_fuel.jpg)
 
