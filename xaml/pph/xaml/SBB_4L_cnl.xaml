@@ -393,7 +393,7 @@
                                 <RowDefinition Height="43" />
                             </Grid.RowDefinitions>
                             
-                            <Viewbox MaxWidth="46" MaxHeight="39" Grid.Row="1" Grid.Column="1">
+                            <Viewbox MaxWidth="46" MaxHeight="39" Grid.Row="2" Grid.Column="1">
                                 <Image Stretch="Uniform" Name="DriftLap_Position1_1"/>
                             </Viewbox>
                         </Grid>
@@ -501,7 +501,7 @@
                                 <RowDefinition Height="43" />
                             </Grid.RowDefinitions>
                             
-                            <Viewbox MaxWidth="46" MaxHeight="39" Grid.Row="3" Grid.Column="1">
+                            <Viewbox MaxWidth="46" MaxHeight="39" Grid.Row="2" Grid.Column="1">
                                 <Image Stretch="Uniform" Name="DriftLap_Position3_1"/>
                             </Viewbox>
                         </Grid>
@@ -555,7 +555,7 @@
                                 <RowDefinition Height="43" />
                             </Grid.RowDefinitions>
                             
-                            <Viewbox MaxWidth="46" MaxHeight="39" Grid.Row="4" Grid.Column="1">
+                            <Viewbox MaxWidth="46" MaxHeight="39" Grid.Row="2" Grid.Column="1">
                                 <Image Stretch="Uniform" Name="DriftLap_Position4_1"/>
                             </Viewbox>
                         </Grid>

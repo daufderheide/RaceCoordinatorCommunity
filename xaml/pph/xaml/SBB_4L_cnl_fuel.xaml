@@ -357,12 +357,12 @@
                             <RowDefinition Height="100" />
                         </Grid.RowDefinitions>
                         <!--- WriteColumnLabels -->
-                        <Label Grid.Column="0" Grid.Row="0" Background="{StaticResource RSTableLabelBackground}" BorderBrush="Transparent" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-15" Content="Name" Foreground="{StaticResource RSLabelColor}" FontStyle="Normal" FontWeight="Bold" />
-                        <Label Grid.Column="1" Grid.Row="0" Background="{StaticResource RSTableLabelBackground}" BorderBrush="Transparent" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-15" Content="Fuel" Foreground="{StaticResource RSLabelColor}" FontStyle="Normal" FontWeight="Bold" />
-                        <Label Grid.Column="2" Grid.Row="0" Background="{StaticResource RSTableLabelBackground}" BorderBrush="Transparent" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-15" Content="Lap" Foreground="{StaticResource RSLabelColor}" FontStyle="Normal" FontWeight="Bold" />
-                        <Label Grid.Column="3" Grid.Row="0" Background="{StaticResource RSTableLabelBackground}" BorderBrush="Transparent" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-15" Content="Lap Time" Foreground="{StaticResource RSLabelColor}" FontStyle="Normal" FontWeight="Bold" />
-                        <Label Grid.Column="4" Grid.Row="0" Background="{StaticResource RSTableLabelBackground}" BorderBrush="Transparent" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-15" Content="Gap" Foreground="{StaticResource RSLabelColor}" FontStyle="Normal" FontWeight="Bold" />
-                        <Label Grid.Column="5" Grid.Row="0" Background="{StaticResource RSTableLabelBackground}" BorderBrush="Transparent" BorderThickness="1" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-15" Content="Best Lap" Foreground="{StaticResource RSLabelColor}" FontStyle="Normal" FontWeight="Bold" />
+                        <Label Grid.Column="0" Grid.Row="0" Background="{StaticResource RSTableLabelBackground}" BorderBrush="Transparent" BorderThickness="1" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-15" Content="Name" Foreground="{StaticResource RSLabelColor}" FontStyle="Normal" FontWeight="Bold" />
+                        <Label Grid.Column="1" Grid.Row="0" Background="{StaticResource RSTableLabelBackground}" BorderBrush="Transparent" BorderThickness="1" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-15" Content="Fuel" Foreground="{StaticResource RSLabelColor}" FontStyle="Normal" FontWeight="Bold" />
+                        <Label Grid.Column="2" Grid.Row="0" Background="{StaticResource RSTableLabelBackground}" BorderBrush="Transparent" BorderThickness="1" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-15" Content="Lap" Foreground="{StaticResource RSLabelColor}" FontStyle="Normal" FontWeight="Bold" />
+                        <Label Grid.Column="3" Grid.Row="0" Background="{StaticResource RSTableLabelBackground}" BorderBrush="Transparent" BorderThickness="1" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-15" Content="Lap Time" Foreground="{StaticResource RSLabelColor}" FontStyle="Normal" FontWeight="Bold" />
+                        <Label Grid.Column="4" Grid.Row="0" Background="{StaticResource RSTableLabelBackground}" BorderBrush="Transparent" BorderThickness="1" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-15" Content="Gap" Foreground="{StaticResource RSLabelColor}" FontStyle="Normal" FontWeight="Bold" />
+                        <Label Grid.Column="5" Grid.Row="0" Background="{StaticResource RSTableLabelBackground}" BorderBrush="Transparent" BorderThickness="1" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-15" Content="Best Lap" Foreground="{StaticResource RSLabelColor}" FontStyle="Normal" FontWeight="Bold" />
                         <!--- WriteRows -->
                         
 <!-- Row 1, Column 0 - Name -->
@@ -407,7 +407,7 @@
                                 <RowDefinition Height="43" />
                             </Grid.RowDefinitions>
                             
-                            <Viewbox MaxWidth="46" MaxHeight="39" Grid.Row="1" Grid.Column="2">
+                            <Viewbox MaxWidth="46" MaxHeight="39" Grid.Row="2" Grid.Column="1">
                                 <Image Stretch="Uniform" Name="DriftLap_Position1_1"/>
                             </Viewbox>
                         </Grid>
@@ -473,7 +473,7 @@
                                 <RowDefinition Height="43" />
                             </Grid.RowDefinitions>
                             
-                            <Viewbox MaxWidth="46" MaxHeight="39" Grid.Row="2" Grid.Column="2">
+                            <Viewbox MaxWidth="46" MaxHeight="39" Grid.Row="2" Grid.Column="1">
                                 <Image Stretch="Uniform" Name="DriftLap_Position2_1"/>
                             </Viewbox>
                         </Grid>
@@ -539,7 +539,7 @@
                                 <RowDefinition Height="43" />
                             </Grid.RowDefinitions>
                             
-                            <Viewbox MaxWidth="46" MaxHeight="39" Grid.Row="3" Grid.Column="2">
+                            <Viewbox MaxWidth="46" MaxHeight="39" Grid.Row="2" Grid.Column="1">
                                 <Image Stretch="Uniform" Name="DriftLap_Position3_1"/>
                             </Viewbox>
                         </Grid>
@@ -605,7 +605,7 @@
                                 <RowDefinition Height="43" />
                             </Grid.RowDefinitions>
                             
-                            <Viewbox MaxWidth="46" MaxHeight="39" Grid.Row="4" Grid.Column="2">
+                            <Viewbox MaxWidth="46" MaxHeight="39" Grid.Row="2" Grid.Column="1">
                                 <Image Stretch="Uniform" Name="DriftLap_Position4_1"/>
                             </Viewbox>
                         </Grid>
