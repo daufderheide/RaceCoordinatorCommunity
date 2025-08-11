@@ -1,0 +1,118 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Next Heat"
+    Width="275"
+    Height="155"
+    ResizeMode="CanResize"
+    Background="Black"
+    SizeToContent="Manual"
+    WindowStartupLocation="CenterScreen"
+    >
+
+    <!-- Load Theme Information -->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="2020ThemeDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <!-- End Load Theme Information -->
+
+    <Viewbox Stretch="Fill">
+        <Grid Background="{StaticResource brushSecondary}" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <!-- This first row is hardcoded, it's the header row, the rest of the rows should equal the number of lanes this file is for -->
+                <RowDefinition Height="50" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!-- ********************** -->
+            <!-- *       Header       * -->
+            <!-- ********************** -->
+            <Viewbox Grid.Column="0" Grid.Row="0" MaxHeight="50" MaxWidth="250" >
+            <DockPanel LastChildFill="True" HorizontalAlignment="Center">
+                <Label Content="Heat " />
+                <Label Name="NextHeatNumber_1" />
+            </DockPanel>
+            </Viewbox>
+
+            <!-- ********************** -->
+            <!-- *    Lane 1 Start    * -->
+            <!-- ********************** -->
+            <Label Name="NextHeatNickname1_1" Grid.Column="0" Grid.Row="1" Style="{StaticResource laneData}" />
+            <Viewbox Grid.Column="0" Grid.Row="1" MaxHeight="50" MaxWidth="250" >
+                <Label Name="NextHeatNickname1_2" Style="{StaticResource laneDataLayer2}" />
+            </Viewbox>
+            <!-- ********************** -->
+            <!-- *    Lane 1 End      * -->
+            <!-- ********************** -->
+
+            <!-- ********************** -->
+            <!-- *    Lane 2 Start    * -->
+            <!-- ********************** -->
+            <Label Name="NextHeatNickname2_1" Grid.Column="0" Grid.Row="2" Style="{StaticResource laneData}" />
+            <Viewbox Grid.Column="0" Grid.Row="2" MaxHeight="50" MaxWidth="250" >
+                <Label Name="NextHeatNickname2_2" Style="{StaticResource laneDataLayer2}" />
+            </Viewbox>
+            <!-- ********************** -->
+            <!-- *    Lane 2 End      * -->
+            <!-- ********************** -->
+
+            <!-- ********************** -->
+            <!-- *    Lane 3 Start    * -->
+            <!-- ********************** -->
+            <Label Name="NextHeatNickname3_1" Grid.Column="0" Grid.Row="3" Style="{StaticResource laneData}" />
+            <Viewbox Grid.Column="0" Grid.Row="3" MaxHeight="50" MaxWidth="250" >
+                <Label Name="NextHeatNickname3_2" Style="{StaticResource laneDataLayer2}" />
+            </Viewbox>
+            <!-- ********************** -->
+            <!-- *    Lane 3 End      * -->
+            <!-- ********************** -->
+
+            <!-- ********************** -->
+            <!-- *    Lane 4 Start    * -->
+            <!-- ********************** -->
+            <Label Name="NextHeatNickname4_1" Grid.Column="0" Grid.Row="4" Style="{StaticResource laneData}" />
+            <Viewbox Grid.Column="0" Grid.Row="4" MaxHeight="50" MaxWidth="250" >
+                <Label Name="NextHeatNickname4_2" Style="{StaticResource laneDataLayer2}" />
+            </Viewbox>
+            <!-- ********************** -->
+            <!-- *    Lane 4 End      * -->
+            <!-- ********************** -->
+
+            <!-- ********************** -->
+            <!-- *    Lane 5 Start    * -->
+            <!-- ********************** -->
+            <Label Name="NextHeatNickname5_1" Grid.Column="0" Grid.Row="5" Style="{StaticResource laneData}" />
+            <Viewbox Grid.Column="0" Grid.Row="5" MaxHeight="50" MaxWidth="250" >
+                <Label Name="NextHeatNickname5_2" Style="{StaticResource laneDataLayer2}" />
+            </Viewbox>
+            <!-- ********************** -->
+            <!-- *    Lane 5 End      * -->
+            <!-- ********************** -->
+
+            <!-- ********************** -->
+            <!-- *    Lane 6 Start    * -->
+            <!-- ********************** -->
+            <Label Name="NextHeatNickname6_1" Grid.Column="0" Grid.Row="6" Style="{StaticResource laneData}" />
+            <Viewbox Grid.Column="0" Grid.Row="6" MaxHeight="50" MaxWidth="250" >
+                <Label Name="NextHeatNickname6_2" Style="{StaticResource laneDataLayer2}" />
+            </Viewbox>
+            <!-- ********************** -->
+            <!-- *    Lane 6 End      * -->
+            <!-- ********************** -->
+
+
+        </Grid>
+    </Viewbox>
+</Window>

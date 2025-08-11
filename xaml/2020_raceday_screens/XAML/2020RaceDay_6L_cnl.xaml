@@ -1,0 +1,786 @@
+<!--
+.SYNOPSIS
+    Updated Race Day screen
+.DESCRIPTION
+    This custom XAML file is for Race Coordinator's Race Day screen, the title area has been changed, and the look has been updated
+.NOTES
+    File Name      : 2020RaceDay_6L_cnl.xaml
+    Version        : 0.1
+    Author         : Matt Barendrecht
+-->
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Race Day 2020" Background="Transparent" Height="720" Width="1280" WindowState="Maximized" FontFamily="Segoe UI" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
+
+    <!-- Load Theme Information -->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="2020ThemeDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <!-- End Load Theme Information -->
+
+    <!-- Main ViewBox -->
+    <Viewbox Stretch="Fill">
+        <!-- Main Grid -->
+        <Grid Background="{StaticResource brushSecondary}">
+            <Button Focusable="False" Visibility="Collapsed" DataContext="'key':'Space'" Name="Toggle_1" />
+
+
+<!-- ****************************************************************** -->
+<!-- *                                                                * -->
+<!-- *                           Menu Bar                             * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+            <Menu Name="menu1">
+                <MenuItem Header="File" Style="{StaticResource menuItemHeaderText}">
+                    <MenuItem Name="Save_1" Header="Save" DataContext="'key':'S','modifier':'Alt'" ToolTip="ALT-S to save the race" />
+                    <MenuItem Name="SaveAs_1" Header="Save As..." DataContext="'key':'A','modifier':'Alt'" ToolTip="ALT-a to save the race with the spefied file name" />
+                    <Separator/>
+                    <MenuItem Name="Export_1" Header="Export Race" DataContext="'key':'X','modifier':'Alt'" ToolTip="Alt-X to export current race progress" />
+                </MenuItem>
+                <MenuItem Header="Race Director" Style="{StaticResource menuItemHeaderText}">
+                    <MenuItem Name="Start_1" Header="Start/Resume Heat" DataContext="'key':'S','modifier':'Control'" ToolTip="CTRL-S to start or restart the heat" />
+                    <MenuItem Name="Pause_1" Header="Pause Heat" DataContext="'key':'P','modifier':'Control'" ToolTip="CTRL-P to pause the heat" />
+                    <Separator/>
+                    <MenuItem Name="AddLaps_1" Header="Add Laps/Sections" DataContext="'key':'A','modifier':'Control'" ToolTip="CTRL-A to add laps/sections" />
+                    <MenuItem Name="NextHeat_1" Header="Next Heat" DataContext="'key':'N','modifier':'Control'" ToolTip="CTRL-N to advance to the next heat" />
+                    <Separator/>
+                    <MenuItem Name="RestartHeat_1" Header="Restart Heat" DataContext="'key':'R','modifier':'Control'" ToolTip="CTRL-R to restart the current heat" />
+                    <MenuItem Name="DeferHeat_1" Header="Defer Heat" DataContext="'key':'D','modifier':'Control'" ToolTip="CTRL-D to defer this heat until the end of the race" />
+                    <MenuItem Name="SkipHeat_1" Header="Skip Heat" DataContext="'key':'F5','modifier':'Alt'" ToolTip="ALT-F5 to skip the remainder of this heat" />
+                    <MenuItem Name="SkipRace_1" Header="Abort Race" DataContext="'key':'F4','modifier':'Alt'" ToolTip="CTRL-F4 to end this race" />
+                    <Separator/>
+                    <MenuItem Name="ModifyHeats_1" Header="Modify Heats" DataContext="'key':'H','modifier':'Control'" ToolTip="CTRL-H to modify heat rotations" />
+                    <MenuItem Name="LapEditor_1" Header="Edit Laps" DataContext="'key':'E','modifier':'Control'" ToolTip="CTRL-E to modify lap records" />
+                </MenuItem>
+                <MenuItem Header="Track Power" Style="{StaticResource menuItemHeaderText}">
+                    <MenuItem CommandParameter="0" Name="PowerOn_1" Header="Master Power On" DataContext="'key':'0','modifier':'Control'" ToolTip="CTRL-0 to force master power on" />
+                    <MenuItem CommandParameter="0" Name="PowerOff_1" Header="Master Power Off" DataContext="'key':'0','modifier':'Alt'" ToolTip="ALT-0 to force master power off"/>
+                    <MenuItem CommandParameter="1" Name="PowerOn_3" Header="Lane 1 Power On" DataContext="'key':'1','modifier':'Control'" ToolTip="CTRL-1 to force lane 1 power on" />
+                    <MenuItem CommandParameter="1" Name="PowerOff_2" Header="Lane 1 Power Off" DataContext="'key':'1','modifier':'Alt'" ToolTip="ALT-1 to force lane 1 power off"/>
+                    <MenuItem CommandParameter="2" Name="PowerOn_4" Header="Lane 2 Power On" DataContext="'key':'2','modifier':'Control'" ToolTip="CTRL-2 to force lane 2 power on" />
+                    <MenuItem CommandParameter="2" Name="PowerOff_3" Header="Lane 2 Power Off" DataContext="'key':'2','modifier':'Alt'" ToolTip="ALT-2 to force lane 2 power off"/>
+                    <MenuItem CommandParameter="3" Name="PowerOn_5" Header="Lane 3 Power On" DataContext="'key':'3','modifier':'Control'" ToolTip="CTRL-3 to force lane 3 power on" />
+                    <MenuItem CommandParameter="3" Name="PowerOff_4" Header="Lane 3 Power Off" DataContext="'key':'3','modifier':'Alt'" ToolTip="ALT-3 to force lane 3 power off"/>
+                    <MenuItem CommandParameter="4" Name="PowerOn_6" Header="Lane 4 Power On" DataContext="'key':'4','modifier':'Control'" ToolTip="CTRL-4 to force lane 4 power on" />
+                    <MenuItem CommandParameter="4" Name="PowerOff_5" Header="Lane 4 Power Off" DataContext="'key':'4','modifier':'Alt'" ToolTip="ALT-4 to force lane 4 power off"/>
+                    <MenuItem CommandParameter="5" Name="PowerOn_7" Header="Lane 5 Power On" DataContext="'key':'5','modifier':'Control'" ToolTip="CTRL-5 to force lane 5 power on" />
+                    <MenuItem CommandParameter="5" Name="PowerOff_6" Header="Lane 5 Power Off" DataContext="'key':'5','modifier':'Alt'" ToolTip="ALT-5 to force lane 5 power off"/>
+                    <MenuItem CommandParameter="6" Name="PowerOn_8" Header="Lane 6 Power On" DataContext="'key':'6','modifier':'Control'" ToolTip="CTRL-6 to force lane 6 power on" />
+                    <MenuItem CommandParameter="6" Name="PowerOff_7" Header="Lane 6 Power Off" DataContext="'key':'6','modifier':'Alt'" ToolTip="ALT-6 to force lane 6 power off"/>
+                </MenuItem>
+                <Separator Width="5" />
+                <MenuItem Header="Windows" Style="{StaticResource menuItemHeaderText}">
+                    <MenuItem Name="Window_1" Header="Leader Board" CommandParameter="data/xaml/LeaderBoard.xaml" DataContext="'key':'F1'" ToolTip="F1 to display the Leader Board" />
+                    <MenuItem Name="Window_2" Header="Top 5" CommandParameter="data/xaml/Top5.xaml" DataContext="'key':'F1','modifier':'Control'" ToolTip="CTRL F1 to display the Top 5 Leader Board" />
+                    <MenuItem Name="Window_3" Header="Group Leader Board" CommandParameter="data/xaml/GroupLeaderBoard.xaml" DataContext="'key':'F3'" ToolTip="F3 to display the Group Leader Board" />
+                    <MenuItem Name="Window_4" Header="Heat Results" CommandParameter="data/xaml/HeatResults.xaml" DataContext="'key':'F4'" ToolTip="F4 to display the Heat Results window" />
+                    <MenuItem Name="Window_5" Header="Race Results" CommandParameter="data/xaml/RaceResults.xaml" DataContext="'key':'F5'" ToolTip="F5 to display the Race Results window" />
+                    <MenuItem Name="Window_6" Header="Segment Times" CommandParameter="data/xaml/SegmentTimeOnlyView_3L.xaml" DataContext="'key':'F6','modifier':'Control'" ToolTip="CTRL F6 to display the Segment Timing window" />
+                    <Separator/>
+                    <MenuItem Name="Window_7" Header="Season Race Leader Board" CommandParameter="data/xaml/SeasonRaceLeaderBoard.xaml" DataContext="'key':'F1' ,'modifier':'Alt'" ToolTip="ALT F1 to display the Season Race Leader Board" />
+                    <MenuItem Name="Window_8" Header="Season Leader Board" CommandParameter="data/xaml/SeasonLeaderBoard.xaml" ToolTip="Display the Season Leader Board" />
+                    <Separator/>
+                    <MenuItem Name="Window_9" Header="On Deck" CommandParameter="data/xaml/OnDeck_3L.xaml" DataContext="'key':'F6'" ToolTip="F6 to display the On Deck window" />
+                    <MenuItem Name="ViewHeats_1" Header="Heat List" DataContext="'key':'F7'" ToolTip="F7 to display heat rotations" />
+                    <MenuItem Name="Window_10" Header="Next Heat" CommandParameter="data/xaml/NextHeat_3L.xaml" DataContext="'key':'F8'" ToolTip="F8 to display all drivers in the next heat" />
+                </MenuItem>
+            </Menu>
+            <!-- End Menu Bar -->
+
+
+
+<!-- ****************************************************************** -->
+<!-- *                                                                * -->
+<!-- *                 Upper panel (Race information)                 * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+            <DockPanel Height="190" Margin="0,22,0,0" Name="dockPanel1" VerticalAlignment="Top">
+                <!-- Grid 'grid1' to arrange things horizontally in the upper panel -->
+                <Grid Name="grid1">
+                    <Grid.ColumnDefinitions>
+                        <!-- An additional column has been added to contain the custom Race Control buttons -->
+                        <ColumnDefinition Width="120"/>
+                        <!-- Width="100"  -->
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <!-- StackPanel 1 for the first column (column 0) in 'grid1' (Custom Race Control Buttons) -->
+                    <StackPanel Grid.Column="0" Height="190">
+                        <Viewbox Margin="15,10,5,0" Stretch="Fill">
+                            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Button Grid.Row="0" Name="PowerOn_2" CommandParameter="0" Content="Track Power" ToolTip="Turns master power on" Style="{StaticResource RoundCorner}" DataContext="'key':'0','modifier':'Control'" />
+                                <Button Grid.Row="1" Name="Start_2" Content="Start Heat" ToolTip="Starts or resumes the heat" Style="{StaticResource RoundCorner}" />
+                                <Button Grid.Row="2" Name="Pause_2" Content="Pause Heat" ToolTip="Pauses the heat" Style="{StaticResource RoundCorner}" />
+                                <Button Grid.Row="3" Name="NextHeat_2" Content="Next Heat" ToolTip="Advances to the next heat" Style="{StaticResource RoundCorner}" />
+                                <Button Grid.Row="4" Name="Export_2" Content="Export Race" ToolTip="Export the current race to Excel" Style="{StaticResource RoundCorner}" />
+                                <Button Grid.Row="5" Name="SkipRace_2" Content="Abort Race" ToolTip="Ends the race" Style="{StaticResource RoundCorner}" />
+                            </Grid>
+                        </Viewbox>
+                    </StackPanel>
+                    <!-- End StackPanel 1 -->
+                    <!-- StackPanel 2 for the second column (column 1) in 'grid1' (race information) -->
+                    <Image Name="RaceStateImage_1" Grid.Column="1" Height="50" HorizontalAlignment="Left" Margin="15,0,0,0" VerticalAlignment="Center" />
+                    <Image Name="RaceStateImage_2" Grid.Column="1" Height="50" HorizontalAlignment="Right" Margin="0,0,15,0" VerticalAlignment="Center" />
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0" Height="190">
+                        <Viewbox Margin="0,10,0,0" MaxWidth="320" MaxHeight="50">
+                            <Label Name="RaceName_1"></Label>
+                        </Viewbox>
+                        <Label Name="RaceTime_1" FontSize="50" FontWeight="UltraLight" HorizontalAlignment="Center" HorizontalContentAlignment="Stretch" Margin="0, -10, 0, 0"></Label>
+                        <Label HorizontalAlignment="Center" Margin="0, -10, 0, 0">
+                            <DockPanel LastChildFill="True" HorizontalAlignment="Center">
+                                <TextBlock Text="Heat " />
+                                <TextBlock Name="HeatNumber_1" />
+                                <TextBlock Text=" of " />
+                                <TextBlock Name="NumHeats_1" />
+                            </DockPanel>
+                        </Label>
+                    </StackPanel>
+                    <!-- End StackPanel 2 -->
+                    <!-- StackPanel 3 for the third column in 'grid1' (Race Leader Board) -->
+                    <TextBlock FontSize="20" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Text="Race Leader Board"/>
+                    <StackPanel Grid.Column="2" Height="190" Margin="5,25,5,0" VerticalAlignment="Top" >
+                        <Grid VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <!-- Leaderboard Position 1-->
+                            <Viewbox MaxWidth="15" MinWidth="15" MaxHeight="25" MinHeight="25" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+                                <TextBlock Text="1" Grid.Row="0" Grid.Column="0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="60" MinWidth="40" MaxHeight="25" MinHeight="25" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
+                                <TextBlock Name="Standing_RaceLeader1_1" DataContext="'decimals':3" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="160" MaxHeight="25" MinHeight="25" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left">
+                                <TextBlock Name="Nickname_RaceLeader1_1" Margin="5,0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <!-- Leaderboard Position 2-->
+                            <Viewbox MaxWidth="15" MinWidth="15" MaxHeight="25" MinHeight="25" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">
+                                <TextBlock Text="2" Grid.Row="1" Grid.Column="0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="60" MinWidth="40" MaxHeight="25" MinHeight="25" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right">
+                                <TextBlock Name="Standing_RaceLeader2_1" DataContext="'decimals':3" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="180" MaxHeight="25" MinHeight="25" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left">
+                                <TextBlock Name="Nickname_RaceLeader2_1" Margin="5,0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <!-- Leaderboard Position 3-->
+                            <Viewbox MaxWidth="15" MinWidth="15" MaxHeight="25" MinHeight="25" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left">
+                                <TextBlock Text="3" Grid.Row="2" Grid.Column="0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="60" MinWidth="40" MaxHeight="25" MinHeight="25" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right">
+                                <TextBlock Name="Standing_RaceLeader3_1" DataContext="'decimals':3" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="180" MaxHeight="25" MinHeight="25" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left">
+                                <TextBlock Name="Nickname_RaceLeader3_1" Margin="5,0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <!-- Leaderboard Position 4-->
+                            <Viewbox MaxWidth="15" MinWidth="15" MaxHeight="25" MinHeight="25" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left">
+                                <TextBlock Text="4" Grid.Row="3" Grid.Column="0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="60" MinWidth="40" MaxHeight="25" MinHeight="25" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right">
+                                <TextBlock Name="Standing_RaceLeader4_1" DataContext="'decimals':3" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="180" MaxHeight="25" MinHeight="25" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left">
+                                <TextBlock Name="Nickname_RaceLeader4_1" Margin="5,0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <!-- Leaderboard Position 5-->
+                            <Viewbox MaxWidth="15" MinWidth="15" MaxHeight="25" MinHeight="25" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left">
+                                <TextBlock Text="5" Grid.Row="4" Grid.Column="0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="60" MinWidth="40" MaxHeight="25" MinHeight="25" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right">
+                                <TextBlock Name="Standing_RaceLeader5_1" DataContext="'decimals':3" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="180" MaxHeight="25" MinHeight="25" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left">
+                                <TextBlock Name="Nickname_RaceLeader5_1" Margin="5,0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <!-- Leaderboard Position 6-->
+                            <Viewbox MaxWidth="15" MinWidth="15" MaxHeight="25" MinHeight="25" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left">
+                                <TextBlock Text="6" Grid.Row="5" Grid.Column="0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="60" MinWidth="40" MaxHeight="25" MinHeight="25" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right">
+                                <TextBlock Name="Standing_RaceLeader6_1" DataContext="'decimals':3" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="180" MaxHeight="25" MinHeight="25" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left">
+                                <TextBlock Name="Nickname_RaceLeader6_1" Margin="5,0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                        </Grid>
+                    </StackPanel>
+                    <!-- End StackPanel 3 -->
+                    <!-- StackPanel 4 for the fourth column in 'grid1' (Race Leader Board column 2) -->
+                    <StackPanel Grid.Column="3" Height="190" Margin="5,25,5,0" VerticalAlignment="Top">
+                        <Grid VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <!-- Leaderboard Position 7-->
+                            <Viewbox MaxWidth="15" MinWidth="15" MaxHeight="25" MinHeight="25" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left">
+                                <TextBlock Text="7" Grid.Row="0" Grid.Column="0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="60" MinWidth="40" MaxHeight="25" MinHeight="25" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
+                                <TextBlock Name="Standing_RaceLeader7_1" DataContext="'decimals':3" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="180" MaxHeight="25" MinHeight="25" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left">
+                                <TextBlock Name="Nickname_RaceLeader7_1" Margin="5,0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <!-- Leaderboard Position 8-->
+                            <Viewbox MaxWidth="15" MinWidth="15" MaxHeight="25" MinHeight="25" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">
+                                <TextBlock Text="8" Grid.Row="1" Grid.Column="0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="60" MinWidth="40" MaxHeight="25" MinHeight="25" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right">
+                                <TextBlock Name="Standing_RaceLeader8_1" DataContext="'decimals':3" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="180" MaxHeight="25" MinHeight="25" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left">
+                                <TextBlock Name="Nickname_RaceLeader8_1" Margin="5,0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <!-- Leaderboard Position 9-->
+                            <Viewbox MaxWidth="15" MinWidth="15" MaxHeight="25" MinHeight="25" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left">
+                                <TextBlock Text="9" Grid.Row="2" Grid.Column="0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="60" MinWidth="40" MaxHeight="25" MinHeight="25" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right">
+                                <TextBlock Name="Standing_RaceLeader9_1" DataContext="'decimals':3" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="180" MaxHeight="25" MinHeight="25" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left">
+                                <TextBlock Name="Nickname_RaceLeader9_1" Margin="5,0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <!-- Leaderboard Position 10-->
+                            <Viewbox MaxWidth="15" MinWidth="15" MaxHeight="25" MinHeight="25" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left">
+                                <TextBlock Text="10" Grid.Row="3" Grid.Column="0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="60" MinWidth="40" MaxHeight="25" MinHeight="25" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right">
+                                <TextBlock Name="Standing_RaceLeader10_1" DataContext="'decimals':3" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="180" MaxHeight="25" MinHeight="25" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left">
+                                <TextBlock Name="Nickname_RaceLeader10_1" Margin="5,0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <!-- Leaderboard Position 11-->
+                            <Viewbox MaxWidth="15" MinWidth="15" MaxHeight="25" MinHeight="25" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left">
+                                <TextBlock Text="11" Grid.Row="4" Grid.Column="0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="60" MinWidth="40" MaxHeight="25" MinHeight="25" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right">
+                                <TextBlock Name="Standing_RaceLeader11_1" DataContext="'decimals':3" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="180" MaxHeight="25" MinHeight="25" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left">
+                                <TextBlock Name="Nickname_RaceLeader11_1" Margin="5,0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <!-- Leaderboard Position 12-->
+                            <Viewbox MaxWidth="15" MinWidth="15" MaxHeight="25" MinHeight="25" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left">
+                                <TextBlock Text="12" Grid.Row="5" Grid.Column="0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="60" MinWidth="40" MaxHeight="25" MinHeight="25" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right">
+                                <TextBlock Name="Standing_RaceLeader12_1" DataContext="'decimals':3" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                            <Viewbox MaxWidth="180" MaxHeight="25" MinHeight="25" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left">
+                                <TextBlock Name="Nickname_RaceLeader12_1" Margin="5,0" Style="{StaticResource leaderBoardText}" />
+                            </Viewbox>
+                        </Grid>
+                    </StackPanel>
+                    <!-- End StackPanel 4 -->
+                </Grid>
+                <!-- End Grid 'grid1' -->
+            </DockPanel>
+            <!-- End upper panel -->
+
+
+
+<!-- ****************************************************************** -->
+<!-- *                                                                * -->
+<!-- *                 Mid panel (Driver Information)                 * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+            <DockPanel Margin="0,200,0,30" Name="dockPanel2" Background="Transparent">
+
+                <StackPanel Orientation="Horizontal">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="339" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="195" />
+                            <ColumnDefinition Width="195" />
+                            <ColumnDefinition Width="195" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <!-- This first row is hardcoded, it's the header row, the rest of the rows should equal the number of lanes this file is for -->
+                            <RowDefinition Height="50" />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <!-- *********************** -->
+                        <!-- *    Header Labels    * -->
+                        <!-- *********************** -->
+                        <Label Grid.Row="0" Grid.Column="0" Content="Name" Style="{StaticResource laneHeader}" />
+                        <Label Grid.Row="0" Grid.Column="1" Content="Lap"  Style="{StaticResource laneHeader}" />
+                        <Label Grid.Row="0" Grid.Column="2" Content="Lap Time"  Style="{StaticResource laneHeader}" />
+                        <Label Grid.Row="0" Grid.Column="3" Content="Median Lap"  Style="{StaticResource laneHeader}" />
+                        <Label Grid.Row="0" Grid.Column="4" Content="Best Lap"  Style="{StaticResource laneHeader}" />
+
+
+                        <!-- *************************** -->
+                        <!-- *        Lane Data        * -->
+                        <!-- *************************** -->
+
+                        <!-- ********************** -->
+                        <!-- *    Lane 1 Start    * -->
+                        <!-- ********************** -->
+                        <!-- Name -->
+                        <Label Name="Nickname_Position1_1" Grid.Row="1" Grid.Column="0" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="1" Grid.Column="0" MaxHeight="168" MaxWidth="335">
+                            <Label Name="Nickname_Position1_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Name: CnL information (inside name cell) -->
+                        <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <DockPanel LastChildFill="True" Margin="4, 2, 4, 2">
+                                <TextBlock Text="" Style="{StaticResource extraLaneData}" />
+                                <TextBlock Name="DeslotCount_Position1_1" Style="{StaticResource extraLaneData}" />
+                            </DockPanel>
+                        </StackPanel>
+                        <Button Name="AdjustDeslot_Position1_1" Grid.Row ="1" Grid.Column="0" Opacity="0" IsTabStop="False" Focusable="False" />
+                        <!-- Lap -->
+                        <Label Name="Lap_Position1_1" Grid.Row="1" Grid.Column="1" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="1" Grid.Column="1" MaxHeight="168" MaxWidth="96">
+                            <Label Name="Lap_Position1_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Lap:  Drift lap notification (inside lap cell) -->
+                        <Grid Grid.Row="1" Grid.Column="1" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                            </Grid.RowDefinitions>
+                            <Viewbox Grid.Row="2" Grid.Column="1" MaxHeight="53" MaxWidth="46">
+                                <Image Name="DriftLap_Position1_1" Stretch="Uniform"/>
+                            </Viewbox>
+                        </Grid>
+                        <!-- Lap:  Add lap sections button (click inside lap cell) -->
+                        <Button Name="AddLapSections_Position1_1" Grid.Row ="1" Grid.Column="1" Focusable="False" IsTabStop="False" Opacity="0" ToolTip="Click to add laps/sections" />
+                        <!-- Lap Time -->
+                        <Label Name="LapTime_Position1_1" Grid.Row="1" Grid.Column="2" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="1" Grid.Column="2" MaxHeight="168" MaxWidth="191">
+                            <Label Name="LapTime_Position1_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Margin="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Image Width="15" Height="20" Name="SelfPerformance_Position1_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="HeatPerformance_Position1_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="TrackPerformance_Position1_1" Margin="1,0" Stretch="Fill" />
+                        </StackPanel>
+                        <!-- Median Lap Time -->
+                        <Label Name="MedianTime_Position1_1" Grid.Row="1" Grid.Column="3" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="1" Grid.Column="3" MaxHeight="168" MaxWidth="191">
+                            <Label Name="MedianTime_Position1_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Best Lap Time -->
+                        <Label Name="BestLapTime_Position1_1" Grid.Row="1" Grid.Column="4" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="1" Grid.Column="4" MaxHeight="168" MaxWidth="191">
+                            <Label Name="BestLapTime_Position1_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- **  Lane 1 End  ** -->
+
+
+                        <!-- ********************** -->
+                        <!-- *    Lane 2 Start    * -->
+                        <!-- ********************** -->
+                        <!-- Name -->
+                        <Label Grid.Row="2" Grid.Column="0" Name="Nickname_Position2_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="335" MaxHeight="168" Grid.Row="2" Grid.Column="0">
+                            <Label Name="Nickname_Position2_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Name: CnL information (inside name cell) -->
+                        <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <DockPanel LastChildFill="True" Margin="4, 2, 4, 2">
+                                <TextBlock Text="" Style="{StaticResource extraLaneData}" />
+                                <TextBlock Name="DeslotCount_Position2_1" Style="{StaticResource extraLaneData}" />
+                            </DockPanel>
+                        </StackPanel>
+                        <Button Name="AdjustDeslot_Position2_1" Grid.Row ="1" Grid.Column="0" Opacity="0" IsTabStop="False" Focusable="False" />
+                        <!-- Lap -->
+                        <Label Grid.Row="2" Grid.Column="1" Name="Lap_Position2_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="96" MaxHeight="168" Grid.Row="2" Grid.Column="1">
+                            <Label Name="Lap_Position2_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Lap:  Drift lap notification (inside lap cell) -->
+                        <Grid Grid.Row="2" Grid.Column="1" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                            </Grid.RowDefinitions>
+                            <Viewbox MaxWidth="46" MaxHeight="53" Grid.Row="2" Grid.Column="1">
+                                <Image Stretch="Uniform" Name="DriftLap_Position2_1"/>
+                            </Viewbox>
+                        </Grid>
+                        <!-- Lap:  Add lap sections (click inside lap cell) -->
+                        <Button Grid.Row ="1" Grid.Column="1" Name="AddLapSections_Position2_1" Opacity="0" IsTabStop="False" Focusable="False" ToolTip="Click to add laps/sections" />
+                        <!-- Lap Time -->
+                        <Label Grid.Row="2" Grid.Column="2" Name="LapTime_Position2_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="191" MaxHeight="168" Grid.Row="2" Grid.Column="2">
+                            <Label Name="LapTime_Position2_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <StackPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Margin="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Image Width="15" Height="20" Name="SelfPerformance_Position2_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="HeatPerformance_Position2_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="TrackPerformance_Position2_1" Margin="1,0" Stretch="Fill" />
+                        </StackPanel>
+                        <!-- Median Lap Time -->
+                        <Label Grid.Row="2" Grid.Column="3" Name="MedianTime_Position2_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="191" MaxHeight="168" Grid.Row="2" Grid.Column="3">
+                            <Label Name="MedianTime_Position2_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Best Lap Time -->
+                        <Label Grid.Row="2" Grid.Column="4" Name="BestLapTime_Position2_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="191" MaxHeight="168" Grid.Row="2" Grid.Column="4">
+                            <Label Name="BestLapTime_Position2_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- **  Lane 2 End  ** -->
+
+
+                        <!-- ********************** -->
+                        <!-- *    Lane 3 Start    * -->
+                        <!-- ********************** -->
+                        <!-- Name -->
+                        <Label Grid.Row="3" Grid.Column="0" Name="Nickname_Position3_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="335" MaxHeight="168" Grid.Row="3" Grid.Column="0">
+                            <Label Name="Nickname_Position3_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Name: CnL information (inside name cell) -->
+                        <StackPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <DockPanel LastChildFill="True" Margin="4, 2, 4, 2">
+                                <TextBlock Text="" Style="{StaticResource extraLaneData}" />
+                                <TextBlock Name="DeslotCount_Position3_1" Style="{StaticResource extraLaneData}" />
+                            </DockPanel>
+                        </StackPanel>
+                        <Button Name="AdjustDeslot_Position3_1" Grid.Row ="1" Grid.Column="0" Opacity="0" IsTabStop="False" Focusable="False" />
+                        <!-- Lap -->
+                        <Label Grid.Row="3" Grid.Column="1" Name="Lap_Position3_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="96" MaxHeight="168" Grid.Row="3" Grid.Column="1">
+                            <Label Name="Lap_Position3_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Lap:  Drift lap notification (inside lap cell) -->
+                        <Grid Grid.Row="3" Grid.Column="1" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                            </Grid.RowDefinitions>
+                            <Viewbox MaxWidth="46" MaxHeight="53" Grid.Row="2" Grid.Column="1">
+                                <Image Stretch="Uniform" Name="DriftLap_Position3_1"/>
+                            </Viewbox>
+                        </Grid>
+                        <!-- Lap:  Add lap sections (click inside lap cell) -->
+                        <Button Grid.Row ="1" Grid.Column="1" Name="AddLapSections_Position3_1" Opacity="0" IsTabStop="False" Focusable="False" ToolTip="Click to add laps/sections" />
+                        <!-- Lap Time -->
+                        <Label Grid.Row="3" Grid.Column="2" Name="LapTime_Position3_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="191" MaxHeight="168" Grid.Row="3" Grid.Column="2">
+                            <Label Name="LapTime_Position3_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <StackPanel Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Margin="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Image Width="15" Height="20" Name="SelfPerformance_Position3_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="HeatPerformance_Position3_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="TrackPerformance_Position3_1" Margin="1,0" Stretch="Fill" />
+                        </StackPanel>
+                        <!-- Median Lap Time -->
+                        <Label Grid.Row="3" Grid.Column="3" Name="MedianTime_Position3_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="191" MaxHeight="168" Grid.Row="3" Grid.Column="3">
+                            <Label Name="MedianTime_Position3_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Best Lap Time -->
+                        <Label Grid.Row="3" Grid.Column="4" Name="BestLapTime_Position3_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="191" MaxHeight="168" Grid.Row="3" Grid.Column="4">
+                            <Label Name="BestLapTime_Position3_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- **  Lane 3 End  ** -->
+
+                        <!-- ********************** -->
+                        <!-- *    Lane 4 Start    * -->
+                        <!-- ********************** -->
+                        <!-- Name -->
+                        <Label Grid.Row="4" Grid.Column="0" Name="Nickname_Position4_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="335" MaxHeight="168" Grid.Row="4" Grid.Column="0">
+                            <Label Name="Nickname_Position4_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Name: CnL information (inside name cell) -->
+                        <StackPanel Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <DockPanel LastChildFill="True" Margin="4, 2, 4, 2">
+                                <TextBlock Text="" Style="{StaticResource extraLaneData}" />
+                                <TextBlock Name="DeslotCount_Position4_1" Style="{StaticResource extraLaneData}" />
+                            </DockPanel>
+                        </StackPanel>
+                        <Button Name="AdjustDeslot_Position4_1" Grid.Row ="1" Grid.Column="0" Opacity="0" IsTabStop="False" Focusable="False" />
+                        <!-- Lap -->
+                        <Label Name="Lap_Position4_1" Grid.Row="4" Grid.Column="1" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="4" Grid.Column="1" MaxHeight="168" MaxWidth="96">
+                            <Label Name="Lap_Position4_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Lap:  Drift lap notification (inside lap cell) -->
+                        <Grid Grid.Row="4" Grid.Column="1" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                            </Grid.RowDefinitions>
+                            <Viewbox Grid.Row="2" Grid.Column="1" MaxHeight="53" MaxWidth="46">
+                                <Image Name="DriftLap_Position4_1" Stretch="Uniform"/>
+                            </Viewbox>
+                        </Grid>
+                        <!-- Lap:  Add lap sections button (click inside lap cell) -->
+                        <Button Name="AddLapSections_Position4_1" Grid.Row ="4" Grid.Column="1" Focusable="False" IsTabStop="False" Opacity="0" ToolTip="Click to add laps/sections" />
+                        <!-- Lap Time -->
+                        <Label Name="LapTime_Position4_1" Grid.Row="4" Grid.Column="2" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="4" Grid.Column="2" MaxHeight="168" MaxWidth="191">
+                            <Label Name="LapTime_Position4_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <StackPanel Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right" Margin="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Image Width="15" Height="20" Name="SelfPerformance_Position4_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="HeatPerformance_Position4_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="TrackPerformance_Position4_1" Margin="1,0" Stretch="Fill" />
+                        </StackPanel>
+                        <!-- Median Lap Time -->
+                        <Label Name="MedianTime_Position4_1" Grid.Row="4" Grid.Column="3" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="4" Grid.Column="3" MaxHeight="168" MaxWidth="191">
+                            <Label Name="MedianTime_Position4_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Best Lap Time -->
+                        <Label Name="BestLapTime_Position4_1" Grid.Row="4" Grid.Column="4" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="4" Grid.Column="4" MaxHeight="168" MaxWidth="191">
+                            <Label Name="BestLapTime_Position4_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- ********************** -->
+                        <!-- *    Lane 4 End      * -->
+                        <!-- ********************** -->
+
+                        <!-- ********************** -->
+                        <!-- *    Lane 5 Start    * -->
+                        <!-- ********************** -->
+                        <!-- Name -->
+                        <Label Grid.Row="5" Grid.Column="0" Name="Nickname_Position5_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="335" MaxHeight="168" Grid.Row="5" Grid.Column="0">
+                            <Label Name="Nickname_Position5_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Name: CnL information (inside name cell) -->
+                        <StackPanel Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <DockPanel LastChildFill="True" Margin="4, 2, 4, 2">
+                                <TextBlock Text="" Style="{StaticResource extraLaneData}" />
+                                <TextBlock Name="DeslotCount_Position5_1" Style="{StaticResource extraLaneData}" />
+                            </DockPanel>
+                        </StackPanel>
+                        <Button Name="AdjustDeslot_Position5_1" Grid.Row ="1" Grid.Column="0" Opacity="0" IsTabStop="False" Focusable="False" />
+                        <!-- Lap -->
+                        <Label Name="Lap_Position5_1" Grid.Row="5" Grid.Column="1" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="5" Grid.Column="1" MaxHeight="168" MaxWidth="96">
+                            <Label Name="Lap_Position5_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Lap:  Drift lap notification (inside lap cell) -->
+                        <Grid Grid.Row="5" Grid.Column="1" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                            </Grid.RowDefinitions>
+                            <Viewbox Grid.Row="2" Grid.Column="1" MaxHeight="53" MaxWidth="46">
+                                <Image Name="DriftLap_Position5_1" Stretch="Uniform"/>
+                            </Viewbox>
+                        </Grid>
+                        <!-- Lap:  Add lap sections button (click inside lap cell) -->
+                        <Button Name="AddLapSections_Position5_1" Grid.Row ="5" Grid.Column="1" Focusable="False" IsTabStop="False" Opacity="0" ToolTip="Click to add laps/sections" />
+                        <!-- Lap Time -->
+                        <Label Name="LapTime_Position5_1" Grid.Row="5" Grid.Column="2" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="5" Grid.Column="2" MaxHeight="168" MaxWidth="191">
+                            <Label Name="LapTime_Position5_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <StackPanel Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" Margin="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Image Width="15" Height="20" Name="SelfPerformance_Position5_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="HeatPerformance_Position5_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="TrackPerformance_Position5_1" Margin="1,0" Stretch="Fill" />
+                        </StackPanel>
+                        <!-- Median Lap Time -->
+                        <Label Name="MedianTime_Position5_1" Grid.Row="5" Grid.Column="3" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="5" Grid.Column="3" MaxHeight="168" MaxWidth="191">
+                            <Label Name="MedianTime_Position5_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Best Lap Time -->
+                        <Label Name="BestLapTime_Position5_1" Grid.Row="5" Grid.Column="4" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="5" Grid.Column="4" MaxHeight="168" MaxWidth="191">
+                            <Label Name="BestLapTime_Position5_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- ********************** -->
+                        <!-- *    Lane 5 End      * -->
+                        <!-- ********************** -->
+
+                        <!-- ********************** -->
+                        <!-- *    Lane 6 Start    * -->
+                        <!-- ********************** -->
+                        <!-- Name -->
+                        <Label Grid.Row="6" Grid.Column="0" Name="Nickname_Position6_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="335" MaxHeight="168" Grid.Row="6" Grid.Column="0">
+                            <Label Name="Nickname_Position6_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Name: CnL information (inside name cell) -->
+                        <StackPanel Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <DockPanel LastChildFill="True" Margin="4, 2, 4, 2">
+                                <TextBlock Text="" Style="{StaticResource extraLaneData}" />
+                                <TextBlock Name="DeslotCount_Position6_1" Style="{StaticResource extraLaneData}" />
+                            </DockPanel>
+                        </StackPanel>
+                        <Button Name="AdjustDeslot_Position6_1" Grid.Row ="1" Grid.Column="0" Opacity="0" IsTabStop="False" Focusable="False" />
+                        <!-- Lap -->
+                        <Label Name="Lap_Position6_1" Grid.Row="6" Grid.Column="1" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="6" Grid.Column="1" MaxHeight="168" MaxWidth="96">
+                            <Label Name="Lap_Position6_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Lap:  Drift lap notification (inside lap cell) -->
+                        <Grid Grid.Row="6" Grid.Column="1" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                            </Grid.RowDefinitions>
+                            <Viewbox Grid.Row="2" Grid.Column="1" MaxHeight="53" MaxWidth="46">
+                                <Image Name="DriftLap_Position6_1" Stretch="Uniform"/>
+                            </Viewbox>
+                        </Grid>
+                        <!-- Lap:  Add lap sections button (click inside lap cell) -->
+                        <Button Name="AddLapSections_Position6_1" Grid.Row ="6" Grid.Column="1" Focusable="False" IsTabStop="False" Opacity="0" ToolTip="Click to add laps/sections" />
+                        <!-- Lap Time -->
+                        <Label Name="LapTime_Position6_1" Grid.Row="6" Grid.Column="2" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="6" Grid.Column="2" MaxHeight="168" MaxWidth="191">
+                            <Label Name="LapTime_Position6_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <StackPanel Grid.Row="6" Grid.Column="2" HorizontalAlignment="Right" Margin="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Image Width="15" Height="20" Name="SelfPerformance_Position6_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="HeatPerformance_Position6_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="TrackPerformance_Position6_1" Margin="1,0" Stretch="Fill" />
+                        </StackPanel>
+                        <!-- Median Lap Time -->
+                        <Label Name="MedianTime_Position6_1" Grid.Row="6" Grid.Column="3" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="6" Grid.Column="3" MaxHeight="168" MaxWidth="191">
+                            <Label Name="MedianTime_Position6_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Best Lap Time -->
+                        <Label Name="BestLapTime_Position6_1" Grid.Row="6" Grid.Column="4" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="6" Grid.Column="4" MaxHeight="168" MaxWidth="191">
+                            <Label Name="BestLapTime_Position6_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- ********************** -->
+                        <!-- *    Lane 6 End      * -->
+                        <!-- ********************** -->
+
+
+
+
+
+                    </Grid>
+                    <!--- Close Grid -->
+                </StackPanel>
+                <!--- Close StackPanel -->
+            </DockPanel>
+            <!-- End mid panel (Driver Information) -->
+
+<!-- ****************************************************************** -->
+<!-- *                                                                * -->
+<!-- *                    Lower panel (Status Bar)                    * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+            <DockPanel VerticalAlignment="Bottom" Height="28">
+                <Grid Background="{StaticResource brushPrimary}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <!-- All time best lap -->
+                    <Viewbox Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" MaxHeight="28" MaxWidth="333" MinHeight="25" Stretch="Uniform">
+                        <DockPanel LastChildFill="False" Margin="0,0,5,2">
+                            <TextBlock Name="RaceName_2" Style="{StaticResource statusBarText}" Margin="5,0,0,0" />
+                            <TextBlock Text="lap record:" Style="{StaticResource statusBarText}" />
+                            <TextBlock Name="RecordNickname_1" Style="{StaticResource statusBarText}" />
+                            <TextBlock Name="RecordTime_1" DataContext="'decimals':3" Style="{StaticResource statusBarText}" />
+                        </DockPanel>
+                    </Viewbox>
+                    <!-- On deck/up next -->
+                    <Viewbox Grid.Row ="0" Grid.Column="1" HorizontalAlignment="Center" MaxHeight="28" MaxWidth="250" MinHeight="25" Stretch="Uniform">
+                        <DockPanel  LastChildFill="False" Margin="0,0,0,2">
+                            <TextBlock Text="Up next:" Style="{StaticResource statusBarText}" />
+                            <Grid>
+                                <TextBlock Name="OnDeckNickname1_1" Style="{StaticResource statusBarText}" />
+<!--
+                                <DockPanel  LastChildFill="False" >
+                                    <TextBlock Name="OnDeckNickname1_2" Background="Black" Margin="5,3,5,0" Style="{StaticResource statusBarText}" />
+                                </DockPanel>
+-->
+                            </Grid>
+                        </DockPanel>
+                    </Viewbox>
+                    <!-- Current race best lap -->
+                    <Viewbox Grid.Row ="0" Grid.Column="2" HorizontalAlignment="Right" MaxHeight="28" MaxWidth="333" MinHeight="25" Stretch="Uniform">
+                        <DockPanel LastChildFill="False" Margin="0,0,0,2">
+                            <TextBlock Text="Current race record:" Style="{StaticResource statusBarText}" />
+                            <TextBlock Name="BestNickname_1" Style="{StaticResource statusBarText}" />
+                            <TextBlock Name="BestTime_1" DataContext="'decimals':3" Style="{StaticResource statusBarText}" />
+                        </DockPanel>
+                    </Viewbox>
+                </Grid>
+            </DockPanel>
+            <!-- End lower panel (Status Bar) -->
+        </Grid>
+        <!-- End Main Grid -->
+    </Viewbox>
+    <!-- End Main ViewBox -->
+</Window>

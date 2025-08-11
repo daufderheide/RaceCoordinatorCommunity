@@ -1,0 +1,246 @@
+<!--
+.SYNOPSIS
+    Updated practice screen
+.DESCRIPTION
+    This custom XAML file is for Race Coordinator's Race Day screen, the title area has been changed, and the look has been updated
+.NOTES
+    File Name      : 2020Practice_7L.xaml
+    Version        : 0.1
+    Author         : Matt Barendrecht
+-->
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Practice 2020" Background="Transparent" Height="720" Width="1280" WindowState="Maximized" FontFamily="Segoe UI" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
+
+    <!-- Load Theme Information -->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="2020ThemeDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <!-- End Load Theme Information -->
+
+    <!-- Main ViewBox -->
+    <Viewbox Stretch="Fill">
+        <!-- Main Grid -->
+        <Grid Background="{StaticResource brushSecondary}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="240"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+<!-- ****************************************************************** -->
+<!-- *                                                                * -->
+<!-- *                           Menu Bar                             * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+            <Menu Name="menu1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="100" Margin="0, 0, -10, 0" >
+                <MenuItem Header="File" FontSize="24" Style="{StaticResource menuItemHeaderText}">
+                    <MenuItem Name="Save_1" Header="Save" DataContext="'key':'S','modifier':'Alt'" FontSize="24" ToolTip="ALT-S to save the race" />
+                    <MenuItem Name="SaveAs_1" Header="Save As..." DataContext="'key':'A','modifier':'Alt'" FontSize="24" ToolTip="ALT-a to save the race with the spefied file name" />
+                    <Separator/>
+                    <MenuItem Name="Export_1" Header="Export Race" DataContext="'key':'X','modifier':'Alt'" FontSize="24" ToolTip="Alt-X to export current race progress" />
+                </MenuItem>
+                <MenuItem Header="Race Director" FontSize="24" Style="{StaticResource menuItemHeaderText}">
+                    <MenuItem Name="Start_1" Header="Start/Resume Heat" DataContext="'key':'S','modifier':'Control'" FontSize="24" ToolTip="CTRL-S to start or restart the heat" />
+                    <MenuItem Name="Pause_1" Header="Pause Heat" DataContext="'key':'P','modifier':'Control'" FontSize="24" ToolTip="CTRL-P to pause the heat" />
+                    <Separator/>
+                    <MenuItem Name="RestartHeat_1" Header="Restart Heat" DataContext="'key':'R','modifier':'Control'" FontSize="24" ToolTip="CTRL-R to restart the current heat" />
+                    <MenuItem Name="SkipRace_1" Header="Abort Race" DataContext="'key':'F4','modifier':'Alt'" FontSize="24" ToolTip="CTRL-F4 to end this race" />
+                </MenuItem>
+                <MenuItem Header="Track Power" FontSize="24" Style="{StaticResource menuItemHeaderText}">
+                    <MenuItem CommandParameter="0" Name="PowerOn_1" Header="Master Power On" DataContext="'key':'0','modifier':'Control'" FontSize="24" ToolTip="CTRL-0 to force master power on" />
+                    <MenuItem CommandParameter="0" Name="PowerOff_1" Header="Master Power Off" DataContext="'key':'0','modifier':'Alt'" FontSize="24" ToolTip="ALT-0 to force master power off"/>
+                    <MenuItem CommandParameter="1" Name="PowerOn_2" Header="Lane 1 Power On" DataContext="'key':'1','modifier':'Control'" FontSize="24" ToolTip="CTRL-1 to force lane 1 power on" />
+                    <MenuItem CommandParameter="1" Name="PowerOff_2" Header="Lane 1 Power Off" DataContext="'key':'1','modifier':'Alt'" FontSize="24" ToolTip="ALT-1 to force lane 1 power off"/>
+                    <MenuItem CommandParameter="2" Name="PowerOn_3" Header="Lane 2 Power On" DataContext="'key':'2','modifier':'Control'" FontSize="24" ToolTip="CTRL-2 to force lane 2 power on" />
+                    <MenuItem CommandParameter="2" Name="PowerOff_3" Header="Lane 2 Power Off" DataContext="'key':'2','modifier':'Alt'" FontSize="24" ToolTip="ALT-2 to force lane 2 power off"/>
+                    <MenuItem CommandParameter="3" Name="PowerOn_4" Header="Lane 3 Power On" DataContext="'key':'3','modifier':'Control'" FontSize="24" ToolTip="CTRL-3 to force lane 3 power on" />
+                    <MenuItem CommandParameter="3" Name="PowerOff_4" Header="Lane 3 Power Off" DataContext="'key':'3','modifier':'Alt'" FontSize="24" ToolTip="ALT-3 to force lane 3 power off"/>
+                </MenuItem>
+            </Menu>
+            <!-- End Menu Bar -->
+
+
+<!-- ****************************************************************** -->
+<!-- *                                                                * -->
+<!-- *                           Left panel                           * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+            <Label Grid.Column="0" Grid.Row="1" Content="Best Time" Style="{StaticResource practiceTitles}" />
+            <Label Grid.Column="0" Grid.Row="2" Content="Lap Time" FontSize="72" Style="{StaticResource practiceTitles}" />
+            <Label Grid.Column="0" Grid.Row="3" Content="Previous Laps" FontSize="48" Style="{StaticResource practiceTitles}" />
+            <Label Grid.Column="0" Grid.Row="6" Name="RaceTime_1" Grid.RowSpan="2" FontSize="64" Style="{StaticResource practiceTitles}"></Label>
+            <Label Grid.Column="0" Grid.Row="10" Content="Laps" Grid.RowSpan="2" Style="{StaticResource practiceTitles}" />
+            <Button Grid.Column="0" Grid.Row="12" Name="ClearLane_1" Content="Clear All" ToolTip="Clear all lap information" DataContext="'key':'F12'" CommandParameter="0" Width="200" Style="{StaticResource roundCornerLarge}" />
+
+
+<!-- ****************************************************************** -->
+<!-- *                                                                * -->
+<!-- *                Right panel (Driver Information)                * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+
+            <!-- ********************** -->
+            <!-- *    Lane 1 Start    * -->
+            <!-- ********************** -->
+            <Label Grid.Column="1" Grid.Row="1" Name="BestLapTime_Lane1_1" DataContext="'decimals':3" FontSize="54" HorizontalContentAlignment="Center" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="1" Grid.Row="2" Name="LapTime_Lane1_1" DataContext="'index':0,'decimals':3" FontSize="80" Style="{StaticResource practiceData}" />
+            <Image Grid.Column="1" Grid.Row="2" Name="SelfPerformance_Lane1_1" Height="30" HorizontalAlignment="Right" Margin="0, 0, 10, 10" Stretch="Fill" VerticalAlignment="Bottom" Width="35" />
+            <Label Grid.Column="1" Grid.Row="3" Name="LapTime_Lane1_2" DataContext="'index':1,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="1" Grid.Row="4" Name="LapTime_Lane1_3" DataContext="'index':2,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="1" Grid.Row="5" Name="LapTime_Lane1_4" DataContext="'index':3,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="1" Grid.Row="6" Name="LapTime_Lane1_5" DataContext="'index':4,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="1" Grid.Row="7" Name="LapTime_Lane1_6" DataContext="'index':5,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="1" Grid.Row="8" Name="LapTime_Lane1_7" DataContext="'index':6,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="1" Grid.Row="9" Name="LapTime_Lane1_8" DataContext="'index':7,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="1" Grid.Row="10" Grid.RowSpan="2" Name="Lap_Lane1_1" FontSize="54" Style="{StaticResource practiceData}" />
+            <Button Grid.Column="1" Grid.Row="12" Name="ClearLane_2" Content="Clear Lane" ToolTip="Clear lap information for lane 1" DataContext="'key':'F1'" CommandParameter="1" Width="200" Style="{StaticResource roundCornerLarge}" />
+            <!-- ********************** -->
+            <!-- *    Lane 1 End      * -->
+            <!-- ********************** -->
+
+            <!-- ********************** -->
+            <!-- *    Lane 2 Start    * -->
+            <!-- ********************** -->
+            <Label Grid.Column="2" Grid.Row="1" Name="BestLapTime_Lane2_1" DataContext="'decimals':3" FontSize="54" HorizontalContentAlignment="Center" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="2" Grid.Row="2" Name="LapTime_Lane2_1" DataContext="'index':0,'decimals':3" FontSize="80" Style="{StaticResource practiceData}" />
+            <Image Grid.Column="2" Grid.Row="2" Name="SelfPerformance_Lane2_1" Height="30" HorizontalAlignment="Right" Margin="0, 0, 10, 10" Stretch="Fill" VerticalAlignment="Bottom" Width="35" />
+            <Label Grid.Column="2" Grid.Row="3" Name="LapTime_Lane2_2" DataContext="'index':1,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="2" Grid.Row="4" Name="LapTime_Lane2_3" DataContext="'index':2,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="2" Grid.Row="5" Name="LapTime_Lane2_4" DataContext="'index':3,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="2" Grid.Row="6" Name="LapTime_Lane2_5" DataContext="'index':4,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="2" Grid.Row="7" Name="LapTime_Lane2_6" DataContext="'index':5,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="2" Grid.Row="8" Name="LapTime_Lane2_7" DataContext="'index':6,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="2" Grid.Row="9" Name="LapTime_Lane2_8" DataContext="'index':7,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="2" Grid.Row="10" Grid.RowSpan="2" Name="Lap_Lane2_1" FontSize="54" Style="{StaticResource practiceData}" />
+            <Button Grid.Column="2" Grid.Row="12" Name="ClearLane_3" Content="Clear Lane" ToolTip="Clear lap information for lane 2" DataContext="'key':'F2'" CommandParameter="2" Width="200" Style="{StaticResource roundCornerLarge}" />
+            <!-- ********************** -->
+            <!-- *    Lane 2 End      * -->
+            <!-- ********************** -->
+
+            <!-- ********************** -->
+            <!-- *    Lane 3 Start    * -->
+            <!-- ********************** -->
+            <Label Grid.Column="3" Grid.Row="1" Name="BestLapTime_Lane3_1" DataContext="'decimals':3" FontSize="54" HorizontalContentAlignment="Center" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="3" Grid.Row="2" Name="LapTime_Lane3_1" DataContext="'index':0,'decimals':3" FontSize="80" Style="{StaticResource practiceData}" />
+            <Image Grid.Column="3" Grid.Row="2" Name="SelfPerformance_Lane3_1" Height="30" HorizontalAlignment="Right" Margin="0, 0, 10, 10" Stretch="Fill" VerticalAlignment="Bottom" Width="35" />
+            <Label Grid.Column="3" Grid.Row="3" Name="LapTime_Lane3_2" DataContext="'index':1,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="3" Grid.Row="4" Name="LapTime_Lane3_3" DataContext="'index':2,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="3" Grid.Row="5" Name="LapTime_Lane3_4" DataContext="'index':3,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="3" Grid.Row="6" Name="LapTime_Lane3_5" DataContext="'index':4,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="3" Grid.Row="7" Name="LapTime_Lane3_6" DataContext="'index':5,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="3" Grid.Row="8" Name="LapTime_Lane3_7" DataContext="'index':6,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="3" Grid.Row="9" Name="LapTime_Lane3_8" DataContext="'index':7,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="3" Grid.Row="10" Grid.RowSpan="2" Name="Lap_Lane3_1" FontSize="54" Style="{StaticResource practiceData}" />
+            <Button Grid.Column="3" Grid.Row="12" Name="ClearLane_4" Content="Clear Lane" ToolTip="Clear lap information for lane 3" DataContext="'key':'F3'" CommandParameter="3" Width="200" Style="{StaticResource roundCornerLarge}" />
+            <!-- ********************** -->
+            <!-- *    Lane 3 End      * -->
+            <!-- ********************** -->
+
+            <!-- ********************** -->
+            <!-- *    Lane 4 Start    * -->
+            <!-- ********************** -->
+            <Label Grid.Column="4" Grid.Row="1" Name="BestLapTime_Lane4_1" DataContext="'decimals':3" FontSize="54" HorizontalContentAlignment="Center" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="4" Grid.Row="2" Name="LapTime_Lane4_1" DataContext="'index':0,'decimals':3" FontSize="80" Style="{StaticResource practiceData}" />
+            <Image Grid.Column="4" Grid.Row="2" Name="SelfPerformance_Lane4_1" Height="30" HorizontalAlignment="Right" Margin="0, 0, 10, 10" Stretch="Fill" VerticalAlignment="Bottom" Width="35" />
+            <Label Grid.Column="4" Grid.Row="3" Name="LapTime_Lane4_2" DataContext="'index':1,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="4" Grid.Row="4" Name="LapTime_Lane4_3" DataContext="'index':2,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="4" Grid.Row="5" Name="LapTime_Lane4_4" DataContext="'index':3,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="4" Grid.Row="6" Name="LapTime_Lane4_5" DataContext="'index':4,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="4" Grid.Row="7" Name="LapTime_Lane4_6" DataContext="'index':5,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="4" Grid.Row="8" Name="LapTime_Lane4_7" DataContext="'index':6,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="4" Grid.Row="9" Name="LapTime_Lane4_8" DataContext="'index':7,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="4" Grid.Row="10" Grid.RowSpan="2" Name="Lap_Lane4_1" FontSize="54" Style="{StaticResource practiceData}" />
+            <Button Grid.Column="4" Grid.Row="12" Name="ClearLane_5" Content="Clear Lane" ToolTip="Clear lap information for lane 4" DataContext="'key':'F4'" CommandParameter="4" Width="200" Style="{StaticResource roundCornerLarge}" />
+            <!-- ********************** -->
+            <!-- *    Lane 4 End      * -->
+            <!-- ********************** -->
+
+            <!-- ********************** -->
+            <!-- *    Lane 5 Start    * -->
+            <!-- ********************** -->
+            <Label Grid.Column="5" Grid.Row="1" Name="BestLapTime_Lane5_1" DataContext="'decimals':3" FontSize="54" HorizontalContentAlignment="Center" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="5" Grid.Row="2" Name="LapTime_Lane5_1" DataContext="'index':0,'decimals':3" FontSize="80" Style="{StaticResource practiceData}" />
+            <Image Grid.Column="5" Grid.Row="2" Name="SelfPerformance_Lane5_1" Height="30" HorizontalAlignment="Right" Margin="0, 0, 10, 10" Stretch="Fill" VerticalAlignment="Bottom" Width="35" />
+            <Label Grid.Column="5" Grid.Row="3" Name="LapTime_Lane5_2" DataContext="'index':1,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="5" Grid.Row="4" Name="LapTime_Lane5_3" DataContext="'index':2,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="5" Grid.Row="5" Name="LapTime_Lane5_4" DataContext="'index':3,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="5" Grid.Row="6" Name="LapTime_Lane5_5" DataContext="'index':4,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="5" Grid.Row="7" Name="LapTime_Lane5_6" DataContext="'index':5,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="5" Grid.Row="8" Name="LapTime_Lane5_7" DataContext="'index':6,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="5" Grid.Row="9" Name="LapTime_Lane5_8" DataContext="'index':7,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="5" Grid.Row="10" Grid.RowSpan="2" Name="Lap_Lane5_1" FontSize="54" Style="{StaticResource practiceData}" />
+            <Button Grid.Column="5" Grid.Row="12" Name="ClearLane_6" Content="Clear Lane" ToolTip="Clear lap information for lane 5" DataContext="'key':'F5'" CommandParameter="5" Width="200" Style="{StaticResource roundCornerLarge}" />
+            <!-- ********************** -->
+            <!-- *    Lane 5 End      * -->
+            <!-- ********************** -->
+
+            <!-- ********************** -->
+            <!-- *    Lane 6 Start    * -->
+            <!-- ********************** -->
+            <Label Grid.Column="6" Grid.Row="1" Name="BestLapTime_Lane6_1" DataContext="'decimals':3" FontSize="54" HorizontalContentAlignment="Center" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="6" Grid.Row="2" Name="LapTime_Lane6_1" DataContext="'index':0,'decimals':3" FontSize="80" Style="{StaticResource practiceData}" />
+            <Image Grid.Column="6" Grid.Row="2" Name="SelfPerformance_Lane6_1" Height="30" HorizontalAlignment="Right" Margin="0, 0, 10, 10" Stretch="Fill" VerticalAlignment="Bottom" Width="35" />
+            <Label Grid.Column="6" Grid.Row="3" Name="LapTime_Lane6_2" DataContext="'index':1,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="6" Grid.Row="4" Name="LapTime_Lane6_3" DataContext="'index':2,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="6" Grid.Row="5" Name="LapTime_Lane6_4" DataContext="'index':3,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="6" Grid.Row="6" Name="LapTime_Lane6_5" DataContext="'index':4,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="6" Grid.Row="7" Name="LapTime_Lane6_6" DataContext="'index':5,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="6" Grid.Row="8" Name="LapTime_Lane6_7" DataContext="'index':6,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="6" Grid.Row="9" Name="LapTime_Lane6_8" DataContext="'index':7,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="6" Grid.Row="10" Grid.RowSpan="2" Name="Lap_Lane6_1" FontSize="54" Style="{StaticResource practiceData}" />
+            <Button Grid.Column="6" Grid.Row="12" Name="ClearLane_7" Content="Clear Lane" ToolTip="Clear lap information for lane 6" DataContext="'key':'F6'" CommandParameter="6" Width="200" Style="{StaticResource roundCornerLarge}" />
+            <!-- ********************** -->
+            <!-- *    Lane 6 End      * -->
+            <!-- ********************** -->
+
+            <!-- ********************** -->
+            <!-- *    Lane 7 Start    * -->
+            <!-- ********************** -->
+            <Label Grid.Column="7" Grid.Row="1" Name="BestLapTime_Lane7_1" DataContext="'decimals':3" FontSize="54" HorizontalContentAlignment="Center" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="7" Grid.Row="2" Name="LapTime_Lane7_1" DataContext="'index':0,'decimals':3" FontSize="80" Style="{StaticResource practiceData}" />
+            <Image Grid.Column="7" Grid.Row="2" Name="SelfPerformance_Lane7_1" Height="30" HorizontalAlignment="Right" Margin="0, 0, 10, 10" Stretch="Fill" VerticalAlignment="Bottom" Width="35" />
+            <Label Grid.Column="7" Grid.Row="3" Name="LapTime_Lane7_2" DataContext="'index':1,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="7" Grid.Row="4" Name="LapTime_Lane7_3" DataContext="'index':2,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="7" Grid.Row="5" Name="LapTime_Lane7_4" DataContext="'index':3,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="7" Grid.Row="6" Name="LapTime_Lane7_5" DataContext="'index':4,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="7" Grid.Row="7" Name="LapTime_Lane7_6" DataContext="'index':5,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="7" Grid.Row="8" Name="LapTime_Lane7_7" DataContext="'index':6,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="7" Grid.Row="9" Name="LapTime_Lane7_8" DataContext="'index':7,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="7" Grid.Row="10" Grid.RowSpan="2" Name="Lap_Lane7_1" FontSize="54" Style="{StaticResource practiceData}" />
+            <Button Grid.Column="7" Grid.Row="12" Name="ClearLane_8" Content="Clear Lane" ToolTip="Clear lap information for lane 7" DataContext="'key':'F7'" CommandParameter="7" Width="200" Style="{StaticResource roundCornerLarge}" />
+            <!-- ********************** -->
+            <!-- *    Lane 7 End      * -->
+            <!-- ********************** -->
+
+       </Grid>
+        <!-- End Main Grid -->
+    </Viewbox>
+    <!-- End Main ViewBox -->
+</Window>

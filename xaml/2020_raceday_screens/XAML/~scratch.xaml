@@ -1,0 +1,857 @@
+<!-- ****************************************************************** -->
+<!-- *                           Standard                             * -->
+<!-- *        lane display for Race Data panel in RaceDay file        * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+<!-- *  Usage: 1) Copy this code into the RaceDay file                * -->
+<!-- *         2) Replace all instances of <Lane#> with lane number   * -->  
+<!-- ****************************************************************** -->
+
+                        <!-- ********************** -->
+                        <!-- *    Lane <Lane#> Start    * -->
+                        <!-- ********************** -->
+                        <!-- Name -->
+                        <Label Grid.Row="<Lane#>" Grid.Column="0" Name="Nickname_Position<Lane#>_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="335" MaxHeight="168" Grid.Row="<Lane#>" Grid.Column="0">
+                            <Label Name="Nickname_Position<Lane#>_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Lap -->
+                        <Label Name="Lap_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="1" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="1" MaxHeight="168" MaxWidth="96">
+                            <Label Name="Lap_Position<Lane#>_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Lap:  Drift lap notification (inside lap cell) -->
+                        <Grid Grid.Row="<Lane#>" Grid.Column="1" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                            </Grid.RowDefinitions>
+                            <Viewbox Grid.Row="2" Grid.Column="1" MaxHeight="53" MaxWidth="46">
+                                <Image Name="DriftLap_Position<Lane#>_1" Stretch="Uniform"/>
+                            </Viewbox>
+                        </Grid>
+                        <!-- Lap:  Add lap sections button (click inside lap cell) -->
+                        <Button Name="AddLapSections_Position<Lane#>_1" Grid.Row ="<Lane#>" Grid.Column="1" Focusable="False" IsTabStop="False" Opacity="0" ToolTip="Click to add laps/sections" />
+                        <!-- Lap Time -->
+                        <Label Name="LapTime_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="2" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="2" MaxHeight="168" MaxWidth="191">
+                            <Label Name="LapTime_Position<Lane#>_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <StackPanel Grid.Row="<Lane#>" Grid.Column="2" HorizontalAlignment="Right" Margin="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Image Width="15" Height="20" Name="SelfPerformance_Position<Lane#>_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="HeatPerformance_Position<Lane#>_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="TrackPerformance_Position<Lane#>_1" Margin="1,0" Stretch="Fill" />
+                        </StackPanel>
+                        <!-- Median Lap Time -->
+                        <Label Name="MedianTime_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="3" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="3" MaxHeight="168" MaxWidth="191">
+                            <Label Name="MedianTime_Position<Lane#>_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Best Lap Time -->
+                        <Label Name="BestLapTime_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="4" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="4" MaxHeight="168" MaxWidth="191">
+                            <Label Name="BestLapTime_Position<Lane#>_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- ********************** -->
+                        <!-- *    Lane <Lane#> End      * -->
+                        <!-- ********************** -->
+
+
+
+
+<!-- ****************************************************************** -->
+<!-- *                         Crash & Learn                          * -->
+<!-- *        lane display for Race Data panel in RaceDay file        * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+<!-- *  Usage: 1) Copy this code into the RaceDay file                * -->
+<!-- *         2) Replace all instances of <Lane#> with lane number   * -->  
+<!-- ****************************************************************** -->
+
+                        <!-- ********************** -->
+                        <!-- *    Lane <Lane#> Start    * -->
+                        <!-- ********************** -->
+                        <!-- Name -->
+                        <Label Grid.Row="<Lane#>" Grid.Column="0" Name="Nickname_Position<Lane#>_1" Style="{StaticResource laneData}" />
+                        <Viewbox MaxWidth="335" MaxHeight="168" Grid.Row="<Lane#>" Grid.Column="0">
+                            <Label Name="Nickname_Position<Lane#>_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Name: CnL information (inside name cell) -->
+                        <StackPanel Grid.Row="<Lane#>" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <DockPanel LastChildFill="True" Margin="4, 2, 4, 2">
+                                <TextBlock Text="" Style="{StaticResource extraLaneData}" />
+                                <TextBlock Name="DeslotCount_Position<Lane#>_1" Style="{StaticResource extraLaneData}" />
+                            </DockPanel>
+                        </StackPanel>
+                        <Button Name="AdjustDeslot_Position<Lane#>_1" Grid.Row ="1" Grid.Column="0" Opacity="0" IsTabStop="False" Focusable="False" />
+                        <!-- Lap -->
+                        <Label Name="Lap_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="1" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="1" MaxHeight="168" MaxWidth="96">
+                            <Label Name="Lap_Position<Lane#>_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Lap:  Drift lap notification (inside lap cell) -->
+                        <Grid Grid.Row="<Lane#>" Grid.Column="1" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                            </Grid.RowDefinitions>
+                            <Viewbox Grid.Row="2" Grid.Column="1" MaxHeight="53" MaxWidth="46">
+                                <Image Name="DriftLap_Position<Lane#>_1" Stretch="Uniform"/>
+                            </Viewbox>
+                        </Grid>
+                        <!-- Lap:  Add lap sections button (click inside lap cell) -->
+                        <Button Name="AddLapSections_Position<Lane#>_1" Grid.Row ="<Lane#>" Grid.Column="1" Focusable="False" IsTabStop="False" Opacity="0" ToolTip="Click to add laps/sections" />
+                        <!-- Lap Time -->
+                        <Label Name="LapTime_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="2" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="2" MaxHeight="168" MaxWidth="191">
+                            <Label Name="LapTime_Position<Lane#>_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <StackPanel Grid.Row="<Lane#>" Grid.Column="2" HorizontalAlignment="Right" Margin="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Image Width="15" Height="20" Name="SelfPerformance_Position<Lane#>_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="HeatPerformance_Position<Lane#>_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="TrackPerformance_Position<Lane#>_1" Margin="1,0" Stretch="Fill" />
+                        </StackPanel>
+                        <!-- Median Lap Time -->
+                        <Label Name="MedianTime_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="3" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="3" MaxHeight="168" MaxWidth="191">
+                            <Label Name="MedianTime_Position<Lane#>_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Best Lap Time -->
+                        <Label Name="BestLapTime_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="4" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="4" MaxHeight="168" MaxWidth="191">
+                            <Label Name="BestLapTime_Position<Lane#>_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- ********************** -->
+                        <!-- *    Lane <Lane#> End      * -->
+                        <!-- ********************** -->
+
+
+
+
+<!-- ****************************************************************** -->
+<!-- *                              Fuel                              * -->
+<!-- *        lane display for Race Data panel in RaceDay file        * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+<!-- *  Usage: 1) Copy this code into the RaceDay file                * -->
+<!-- *         2) Replace all instances of <Lane#> with lane number   * -->  
+<!-- ****************************************************************** -->
+
+                        <!-- ********************** -->
+                        <!-- *    Lane <Lane#> Start    * -->
+                        <!-- ********************** -->
+                        <!-- Name -->
+                        <Label Grid.Row="<Lane#>" Grid.Column="0" Name="Nickname_Position<Lane#>_1" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="0" MaxHeight="168" MaxWidth="335" >
+                            <Label Name="Nickname_Position<Lane#>_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Fuel information -->
+                        <Label Name="Name_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="1" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="1" MaxHeight="140" MaxWidth="96" >
+                            <Image Stretch="Fill" Name="FuelImage_Position<Lane#>_1"/>
+                        </Viewbox>
+                        <StackPanel Grid.Row="<Lane#>" Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <DockPanel LastChildFill="True" Margin="4, 2, 4, 2">
+                                <TextBlock Text="" Style="{StaticResource extraLaneData}" />
+                                <TextBlock Name="FuelLevel_Position<Lane#>_1" Style="{StaticResource extraLaneData}" />
+                            </DockPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Row="<Lane#>" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <DockPanel LastChildFill="True" Margin="4, 2, 4, 2">
+                                <TextBlock Text="" Style="{StaticResource extraLaneData}"/>
+                                <TextBlock Name="FuelCapacity_Position<Lane#>_1" Style="{StaticResource extraLaneData}" />
+                            </DockPanel>
+                        </StackPanel>
+                        <!-- Lap -->
+                        <Label Name="Lap_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="2" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="2" MaxHeight="168" MaxWidth="96">
+                            <Label Name="Lap_Position<Lane#>_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Lap:  Drift lap notification (inside lap cell) -->
+                        <Grid Grid.Row="<Lane#>" Grid.Column="2" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                            </Grid.RowDefinitions>
+                            <Viewbox Grid.Row="2" Grid.Column="2" MaxHeight="53" MaxWidth="46">
+                                <Image Name="DriftLap_Position<Lane#>_1" Stretch="Uniform"/>
+                            </Viewbox>
+                        </Grid>
+                        <!-- Lap:  Add lap sections button (click inside lap cell) -->
+                        <Button Name="AddLapSections_Position<Lane#>_1" Grid.Row ="<Lane#>" Grid.Column="2" Focusable="False" IsTabStop="False" Opacity="0" ToolTip="Click to add laps/sections" />
+                        <!-- Lap Time -->
+                        <Label Name="LapTime_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="3" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="3" MaxHeight="168" MaxWidth="191">
+                            <Label Name="LapTime_Position<Lane#>_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <StackPanel Grid.Row="<Lane#>" Grid.Column="3" HorizontalAlignment="Right" Margin="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Image Width="15" Height="20" Name="SelfPerformance_Position<Lane#>_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="HeatPerformance_Position<Lane#>_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="TrackPerformance_Position<Lane#>_1" Margin="1,0" Stretch="Fill" />
+                        </StackPanel>
+                        <!-- Best Lap Time -->
+                        <Label Name="BestLapTime_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="4" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="5" MaxHeight="168" MaxWidth="191">
+                            <Label Name="BestLapTime_Position<Lane#>_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- ********************** -->
+                        <!-- *    Lane <Lane#> End      * -->
+                        <!-- ********************** -->
+
+
+
+
+<!-- ****************************************************************** -->
+<!-- *                     Crash & Learn + Fuel                       * -->
+<!-- *        lane display for Race Data panel in RaceDay file        * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+<!-- *  Usage: 1) Copy this code into the RaceDay file                * -->
+<!-- *         2) Replace all instances of <Lane#> with lane number   * -->  
+<!-- ****************************************************************** -->
+
+                        <!-- ********************** -->
+                        <!-- *    Lane <Lane#> Start    * -->
+                        <!-- ********************** -->
+                        <!-- Name -->
+                        <Label Grid.Row="<Lane#>" Grid.Column="0" Name="Nickname_Position<Lane#>_1" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="0" MaxHeight="168" MaxWidth="335" >
+                            <Label Name="Nickname_Position<Lane#>_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Name: CnL information (inside name cell) -->
+                        <StackPanel Grid.Row="<Lane#>" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <DockPanel LastChildFill="True" Margin="4, 2, 4, 2">
+                                <TextBlock Text="" Style="{StaticResource extraLaneData}" />
+                                <TextBlock Name="DeslotCount_Position<Lane#>_1" Style="{StaticResource extraLaneData}" />
+                            </DockPanel>
+                        </StackPanel>
+                        <Button Name="AdjustDeslot_Position<Lane#>_1" Grid.Row ="1" Grid.Column="0" Opacity="0" IsTabStop="False" Focusable="False" />
+                        <!-- Fuel information -->
+                        <Label Name="Name_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="1" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="1" MaxHeight="140" MaxWidth="96" >
+                            <Image Stretch="Fill" Name="FuelImage_Position<Lane#>_1"/>
+                        </Viewbox>
+                        <StackPanel Grid.Row="<Lane#>" Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <DockPanel LastChildFill="True" Margin="4, 2, 4, 2">
+                                <TextBlock Text="" Style="{StaticResource extraLaneData}" />
+                                <TextBlock Name="FuelLevel_Position<Lane#>_1" Style="{StaticResource extraLaneData}" />
+                            </DockPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Row="<Lane#>" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <DockPanel LastChildFill="True" Margin="4, 2, 4, 2">
+                                <TextBlock Text="" Style="{StaticResource extraLaneData}"/>
+                                <TextBlock Name="FuelCapacity_Position<Lane#>_1" Style="{StaticResource extraLaneData}" />
+                            </DockPanel>
+                        </StackPanel>
+                        <!-- Lap -->
+                        <Label Name="Lap_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="2" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="2" MaxHeight="168" MaxWidth="96">
+                            <Label Name="Lap_Position<Lane#>_2" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- Lap:  Drift lap notification (inside lap cell) -->
+                        <Grid Grid.Row="<Lane#>" Grid.Column="2" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                                <RowDefinition Height="57" />
+                            </Grid.RowDefinitions>
+                            <Viewbox Grid.Row="2" Grid.Column="2" MaxHeight="53" MaxWidth="46">
+                                <Image Name="DriftLap_Position<Lane#>_1" Stretch="Uniform"/>
+                            </Viewbox>
+                        </Grid>
+                        <!-- Lap:  Add lap sections button (click inside lap cell) -->
+                        <Button Name="AddLapSections_Position<Lane#>_1" Grid.Row ="<Lane#>" Grid.Column="2" Focusable="False" IsTabStop="False" Opacity="0" ToolTip="Click to add laps/sections" />
+                        <!-- Lap Time -->
+                        <Label Name="LapTime_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="3" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="3" MaxHeight="168" MaxWidth="191">
+                            <Label Name="LapTime_Position<Lane#>_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <StackPanel Grid.Row="<Lane#>" Grid.Column="3" HorizontalAlignment="Right" Margin="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Image Width="15" Height="20" Name="SelfPerformance_Position<Lane#>_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="HeatPerformance_Position<Lane#>_1" Margin="1,0" Stretch="Fill" />
+                            <Image Width="15" Height="20" Name="TrackPerformance_Position<Lane#>_1" Margin="1,0" Stretch="Fill" />
+                        </StackPanel>
+                        <!-- Best Lap Time -->
+                        <Label Name="BestLapTime_Position<Lane#>_1" Grid.Row="<Lane#>" Grid.Column="4" Style="{StaticResource laneData}" />
+                        <Viewbox Grid.Row="<Lane#>" Grid.Column="5" MaxHeight="168" MaxWidth="191">
+                            <Label Name="BestLapTime_Position<Lane#>_2" DataContext="'decimals':3" Style="{StaticResource laneDataLayer2}" />
+                        </Viewbox>
+                        <!-- ********************** -->
+                        <!-- *    Lane <Lane#> End      * -->
+                        <!-- ********************** -->
+
+
+
+<!-- ****************************************************************** -->
+<!-- *                           Practice                             * -->
+<!-- *        lane display for Race Data panel in RaceDay file        * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+<!-- *  Usage: 1) Copy this code into the RaceDay file                * -->
+<!-- *         2) Replace all instances of <Lane#> with lane number   * -->  
+<!-- *         3) Replace <Lane# + 1> with lane number + 1            * -->  
+<!-- *         4) Add Width="<width>" to button to set it's width     * -->  
+<!-- ****************************************************************** -->
+
+            <!-- ********************** -->
+            <!-- *    Lane <Lane#> Start    * -->
+            <!-- ********************** -->
+            <Label Grid.Column="<Lane#>" Grid.Row="1" Name="BestLapTime_Lane<Lane#>_1" DataContext="'decimals':3" FontSize="54" HorizontalContentAlignment="Center" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="<Lane#>" Grid.Row="2" Name="LapTime_Lane<Lane#>_1" DataContext="'index':0,'decimals':3" FontSize="80" Style="{StaticResource practiceData}" />
+            <Image Grid.Column="<Lane#>" Grid.Row="2" Name="SelfPerformance_Lane<Lane#>_1" Height="30" HorizontalAlignment="Right" Margin="0, 0, 10, 10" Stretch="Fill" VerticalAlignment="Bottom" Width="35" />
+            <Label Grid.Column="<Lane#>" Grid.Row="3" Name="LapTime_Lane<Lane#>_2" DataContext="'index':1,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="<Lane#>" Grid.Row="4" Name="LapTime_Lane<Lane#>_3" DataContext="'index':2,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="<Lane#>" Grid.Row="5" Name="LapTime_Lane<Lane#>_4" DataContext="'index':3,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="<Lane#>" Grid.Row="6" Name="LapTime_Lane<Lane#>_5" DataContext="'index':4,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="<Lane#>" Grid.Row="7" Name="LapTime_Lane<Lane#>_6" DataContext="'index':5,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="<Lane#>" Grid.Row="8" Name="LapTime_Lane<Lane#>_7" DataContext="'index':6,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="<Lane#>" Grid.Row="9" Name="LapTime_Lane<Lane#>_8" DataContext="'index':7,'decimals':3" Style="{StaticResource practiceData}" />
+            <Label Grid.Column="<Lane#>" Grid.Row="10" Grid.RowSpan="2" Name="Lap_Lane<Lane#>_1" FontSize="54" Style="{StaticResource practiceData}" />
+            <Button Grid.Column="<Lane#>" Grid.Row="12" Name="ClearLane_<Lane# + 1>" Content="Clear Lane" ToolTip="Clear lap information for lane <Lane#>" DataContext="'key':'F<Lane#>'" CommandParameter="<Lane#>" Style="{StaticResource roundCornerLarge}" />
+            <!-- ********************** -->
+            <!-- *    Lane <Lane#> End      * -->
+            <!-- ********************** -->
+
+
+
+<!-- ****************************************************************** -->
+<!-- *                         Leaderboard                            * -->
+<!-- *      lane display for Race Data panel in leaderboard file      * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+<!-- *  Usage: 1) Copy this code into the leaderboard file            * -->
+<!-- *         2) Replace all instances of <Lane#> with lane number   * -->  
+<!-- ****************************************************************** -->
+
+            <!-- Leaderboard Position <Lane#> -->
+            <TextBlock Text="<Lane#>" Grid.Row="<Lane#>" Grid.Column="0" Style="{StaticResource leaderBoardText}" />
+            <Viewbox MaxWidth="180" MaxHeight="25" MinHeight="25" Grid.Row="<Lane#>" Grid.Column="1" HorizontalAlignment="Left">
+                <TextBlock Name="Nickname_RaceLeader<Lane#>_1" Margin="5,0" Style="{StaticResource leaderBoardText}" />
+            </Viewbox>
+            <Viewbox MaxWidth="70" MaxHeight="25" MinHeight="25" Grid.Row="<Lane#>" Grid.Column="2" HorizontalAlignment="Right">
+                <TextBlock Name="Standing_RaceLeader<Lane#>_1" DataContext="'decimals':3" Style="{StaticResource leaderBoardText}" />
+            </Viewbox>
+
+
+
+<!-- ************************************************************************ -->
+<!-- *                           Race Results                               * -->
+<!-- *      results display for Race Data window in raceresults file        * -->
+<!-- *                                                                      * -->
+<!-- ************************************************************************ -->
+<!-- *  Usage: 1) Copy this code into the raceresults file                  * -->
+<!-- *         2) Replace all instances of <position#> with position number * -->
+<!-- *         3) For position 1, add:                                      * -->
+<!-- *           Foreground="Transparent"                                   * -->
+<!-- *           to GapLeader_ and GapPosition_ labels                      * -->
+<!-- *         4) For position 2, add:                                      * -->
+<!-- *           Foreground="Transparent"                                   * -->
+<!-- *           to GapPosition_ label                                      * -->
+<!-- *         5) For odd numbered positions, add:                          * -->
+<!-- *           Background="{StaticResource brushSecondaryLight}"          * -->
+<!-- *           to StackPanel                                              * -->
+<!-- ************************************************************************ -->
+
+                    <!-- ************************** -->
+                    <!-- *    Position <position#> Start    * -->
+                    <!-- ************************** -->
+                    <StackPanel Orientation="Horizontal" Height="40">
+                        <Grid Width="75" >
+                            <Viewbox MaxWidth="75"  MaxHeight="40" MinHeight="40">
+                                <Label Name="Pos<position#>_1" Content="<position#>" HorizontalContentAlignment="Right" Style="{StaticResource RaceResultsData}" />
+                            </Viewbox>
+                        </Grid>
+                        <Grid Width="50">
+                            <Image Name="Avatar_RaceLeader<position#>_1" MaxWidth="45" MaxHeight="40" Stretch="Fill" />
+                        </Grid>
+                        <Grid Width="219">
+                            <Viewbox MaxWidth="216"  MaxHeight="40" MinHeight="40">
+                                <Label Name="Nickname_RaceLeader<position#>_1" HorizontalContentAlignment="Right" Style="{StaticResource RaceResultsData}" />
+                            </Viewbox>
+                        </Grid>
+                        <Grid Width="100">
+                            <Viewbox StretchDirection="DownOnly">
+                                <Label Name="Standing_RaceLeader<position#>_1" HorizontalContentAlignment="Right" DataContext="'decimals':2" Style="{StaticResource RaceResultsData}" /> 
+                            </Viewbox>
+                        </Grid>
+                        <Grid Width="100">
+                            <Viewbox StretchDirection="DownOnly">
+                                <Label Name="Lap_RaceLeader<position#>_1" HorizontalContentAlignment="Right" DataContext="'decimals':2" Style="{StaticResource RaceResultsData}" /> 
+                            </Viewbox>
+                        </Grid>
+                        <Grid Width="110">
+                            <Viewbox StretchDirection="DownOnly">
+                                <Label Name="AverageTime_RaceLeader<position#>_1" MaxWidth="110" HorizontalContentAlignment="Right" DataContext="'decimals':3" Style="{StaticResource RaceResultsData}" /> 
+                            </Viewbox>
+                        </Grid>
+                        <Grid Width="110">
+                            <Viewbox StretchDirection="DownOnly">
+                                <Label Name="BestLapTime_RaceLeader<position#>_1" MaxWidth="110" HorizontalContentAlignment="Right" DataContext="'decimals':3" Style="{StaticResource RaceResultsData}" /> 
+                            </Viewbox>
+                        </Grid>
+                        <Grid Width="130">
+                            <Viewbox StretchDirection="DownOnly">
+                                <Label Name="GapLeader_RaceLeader<position#>_1" Content="" HorizontalContentAlignment="Right" DataContext="'decimals':3" Style="{StaticResource RaceResultsData}" /> 
+                            </Viewbox>
+                        </Grid>
+                        <Grid Width="130">
+                            <Viewbox StretchDirection="DownOnly">
+                                <Label Name="GapPosition_RaceLeader<position#>_1" Content="" HorizontalContentAlignment="Right" DataContext="'decimals':3" Style="{StaticResource RaceResultsData}" /> 
+                            </Viewbox>
+                        </Grid>
+                    </StackPanel>
+                    <!-- ************************** -->
+                    <!-- *    Position <position#> End      * -->
+                    <!-- ************************** -->
+
+
+<!-- ****************************************************************** -->
+<!-- *                                                                * -->
+<!-- *                           On Deck                              * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+<!-- *  Usage: 1) Copy this code into the on deck file                * -->
+<!-- *         2) Replace all instances of <Lane#> with lane number   * -->  
+<!-- ****************************************************************** -->
+
+                <!-- ********************** -->
+                <!-- *    Lane <Lane#> Start    * -->
+                <!-- ********************** -->
+                <Grid>
+                    <TextBlock Name="OnDeckNickname<Lane#>_1" Background="Black" FontSize="15" Foreground="Transparent" Margin="2,0,2,0" Padding="10,2" />
+                    <DockPanel LastChildFill="False" Margin="2,0,2,0">
+                        <TextBlock Name="OnDeckNickname<Lane#>_2" Background="Black" FontSize="15" Foreground="Black" Margin="2,0,2,0" Padding="10,2" />
+                    </DockPanel>
+                </Grid>
+                <!-- ********************** -->
+                <!-- *    Lane <Lane#> End      * -->
+                <!-- ********************** -->
+
+
+<!-- ****************************************************************** -->
+<!-- *                                                                * -->
+<!-- *                          Next Heat                             * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+<!-- *  Usage: 1) Copy this code into the leaderboard file            * -->
+<!-- *         2) Replace all instances of <Lane#> with lane number   * -->  
+<!-- ****************************************************************** -->
+
+            <!-- ********************** -->
+            <!-- *    Lane <Lane#> Start    * -->
+            <!-- ********************** -->
+            <Label Name="NextHeatNickname<Lane#>_1" Grid.Column="0" Grid.Row="<Lane#>" Style="{StaticResource laneData}" />
+            <Viewbox Grid.Column="0" Grid.Row="<Lane#>" MaxHeight="50" MaxWidth="250" >
+                <Label Name="NextHeatNickname<Lane#>_2" Style="{StaticResource laneDataLayer2}" />
+            </Viewbox>
+            <!-- ********************** -->
+            <!-- *    Lane <Lane#> End      * -->
+            <!-- ********************** -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ****************************************************************** -->
+<!-- *                                                                * -->
+<!-- *                 Discarded from RaceDay file                    * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+<!-- From StackPanel 2 in the Upper panel-->
+                        <Viewbox Margin="5" Stretch="None">
+                            <Image Name="TrackImage_1" VerticalAlignment="Center" Margin="5,0,0,0" Height="115" StretchDirection="Both" MaxWidth="300" />
+                        </Viewbox>
+                        <Label Margin="6,5.716,0.569,0" VerticalAlignment="Bottom" Foreground="Linen" FontSize="12" HorizontalContentAlignment="Center" HorizontalAlignment="left" VerticalContentAlignment="bottom" Padding="0" FontWeight="Bold" FontStyle="Italic" OverridesDefaultStyle="False"></Label>
+                        <Viewbox MaxWidth="300" MaxHeight="50" MinHeight="50">
+                            <Label Margin="6,5.716,0.569,0" Name="TrackName_1" VerticalAlignment="Top" Foreground="{StaticResource RSLabelColor}" FontSize="30" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalContentAlignment="Top" Padding="2" FontWeight="Bold" FontStyle="Italic" />
+                        </Viewbox>
+
+
+
+
+<!-- ****************************************************************** -->
+<!-- *                                                                * -->
+<!-- *             Customise menu bar (not yet working)               * -->
+<!-- *                                                                * -->
+<!-- ****************************************************************** -->
+
+<!-- In Theme Dictionary file -->
+    <!--  ControlTemplate for the Menu control -->
+    <Style x:Key="{x:Type Menu}" TargetType="{x:Type Menu}">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{StaticResource brushTextOnPrimary}"/>
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Menu}">
+                    <Border BorderThickness="1">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource colourPrimary}" />
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource colourPrimary}" />
+                        </Border.BorderBrush>
+                        <StackPanel ClipToBounds="True" Orientation="Horizontal" IsItemsHost="True" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--  ControlTemplate for the Menu Separator (not sure this is necessary) -->
+    <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="{x:Type Separator}">
+        <Setter Property="Height" Value="1" />
+        <Setter Property="Margin" Value="0,4,0,4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Separator}">
+                    <Border BorderThickness="1">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="{StaticResource colourPrimary}" />
+                        </Border.BorderBrush>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ControlTemplate for the MenuItem TopLevelHeader -->
+    <!-- ***  ATM this is not showing the sub menu items  *** -->
+    <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
+        <Border x:Name="Border">
+            <Grid>
+                <ContentPresenter Margin="6,3,6,3" ContentSource="Header" RecognizesAccessKey="True" />
+                <Popup x:Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Fade">
+                    <Border x:Name="SubmenuBorder" SnapsToDevicePixels="True" BorderThickness="1" Background="{DynamicResource MenuPopupBrush}">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource colourPrimaryDark}" />
+                        </Border.BorderBrush>
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsSuspendingPopupAnimation" Value="true">
+                <Setter TargetName="Popup" Property="PopupAnimation" Value="None" />
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
+                <Setter Property="Background" TargetName="Border">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource colourPrimaryDark}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger SourceName="Popup" Property="AllowsTransparency" Value="True">
+                <Setter TargetName="SubmenuBorder" Property="CornerRadius" Value="0,0,4,4" />
+                <Setter TargetName="SubmenuBorder" Property="Padding" Value="0,0,0,3" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource DisabledForegroundColor}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- ControlTemplate for the MenuItem TopLevelItem -->
+    <ControlTemplate x:Key="{x:Static MenuItem.TopLevelItemTemplateKey}" TargetType="{x:Type MenuItem}">
+        <Border x:Name="Border">
+            <Grid>
+                <ContentPresenter Margin="6,3,6,3" ContentSource="Header" RecognizesAccessKey="True" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter Property="Background" TargetName="Border">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStopCollection>
+                                    <GradientStop Color="{DynamicResource ControlLightColor}" />
+                                    <GradientStop Color="{DynamicResource ControlMouseOverColor}" Offset="1.0" />
+                                </GradientStopCollection>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource DisabledForegroundColor}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- ControlTemplate for the MenuItem SubmenuItem -->
+    <ControlTemplate x:Key="{x:Static MenuItem.SubmenuItemTemplateKey}" TargetType="{x:Type MenuItem}">
+        <Border x:Name="Border" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Shortcut" />
+                    <ColumnDefinition Width="13" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter x:Name="Icon" Margin="6,0,6,0" VerticalAlignment="Center" ContentSource="Icon" />
+                <Border x:Name="Check" Width="13" Height="13" Visibility="Collapsed" Margin="6,0,6,0" BorderThickness="1">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStopCollection>
+                                    <GradientStop Color="{DynamicResource BorderLightColor}" Offset="0.0" />
+                                    <GradientStop Color="{DynamicResource BorderDarkColor}" Offset="1.0" />
+                                </GradientStopCollection>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+
+                    </Border.BorderBrush>
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStopCollection>
+                                    <GradientStop Color="{DynamicResource ControlLightColor}" />
+                                    <GradientStop Color="{DynamicResource ControlMediumColor}" Offset="1.0" />
+                                </GradientStopCollection>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Path x:Name="CheckMark" Width="7" Height="7" Visibility="Hidden" SnapsToDevicePixels="False" StrokeThickness="2" Data="M 0 0 L 7 7 M 0 7 L 7 0">
+                        <Path.Stroke>
+                            <SolidColorBrush Color="{DynamicResource GlyphColor}" />
+                        </Path.Stroke>
+                    </Path>
+                </Border>
+                <ContentPresenter x:Name="HeaderHost" Grid.Column="1" ContentSource="Header" RecognizesAccessKey="True" />
+                <TextBlock x:Name="InputGestureText" Grid.Column="2" Text="{TemplateBinding InputGestureText}" Margin="5,2,0,2" DockPanel.Dock="Right" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="ButtonBase.Command" Value="{x:Null}" />
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="Icon" Property="Visibility" Value="Hidden" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="true">
+                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsCheckable" Value="true">
+                <Setter TargetName="Check" Property="Visibility" Value="Visible" />
+                <Setter TargetName="Icon" Property="Visibility" Value="Hidden" />
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter Property="Background" TargetName="Border">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Transparent" Offset="0" />
+                            <GradientStop Color="{DynamicResource ControlMouseOverColor}" Offset="1" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="Border">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="{DynamicResource BorderMediumColor}" Offset="0" />
+                            <GradientStop Color="Transparent" Offset="1" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource DisabledForegroundColor}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{x:Static MenuItem.SubmenuHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
+        <Border x:Name="Border" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Icon" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Shortcut" />
+                    <ColumnDefinition Width="13" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter x:Name="Icon" Margin="6,0,6,0" VerticalAlignment="Center" ContentSource="Icon" />
+                <ContentPresenter x:Name="HeaderHost" Grid.Column="1" ContentSource="Header" RecognizesAccessKey="True" />
+                <TextBlock x:Name="InputGestureText" Grid.Column="2" Text="{TemplateBinding InputGestureText}" Margin="5,2,2,2" DockPanel.Dock="Right" />
+                <Path Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 0 7 L 4 3.5 Z">
+                    <Path.Fill>
+                        <SolidColorBrush Color="{DynamicResource GlyphColor}" />
+                    </Path.Fill>
+                </Path>
+                <Popup x:Name="Popup" Placement="Right" HorizontalOffset="-4" IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Fade">
+                    <Border x:Name="SubmenuBorder" SnapsToDevicePixels="True" Background="{DynamicResource MenuPopupBrush}" BorderThickness="1">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource BorderMediumColor}" />
+                        </Border.BorderBrush>
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter Property="Background" TargetName="Border">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Transparent" Offset="0" />
+                            <GradientStop Color="{DynamicResource ControlMouseOverColor}" Offset="1" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="Border">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="{DynamicResource BorderMediumColor}" Offset="0" />
+                            <GradientStop Color="Transparent" Offset="1" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger SourceName="Popup" Property="AllowsTransparency" Value="True">
+                <Setter TargetName="SubmenuBorder" Property="CornerRadius" Value="4" />
+                <Setter TargetName="SubmenuBorder" Property="Padding" Value="0,3,0,3" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource DisabledForegroundColor}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- MenuItem Style -->
+    <Style x:Key="{x:Type MenuItem}" TargetType="{x:Type MenuItem}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Style.Triggers>
+            <Trigger Property="Role" Value="TopLevelHeader">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.TopLevelHeaderTemplateKey}}" />
+                <Setter Property="Grid.IsSharedSizeScope" Value="true" />
+            </Trigger>
+            <Trigger Property="Role" Value="TopLevelItem">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.TopLevelItemTemplateKey}}" />
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuHeader">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.SubmenuHeaderTemplateKey}}" />
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuItem">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.SubmenuItemTemplateKey}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <!--Control colors.-->
+    <Color x:Key="WindowColor">#FFE8EDF9</Color>
+    <Color x:Key="ContentAreaColorLight">#FFC5CBF9</Color>
+    <Color x:Key="ContentAreaColorDark">#FF7381F9</Color>
+
+    <Color x:Key="DisabledControlLightColor">#FFE8EDF9</Color>
+    <Color x:Key="DisabledControlDarkColor">#FFC5CBF9</Color>
+
+    <Color x:Key="SelectedBackgroundColor">#FFC5CBF9</Color>
+    <Color x:Key="SelectedUnfocusedColor">#FFDDDDDD</Color>
+
+    <Color x:Key="ControlLightColor">White</Color>
+    <Color x:Key="ControlMediumColor">#FF7381F9</Color>
+    <Color x:Key="ControlDarkColor">#FF211AA9</Color>
+
+    <Color x:Key="ControlMouseOverColor">#FF3843C4</Color>
+    <Color x:Key="ControlPressedColor">#FF211AA9</Color>
+
+
+    <Color x:Key="GlyphColor">#FF444444</Color>
+    <Color x:Key="GlyphMouseOver">sc#1, 0.004391443, 0.002428215, 0.242281124</Color>
+
+
+    <!--Border colors-->
+    <Color x:Key="BorderLightColor">#FFCCCCCC</Color>
+    <Color x:Key="BorderMediumColor">#FF888888</Color>
+    <Color x:Key="BorderDarkColor">#FF444444</Color>
+
+    <Color x:Key="PressedBorderLightColor">#FF888888</Color>
+    <Color x:Key="PressedBorderDarkColor">#FF444444</Color>
+
+    <Color x:Key="DisabledBorderLightColor">#FFAAAAAA</Color>
+    <Color x:Key="DisabledBorderDarkColor">#FF888888</Color>
+
+    <Color x:Key="DefaultBorderBrushDarkColor">Black</Color>
+
+
+    <!--Control-specific resources.-->
+    <Color x:Key="HeaderTopColor">#FFC5CBF9</Color>
+    <Color x:Key="DatagridCurrentCellBorderColor">Black</Color>
+    <Color x:Key="SliderTrackDarkColor">#FFC5CBF9</Color>
+
+    <Color x:Key="NavButtonFrameColor">#FF3843C4</Color>
+
+    <LinearGradientBrush x:Key="MenuPopupBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="{DynamicResource ControlLightColor}" Offset="0" />
+        <GradientStop Color="{DynamicResource ControlMediumColor}" Offset="0.5" />
+        <GradientStop Color="{DynamicResource ControlLightColor}" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ProgressBarIndicatorAnimatedFill" StartPoint="0,0" EndPoint="1,0">
+        <LinearGradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#000000FF" Offset="0" />
+                <GradientStop Color="#600000FF" Offset="0.4" />
+                <GradientStop Color="#600000FF" Offset="0.6" />
+                <GradientStop Color="#000000FF" Offset="1" />
+            </GradientStopCollection>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+
+
+
