@@ -15,3 +15,4 @@ Alternative flag pack.  It is suggested that these flag files be placed in a sep
 ![alt text](./Waving_Flags/white_flag.png)
 ![alt text](./Waving_Flags/red_flag.png)
 ![alt text](./Waving_Flags/checkered_flag.png)
+![alt text](./Waving_Flags/black_flag.png)
