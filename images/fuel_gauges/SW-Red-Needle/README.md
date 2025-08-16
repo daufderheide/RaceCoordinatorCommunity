@@ -10,3 +10,6 @@ Three images to illustrate the primary states of the gauge
 ![alt text](./Fuel_5.png)
 ![alt text](./Fuel_0.png)
 
+# SW_fuel-large.psp File
+This file was generated using Paint Shop Pro to create all the states needed for the the various positions of the fuel gauge.  It is a layered vector file provided to allow others the ability to make changes the fuel gauge appearance if they desire.  It is not needed by RC.
+![alt text](./fuel-gauge-psp.jpg)
