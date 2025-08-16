@@ -18,6 +18,6 @@ Alternative flag pack.  It is suggested that these flag files be placed in a sep
 ![alt text](black_flag.png)
 
 ## How We Use These Flags - An optional alternative
-Some might ask why or how the US flag is used.  Here is a screen capture of the Race Manager, Images configuration menu used by our club.  When a race is not running RC displays the US Flag (RC: Red Flag).  During a race when a track call is initiated and power is shut off to the track thereby stopping all the cars we considered that a red flag (RC Yellow Flag).  A corresponding change to the audio results in the correct announcement.  There is essentially no yellow flag on purpose as in real racing that is where cars would be going slow around the track.
+Some might ask why or how the US flag is used.  Here is a screen capture of the Race Manager, Images configuration menu used by our club.  When a race is not running RC displays the US Flag (RC: Red Flag).  During a race when a track call is initiated and power is shut off to the track thereby stopping all the cars we consider that a red flag (RC Yellow Flag).  A corresponding change to the audio results in the correct announcement.  When the leader crosses the finish line for the heat win the checkered flag is displayed (RC: White Flag).  There is essentially no yellow flag on purpose as in real racing that is where cars would be going slow around the track.
 
 ![alt text](images_menu.jpg)
