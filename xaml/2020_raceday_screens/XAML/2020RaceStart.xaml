@@ -1,0 +1,42 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Start Your Engines" Width="750" Height="340" ResizeMode="CanResize" Background="Black" SizeToContent="Manual" WindowStartupLocation="CenterOwner">
+
+    <!-- Load Theme Information -->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="2020ThemeDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <!-- End Load Theme Information -->
+
+    <Viewbox Stretch="Fill">
+        <Grid Background="{StaticResource brushSecondary}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Button Name="Toggle_1" DataContext="'key':'Space'" Focusable="False" Visibility="Collapsed" />
+            <Image Name="StartLamp5_1" Grid.Row="0" Grid.Column="0" Height="100" Stretch="Fill" Width="100" />
+            <Image Name="StartLamp4_1" Grid.Row="0" Grid.Column="1" Height="100" Stretch="Fill" Width="100" />
+            <Image Name="StartLamp3_1" Grid.Row="0" Grid.Column="2" Height="100" Stretch="Fill" Width="100" />
+            <Image Name="StartLamp2_1" Grid.Row="0" Grid.Column="3" Height="100" Stretch="Fill" Width="100" />
+            <Image Name="StartLamp1_1" Grid.Row="0" Grid.Column="4" Height="100" Stretch="Fill" Width="100" />
+            <Image Name="StartLamp5_2" Grid.Row="1" Grid.Column="0" Height="100" Stretch="Fill" Width="100" />
+            <Image Name="StartLamp4_2" Grid.Row="1" Grid.Column="1" Height="100" Stretch="Fill" Width="100" />
+            <Image Name="StartLamp3_2" Grid.Row="1" Grid.Column="2" Height="100" Stretch="Fill" Width="100" />
+            <Image Name="StartLamp2_2" Grid.Row="1" Grid.Column="3" Height="100" Stretch="Fill" Width="100" />
+            <Image Name="StartLamp1_2" Grid.Row="1" Grid.Column="4" Height="100" Stretch="Fill" Width="100" />
+        </Grid>
+    </Viewbox>
+</Window>

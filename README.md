@@ -27,3 +27,7 @@ Get the latest beta and official RaceCoordinator installers.
 ## xaml
 Custom screens that can be used within race coordinator.
 
+### [2020 Race Day Screens](xaml/2020_raceday_screens/README.md)
+A set of Race Day screens using 2020s era styling.
+
+[![2020 Race Day Screens animated GIF](xaml/2020_raceday_screens/Screenshots/2020RaceDay_300px.gif "2020 Race Day Screens")](xaml/2020_raceday_screens/README.md)
