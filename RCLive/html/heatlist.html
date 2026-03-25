@@ -1,0 +1,42 @@
+<!--
+   Description:	Displays a simple tabbed style form that displays
+                a full list of heats to be run and drivers in each heat.
+				
+   Author:		Slingshot
+ 
+   Date: 		23rd Feb 2013
+-->
+<!DOCTYPE html>
+<html>
+  <head id="head">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="Slingshot" />
+    <title>Race Co-ordinator Live Results</title>
+ 
+	<link href="style/rc.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="scripts/soundmanager2/script/soundmanager2-nodebug-jsmin.js"></script>
+<!--	
+	<script type="text/javascript" src="scripts/soundmanager2/script/soundmanager2.js"></script>
+-->	
+	<script type="text/javascript" src="scripts/audio.js"></script>
+
+	<script type="text/javascript" src="scripts/menu.js"></script>
+	<script type="text/javascript" src="scripts/rcdata.js"></script>
+	<script type="text/javascript" src="scripts/rcutils.js"></script>
+ 	<script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
+  </head>
+  <body onload="init();" class="anlgbody">  
+
+  <!--Display the correct menu for this screen -->
+    <div id="menu">
+	<script> displayMenu(2);</script>
+    </div>
+
+	<!-- Placing a heatlist div will mean that it get's populated by the JS module with a
+		Heat List display -->
+    <div id="heatlist">
+    </div>
+   </body>
+</html>

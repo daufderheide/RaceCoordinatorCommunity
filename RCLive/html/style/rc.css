@@ -1,0 +1,258 @@
+/* Style for the race results screen and the table header */ 
+#raceresults {
+  font-family: verdana, georgia, sans-serif;
+  font-size: 20pt;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+}
+#raceresults th
+{
+  font-family: verdana, georgia, sans-serif;
+  font-size: 15pt;
+}
+
+#driverheatinfo
+{
+  font-family: verdana, georgia, sans-serif;
+  text-align: left;
+  font-size: 15pt;
+  width:100%;
+  text-align:center;
+  color: #FFFFFF;
+}
+
+#driverheatinfo caption
+{
+  font-family: verdana, georgia, sans-serif;
+  font-size: 22pt;
+  color: #FFFFFF;
+}
+
+#driverheatinfo table
+{
+  font-family: verdana, georgia, sans-serif;
+  font-size: 20pt;
+  color: #FFFFFF;
+  margin : auto ;
+  width : 600px;
+}
+
+#driverheatinfo th
+{
+  font-family: verdana, georgia, sans-serif;
+  font-size: 12pt;
+  color: #FFFFFF;
+  margin : 0 ;
+  width : 600px;
+}
+
+/* Specify the size of the graph is specified */
+#driverinfograph
+{
+	margin-right:45px;
+	margin-left:40px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	height: 250px;
+}
+
+#racerecords
+{
+	margin-top: 35px;
+	text-align: center;
+	font-size: 12pt;
+	color: #FFFFFF;
+}
+
+#heatlist
+{
+  font-family: verdana, georgia, sans-serif;
+  text-align: center;
+  font-size: 15pt;
+  color: #FFFFFF;
+}
+
+#heatlist caption
+{
+  font-family: verdana, georgia, sans-serif;
+  font-size: 12pt;
+  color: #FFFFFF;
+}
+
+#heatlist table
+{
+  font-family: verdana, georgia, sans-serif;
+  font-size: 15pt;
+  color: #FFFFFF;
+  margin : auto;
+  width : 800px;
+}
+
+#heatlist th
+{
+  font-family: verdana, georgia, sans-serif;
+  font-size: 10pt;
+  color: #FFFFFF;
+  margin : 0 ;
+}
+
+/* Style to display the flags */ 
+#flags
+{
+	position: absolute;
+	margin-top:10px;
+	right: 20px;
+	height: 70px;
+	border: none;
+}
+
+/* Style and position the start lights */
+#light1{position: absolute;	left: 10px;height: 70px;display:none}
+#light2 {position: absolute;	left: 80px;height: 70px;display:none}
+#light3 {position: absolute;	left: 150px;height: 70px;display:none}
+#light4 {position: absolute;	left: 220px;height: 70px;display:none}
+#light5 {position: absolute;	left: 290px;height: 70px;display:none}
+
+#settingstable
+{
+	font-size: 12pt;
+	color: #FFFFFF;
+	margin: 0px auto;
+	width: 90%;
+}
+
+#settingsbutton
+{
+	margin: 0px auto;
+	width: 30%;
+}
+
+#largecallbutton
+{
+	text-align: center;
+	margin-top: 80px;
+	border: none;
+}
+
+/* SS Define a class for displaying a driver row in SRMS */
+.srmsrow
+{
+	background-image: url('../images/bgRowSRMS.png');
+	background-size: contain;
+}
+/* SS Define a class for displaying a driver row in SRMS */
+.srmsheader
+{
+  background-image: url('../images/bgHeaderSRMS.png');
+  background-size: contain;
+}
+
+.anlgbody {
+  font-family: verdana, georgia, sans-serif;
+  background-image:url('../images/bgDark.png');
+  background-color:#1e2429;
+  background-attachment: fixed; 
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+.srmsbody {
+  font-family: verdana, georgia, sans-serif;
+  background-color: #000000;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+/* Section for classes so we can use different displays for Analog and digital */
+.anlgliverace {
+  font-family: verdana, georgia, sans-serif;
+  font-size: 20pt;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+}
+
+.srmsliverace {
+  font-family: verdana, georgia, sans-serif;
+  font-size: 20pt;
+  overflow: auto;
+  color: red;
+  height: 100%;
+  width: 100%;
+}
+
+/* Style for the current heat screen and the table header */ 
+.anlgliverace th
+{
+  font-family: verdana, georgia, sans-serif;
+  font-size: 15pt;
+}
+
+.srmsliverace th
+{
+  font-family: verdana, georgia, sans-serif;
+  font-size: 15pt;
+  background-image:url('../images/bgHeaderSRMS.png');
+  background-size: contain;
+}
+
+/* Specify the size of the graph is specified */
+.anlgliveracegraph
+{
+	margin-right:45px;
+	margin-left:40px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 250px;
+}
+
+.srmsliveracegraph
+{
+	margin-right:45px;
+	margin-left:40px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 250px;
+	background-image:url('../images/bgRowSRMS.png');
+	background-size: contain;
+}
+
+/*
+ * heatinfo is the element used to display the time left and heat number 
+ * the next 2 elements are created dynamicaly to display the time left and
+ * which heat is running
+ */
+.anlgheatinfo
+{
+  font-family: verdana, georgia, sans-serif;
+  text-align: center;
+  font-size: 15pt;
+  color: #FFFFFF;
+  padding-bottom: 20px;
+}
+
+.anlgracetime
+{
+  font-family: bold, verdana, georgia, sans-serif;
+  text-align: center;
+  font-size: 32pt;
+  color: #00FF00;
+}
+
+.srmsheatinfo
+{
+  font-family: verdana, georgia, sans-serif;
+  text-align: center;
+  font-size: 15pt;
+  color: #F47B20;       // Diegu: Scorpius orange
+  padding-bottom: 20px;
+}
+
+.srmsracetime
+{
+  font-family: bold, verdana, georgia, sans-serif;
+  text-align: center;
+  font-size: 32pt;
+  color: #8BC63F;   // Diegu: Scorpius green
+}

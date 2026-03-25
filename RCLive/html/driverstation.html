@@ -1,0 +1,49 @@
+<!--
+   Description:	Displays a simple tabbed style form that displays
+ 			    heatinfo (race time and heat number), followed by
+				a simple heat leaderboard displaying each driver in the 
+				heat and their laps, avg laptime and best lap.
+ 
+   Author:		Slingshot
+ 
+   Date: 		23rd Feb 2013
+-->
+<!DOCTYPE html>
+<html>
+  <head id="head">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="Slingshot" />
+    <title>Race Co-ordinator Live Driver Results</title>
+ 
+	<link href="style/rc.css" rel="stylesheet" type="text/css" />
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="scripts/flot/excanvas.min.js"></script><![endif]-->
+
+	<script type="text/javascript" src="scripts/soundmanager2/script/soundmanager2-nodebug-jsmin.js"></script>
+<!--		
+	<script type="text/javascript" src="scripts/soundmanager2/script/soundmanager2.js"></script>
+-->	
+	<script type="text/javascript" src="scripts/audio.js"></script>
+	
+	<script type="text/javascript" src="scripts/menu.js"></script>
+	<script type="text/javascript" src="scripts/rcdata.js"></script>
+	<script type="text/javascript" src="scripts/rcutils.js"></script>
+	<script type="text/javascript" src="scripts/rcgraph.js"></script>
+ 	<script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="scripts/flot/jquery.flot.js"></script>
+	<script type="text/javascript" src="scripts/flot/jquery.flot.axislabels.js"></script>
+	</head>
+  <body onload="init();" class="anlgbody">   
+    <!--Display the correct menu for this screen -->
+<!--	
+    <div id="menu">
+	   <script> displayMenu(1);</script>
+    </div>
+-->
+	<!-- Placing a driverstation div here gives us details about a driver on a specific lane/id -->
+    <div id="driverstation">
+    </div>
+	
+   </body>
+</html>

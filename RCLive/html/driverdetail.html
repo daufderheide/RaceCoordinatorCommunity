@@ -1,0 +1,52 @@
+<!--
+   Description:	Displays a simple tabbed style form that displays
+ 			    a selected drivers details.
+ 
+   Author:		Slingshot
+ 
+   Date: 		23rd Feb 2013
+-->
+<!DOCTYPE html>
+<html>
+  <head id="head">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="Slingshot" />
+    <title>Race Co-ordinator Live Results</title>
+ 
+	<link href="style/rc.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="scripts/soundmanager2/script/soundmanager2-nodebug-jsmin.js"></script>
+<!--	
+	<script type="text/javascript" src="scripts/soundmanager2/script/soundmanager2.js"></script>
+-->	
+	<script type="text/javascript" src="scripts/audio.js"></script>
+
+	<script type="text/javascript" src="scripts/menu.js"></script>
+	<script type="text/javascript" src="scripts/rcdata.js"></script>
+	<script type="text/javascript" src="scripts/rcutils.js"></script>
+	<script type="text/javascript" src="scripts/rcgraph.js"></script>
+ 	<script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="scripts/flot/jquery.flot.js"></script>
+	<script type="text/javascript" src="scripts/flot/jquery.flot.axislabels.js"></script>
+  </head>
+  <body onload="init();" class="anlgbody">  
+
+    <!--Display the correct menu for this screen -->
+    <div id="menu">
+	   <script> displayMenu(1);</script>
+    </div>
+
+	<!-- Placing a driver detail will give us detailed info on a specified driver -->
+    <div id="driverheatinfo">
+    </div>
+
+	<!-- Driver info graph if required to show driver details in graph form -->
+	<div id="chart">
+		<div id="driverinfograph"></div>
+	</div>
+	<div id="records">
+		<div id="racerecords"></div>
+	</div>
+	</body>
+</html>

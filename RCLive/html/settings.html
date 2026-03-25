@@ -1,0 +1,65 @@
+<!--
+   Description:	Simple page to edit and change settings
+				
+   Author:		Slingshot
+ 
+   Date: 		6th April 2013
+-->
+<!DOCTYPE html>
+<html>
+<head id="head">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="author" content="Slingshot" />
+	<title>Race Co-ordinator Live Results</title>
+	 
+	<link href="style/rc.css" rel="stylesheet" type="text/css" />
+
+	<script type="text/javascript" src="scripts/menu.js"></script>
+	<script type="text/javascript" src="scripts/rcutils.js"></script>
+	<script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
+</head>
+<body class="anlgbody">  
+
+	<!--Display the correct menu for this screen -->
+    <div id="menu">
+		<script>displayMenu(-1);</script>
+	</div>
+	<div id="settingstable">
+    <form name="formsettings" METHOD=POST ENCTYPE="text/plain">
+		<br>
+		<table>
+		<tr>
+			<td>Maximum laps to chart:</td><td><input type="number" name=maxlaps size=3></td>
+			<td><font size=2 face="arial" color="grey">Setting this too high may cause performace issues when plotting graphs.</font></td>
+		</tr>
+		<tr>
+			<td>Audio Volume:</td><td><input type="number" name=volume size=3></td>
+			<td><font size=2 face="arial" color="grey">Adjust the volume for in-race announcements between 0 and 100.</font></td>
+		</tr>
+		<tr>
+			<td>Race Control Password:</td><td><input type="password" name=password></td>
+			<td><font size=2 face="arial" color="grey">Password enables selecting the flag to pause and re-start the race.</font></td>
+		</tr>
+		</table>
+		<br><br>
+		<div id="settingsbutton">
+			<input type="button" value="Save Settings" onClick="saveSettingsFromForm()">
+			<input type="button" value="Cancel" onClick="closeSettings()">
+		</div>
+		<br><br><br><br>
+		<div style="font-size: 10pt;color: darkgrey;">
+		Tips:
+		<table style="margin-left:2em">
+			<tr><td>Selecting a drivers name will display a summary of all heats raced.</td></tr>
+			<tr><td>On the live race page selecting the graph will toggle between laptimes and position.</td></tr>
+			<tr><td>If the password is configured then the race can be started/paused and next heat selected using the call button or the flags icon.</td></tr>
+		</table>			
+		</div>
+
+		</form>
+	</div>
+	<script>getSettings(true)</script>
+  </body>
+</html>

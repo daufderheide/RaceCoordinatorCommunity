@@ -1,0 +1,54 @@
+<!--
+   Description:	Displays race details and a big call button useful for race control
+ 
+   Author:		Slingshot
+ 
+   Date: 		9th April 2013
+-->
+<!DOCTYPE html>
+<html>
+  <head id="head">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="Slingshot" />
+    <title>Race Co-ordinator Live Results</title>
+ 
+	<link href="style/rc.css" rel="stylesheet" type="text/css" />
+
+	<script type="text/javascript" src="scripts/soundmanager2/script/soundmanager2-nodebug-jsmin.js"></script>
+	<script type="text/javascript" src="scripts/audio.js"></script>
+	
+	<script type="text/javascript" src="scripts/menu.js"></script>
+	<script type="text/javascript" src="scripts/rcdata.js"></script>
+	<script type="text/javascript" src="scripts/rcutils.js"></script>
+	<script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
+
+	</head>
+  <body onload="init();" class="anlgbody">   
+    <!--Display the correct menu for this screen -->
+    <div id="menu">
+	   <script> displayMenu(4);</script>
+    </div>
+
+	<!-- Placing a heatstaus div give us flags for current status -->
+	<img id="flags" src="images/redflag.png"/>
+
+	<!-- Start lights if required -->
+	<div id="lights">
+		<img id="light1" src="images/start_red_dim.png">
+		<img id="light2" src="images/start_red_dim.png">
+		<img id="light3" src="images/start_red_dim.png">
+		<img id="light4" src="images/start_red_dim.png">
+		<img id="light5" src="images/start_red_dim.png">
+	</div>
+	
+	<!-- Placing a heatinfo div give us details about the current heat -->
+    <div id="heatinfo">
+    </div>
+
+    <div id="largecallbutton">
+		<a id="callbutton"><img src="images/red-square-button.png"></a>
+    </div>
+   </body>
+</html>
